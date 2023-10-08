@@ -34,14 +34,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'lightgreen', // Background color set to light green
     padding: 20,
     borderRadius: 10,
-    width: '80%', // You can adjust the width as needed
+    width: '80%', //  adjust the width 
   },
   title: {
     fontSize: 24,
     marginBottom: 20,
   },
   input: {
-    width: '100%', // Make the input field occupy the entire width
+    width: '100%', 
     padding: 10,
     margin: 10,
     backgroundColor: '#f1f1f1',
