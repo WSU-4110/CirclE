@@ -1,65 +1,28 @@
+// App.js
 import React from 'react';
-import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Welcome from './Screens/Welcome';
+import CreateAccount from './Screens/CreateAccount';
+import Login from './Screens/Login';
+import HomeScreen from './Screens/HomeScreen';
+import Category1 from './Screens/Category1'; // Import the Category1 component
+import Category2 from './Screens/Category2'; // Import the Category2 component
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Welcome to the Homepage!</Text>
-      
-      <TextInput
-        style={styles.input}
-        placeholder="Search..."
-      />
-
-      <View style={styles.categories}>
-        <Button title="Electronics" onPress={() => console.log("Electronics")} />
-        <Button title="Category 2" onPress={() => console.log("Category 2")} />
-        <Button title="Category 3" onPress={() => console.log("Category 3")} />
-      </View>
-
-      <View style={styles.newsletter}>
-        <Text style={styles.newsletterTitle}>Subscribe to our newsletter:</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Your email..."
-        />
-        <Button title="Subscribe" onPress={() => console.log("Subscribed")} />
-      </View>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Welcome">
+        <Stack.Screen name="Welcome" component={Welcome} options={{ title: 'Welcome' }} />
+        <Stack.Screen name="CreateAccount" component={CreateAccount} options={{ title: 'Create Account' }} />
+        <Stack.Screen name="Login" component={Login} options={{ title: 'Login' }} />
+        <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Home' }} />
+        <Stack.Screen name="Category1" component={Category1} options={{ title: 'Category 1' }} />
+        <Stack.Screen name="Category2" component={Category2} options={{ title: 'Category 2' }} />
+        {/* Add more category screens here */}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  input: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    width: '100%',
-    marginBottom: 20,
-    paddingLeft: 10,
-  },
-  categories: {
-    width: '100%',
-    marginBottom: 20,
-  },
-  newsletter: {
-    width: '100%',
-  },
-  newsletterTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-});
