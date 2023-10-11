@@ -1,23 +1,25 @@
-// Login.js
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-const Login = ({ navigation }) => {
+const Login = () => {
+  const navigation = useNavigation();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = () => {
     // Perform authentication logic here
     console.log(`Username: ${username}, Password: ${password}`);
-
-    // Navigate to HomeScreen after successful login
     navigation.navigate('Home');
   };
 
   return (
     <View style={styles.container}>
-      {/* Entire screen background color */}
-      <View style={styles.background}>
+      <View style={styles.card}>
+        <Image
+          style={styles.logo}
+          source={require('../assets/Logo1.png')}
+        />
         <Text style={styles.title}>Login</Text>
         <TextInput
           style={styles.input}
@@ -32,7 +34,11 @@ const Login = ({ navigation }) => {
           secureTextEntry={true}
           onChangeText={(text) => setPassword(text)}
         />
-        <Button title="Login" onPress={handleSubmit} />
+        <TouchableOpacity onPress={handleSubmit}>
+          <View style={styles.button}>
+            <Text style={styles.buttonText}>Login</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -40,25 +46,47 @@ const Login = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, // This ensures the outer container takes up the entire screen
+    flex: 1,
+    backgroundColor: '#E8F5E9',
+    alignItems: 'center',
     justifyContent: 'center',
+  },
+  card: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10,
+    padding: 20,
+    width: '80%',
     alignItems: 'center',
   },
-  background: {
-    backgroundColor: 'lightgreen', // Background color set to light green
-    padding: 20,
-    borderRadius: 10,
-    width: '80%', // You can adjust the width as needed
+  logo: {
+    width: 100,
+    height: 100,
+    marginBottom: 20,
   },
   title: {
     fontSize: 24,
+    fontWeight: 'bold',
     marginBottom: 20,
+    color: '#388E3C',
   },
   input: {
-    width: '100%', // Make the input fields occupy the entire width
-    padding: 10,
-    margin: 10,
-    backgroundColor: '#f1f1f1',
+    height: 40,
+    borderColor: '#A5D6A7',
+    borderWidth: 1,
+    borderRadius: 5,
+    marginBottom: 15,
+    paddingLeft: 10,
+    width: '100%',
+  },
+  button: {
+    backgroundColor: '#4CAF50',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
   },
 });
 

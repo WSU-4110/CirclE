@@ -1,20 +1,31 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import LinearGradient from 'react-native-linear-gradient';
 
-const CreateAccount = ({ navigation }) => {
+
+const CreateAccount = () => {
+  const navigation = useNavigation();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleCreateAccount = () => {
+    // Your account creation logic here
     console.log(`Username: ${username}, Email: ${email}, Password: ${password}`);
-
     navigation.navigate('Home');
   };
 
   return (
+
+    
     <View style={styles.container}>
-      <View style={styles.background}>
+      <View style={styles.card}>
+        
+        <Image
+            style={styles.logo}
+            source={require('../assets/Logo1.png')}
+        />
         <Text style={styles.title}>Create Account</Text>
         <TextInput
           style={styles.input}
@@ -35,37 +46,64 @@ const CreateAccount = ({ navigation }) => {
           secureTextEntry={true}
           onChangeText={(text) => setPassword(text)}
         />
-        <Button title="Create Account" onPress={handleCreateAccount} />
-
-       < Button title="Back" onPress={() => navigation.goBack()} />
-        
+        <TouchableOpacity onPress={handleCreateAccount}>
+          <View style={styles.button}>
+            <Text style={styles.buttonText}>Create Account</Text>
+          </View>
+        </TouchableOpacity>
+        <Button title="Back" onPress={() => navigation.goBack()} color="#8BC34A" />
       </View>
     </View>
+    
+
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#E8F5E9',
+    alignItems: 'center',
     justifyContent: 'center',
+  },
+  card: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10,
+    padding: 20,
+    width: '80%',
     alignItems: 'center',
   },
-  background: {
-    backgroundColor: 'lightgreen',
-    padding: 20,
-    borderRadius: 10,
-    width: '80%',
+  logo: {
+    width: 100,
+    height: 100,
+    marginBottom: 20,
   },
   title: {
     fontSize: 24,
+    fontWeight: 'bold',
     marginBottom: 20,
+    color: '#388E3C',
   },
   input: {
+    height: 40,
+    borderColor: '#A5D6A7',
+    borderWidth: 1,
+    borderRadius: 5,
+    marginBottom: 15,
+    paddingLeft: 10,
     width: '100%',
-    padding: 10,
-    margin: 10,
-    backgroundColor: '#f1f1f1',
+  },
+  button: {
+    backgroundColor: '#4CAF50',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
   },
 });
 
 export default CreateAccount;
+
