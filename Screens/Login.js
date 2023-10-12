@@ -1,49 +1,82 @@
+
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  Alert
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+// the Login component
 const Login = () => {
+  // Initialize React Navigation
   const navigation = useNavigation();
+  
+  // Declare state variables for username, password, and error message
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
 
+  // Function to handle form submission
   const handleSubmit = () => {
-    // Perform authentication logic here
-    console.log(`Username: ${username}, Password: ${password}`);
-    navigation.navigate('Home');
+    // Check if the username and password are correct
+    if (username === 'admin' && password === 'password') {
+      setError(null); // Reset error message
+      navigation.navigate('Home'); // Navigate to Home screen
+    } else {
+      setError('Invalid username or password'); // Set error message
+    }
   };
 
+  // Function to handle the Create Account button press
+  const handleCreateAccountPress = () => {
+    navigation.navigate('CreateAccount'); // Navigate to Create Account screen
+  };
+
+  // Render the component
   return (
     <View style={styles.container}>
       <View style={styles.card}>
-        <Image
-          style={styles.logo}
-          source={require('../assets/Logo1.png')}
-        />
+        <Image style={styles.logo} source={require('../assets/Logo1.png')} />
         <Text style={styles.title}>Login</Text>
+        {/* Conditional rendering of error message */}
+        {error && <Text style={styles.errorText}>{error}</Text>}
         <TextInput
           style={styles.input}
           placeholder="Username"
           value={username}
-          onChangeText={(text) => setUsername(text)}
+          onChangeText={(text) => setUsername(text)} // Update username state
         />
         <TextInput
           style={styles.input}
           placeholder="Password"
           value={password}
           secureTextEntry={true}
-          onChangeText={(text) => setPassword(text)}
+          onChangeText={(text) => setPassword(text)} // Update password state
         />
         <TouchableOpacity onPress={handleSubmit}>
           <View style={styles.button}>
             <Text style={styles.buttonText}>Login</Text>
           </View>
         </TouchableOpacity>
+        {/* Forgot Password handler */}
+        <TouchableOpacity onPress={() => Alert.alert('Forgot Password', 'Redirecting to forgot password screen.')}>
+          <Text style={styles.forgotPassword}>Forgot Password?</Text>
+        </TouchableOpacity>
+        {/* Create Account handler */}
+        <TouchableOpacity onPress={handleCreateAccountPress}>
+          <Text style={styles.signUp}>Don't have an account? Sign Up</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
 };
 
+// Define styling for the component
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -88,6 +121,19 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
   },
+  forgotPassword: {
+    marginTop: 10,
+    color: '#007BFF',
+  },
+  signUp: {
+    marginTop: 10,
+    color: '#007BFF',
+  },
+  errorText: {
+    color: 'red',
+    marginBottom: 10,
+  },
 });
 
+// Export the Login component
 export default Login;
