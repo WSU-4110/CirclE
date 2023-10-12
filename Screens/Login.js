@@ -1,26 +1,40 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  Alert
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const Login = () => {
   const navigation = useNavigation();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
 
   const handleSubmit = () => {
-    // Perform authentication logic here
-    console.log(`Username: ${username}, Password: ${password}`);
-    navigation.navigate('Home');
+    if (username === 'admin' && password === 'password') {
+      setError(null);
+      navigation.navigate('Home');
+    } else {
+      setError('Invalid username or password');
+    }
+  };
+
+  const handleCreateAccountPress = () => {
+    navigation.navigate('CreateAccount');
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.card}>
-        <Image
-          style={styles.logo}
-          source={require('../assets/Logo1.png')}
-        />
+        <Image style={styles.logo} source={require('../assets/Logo1.png')} />
         <Text style={styles.title}>Login</Text>
+        {error && <Text style={styles.errorText}>{error}</Text>}
         <TextInput
           style={styles.input}
           placeholder="Username"
@@ -38,6 +52,12 @@ const Login = () => {
           <View style={styles.button}>
             <Text style={styles.buttonText}>Login</Text>
           </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => Alert.alert('Forgot Password', 'Redirecting to forgot password screen.')}>
+          <Text style={styles.forgotPassword}>Forgot Password?</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleCreateAccountPress}>
+          <Text style={styles.signUp}>Don't have an account? Sign Up</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -87,6 +107,18 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     fontSize: 16,
+  },
+  forgotPassword: {
+    marginTop: 10,
+    color: '#007BFF',
+  },
+  signUp: {
+    marginTop: 10,
+    color: '#007BFF',
+  },
+  errorText: {
+    color: 'red',
+    marginBottom: 10,
   },
 });
 
