@@ -9,6 +9,7 @@ import HomeScreen from './Screens/HomeScreen';
 import Category1 from './Screens/Category1'; 
 import Category2 from './Screens/Category2'; 
 import LoadingScreen from './Screens/LoadingScreen';
+import ProfilePage from './Screens/ProfilePage';
 
 const Stack = createStackNavigator();
 
@@ -16,6 +17,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="LoadingScreen">
+        <Stack.Screen name="ProfilePage" component={ProfilePage} options={{ title: 'Profile' }} />
         <Stack.Screen name="LoadingScreen" component={LoadingScreen} options={{ title: 'Loading' }} />
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="Welcome" component={Welcome} options={{ title: 'Welcome' }} />
