@@ -2,17 +2,24 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Login from './Login';
-import HomeScreen from './HomeScreen';
-import Category1 from './Category1'; // Import the Category1 component
-import Category2 from './Category2'; // Import the Category2 component
+import Welcome from './Screens/Welcome';
+import CreateAccount from './Screens/CreateAccount';
+import Login from './Screens/Login';
+import HomeScreen from './Screens/HomeScreen';
+import Category1 from './Screens/Category1'; 
+import Category2 from './Screens/Category2'; 
+import LoadingScreen from './Screens/LoadingScreen';
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator initialRouteName="LoadingScreen">
+        <Stack.Screen name="LoadingScreen" component={LoadingScreen} options={{ title: 'Loading' }} />
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+        <Stack.Screen name="Welcome" component={Welcome} options={{ title: 'Welcome' }} />
+        <Stack.Screen name="CreateAccount" component={CreateAccount} options={{ title: 'Create Account' }} />
         <Stack.Screen name="Login" component={Login} options={{ title: 'Login' }} />
         <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Home' }} />
         <Stack.Screen name="Category1" component={Category1} options={{ title: 'Category 1' }} />
