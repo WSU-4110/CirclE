@@ -10,7 +10,7 @@ const CreateAccount = () => {
   const [password, setPassword] = useState('');
 
   const handleCreateAccount = () => {
-    // Your account creation logic here
+    //  account creation logic here
     console.log(`Username: ${username}, Email: ${email}, Password: ${password}`);
     navigation.navigate('Home');
   };
