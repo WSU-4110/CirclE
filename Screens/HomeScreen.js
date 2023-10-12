@@ -45,7 +45,7 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.background}>
+      <View style={styles.card}>
         <Text style={styles.title}>Welcome to the Homepage!</Text>
         <TextInput
           style={styles.input}
@@ -73,24 +73,31 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    backgroundColor: '#E8F5E9',
     alignItems: 'center',
+    justifyContent: 'center',
   },
-  background: {
-    backgroundColor: 'lightgreen',
-    padding: 20,
+  card: {
+    backgroundColor: '#FFFFFF',
     borderRadius: 10,
+    padding: 20,
     width: '80%',
+    alignItems: 'center',
   },
   title: {
     fontSize: 24,
+    fontWeight: 'bold',
     marginBottom: 20,
+    color: '#388E3C',
   },
   input: {
+    height: 40,
+    borderColor: '#A5D6A7',
+    borderWidth: 1,
+    borderRadius: 5,
+    marginBottom: 15,
+    paddingLeft: 10,
     width: '100%',
-    padding: 10,
-    margin: 10,
-    backgroundColor: '#f1f1f1',
   },
 });
 
