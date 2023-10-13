@@ -1,96 +1,131 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, FlatList } from 'react-native';
-import axios from 'axios';
-import { useFocusEffect } from '@react-navigation/native';
-
+import React from 'react';
+import { View, Text, Image, StyleSheet,Button, TouchableOpacity, ImageBackground,ScrollView } from 'react-native';
 
 const HomeScreen = ({ navigation }) => {
-  const [search, setSearch] = useState('');
-  const [items, setItems] = useState([]);
-
-  useFocusEffect(
-    React.useCallback(() => {
-      const fetchData = () => {
-        if (search.trim() !== '') {
-          const endpoint = `http://127.0.0.1:5000/items/${search}`;
-          axios.get(endpoint)
-            .then((response) => {
-              setItems(response.data);
-            })
-            .catch((error) => {
-              console.error('Error fetching items:', error);
-            });
-        }
-      };
-
-      fetchData();
-    }, [search])
-  );
-
-  const handleCategoryPress = (category) => {
-    setSearch(category);
-
-    const endpoint = `http://127.0.0.1:5000/items/${category}`;
-    axios.get(endpoint)
-      .then((response) => {
-        setItems(response.data);
-      })
-      .catch((error) => {
-        console.error('Error fetching items:', error);
-      })
-      .finally(() => {
-        navigation.navigate(category);
-      });
+  const handleIconPress = (pageName) => {
+    // Navigate to the specified page when an icon is pressed
+    navigation.navigate(pageName);
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.background}>
-        <Text style={styles.title}>Welcome to the Homepage!</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Search..."
-          value={search}
-          onChangeText={(text) => setSearch(text)}
+    <ImageBackground
+      source={require('../assets/background.jpg')}
+      style={styles.background1}
+    >
+      <View style={styles.container}>
+        <Image
+          source={require('../assets/Logo1.png')}
+          style={styles.logo}
+          resizeMode="contain"
         />
-        <Button title="Category 1" onPress={() => handleCategoryPress('Category1')} />
-        <Button title="Category 2" onPress={() => handleCategoryPress('Category2')} />
-        <Button title="ProfilePage" onPress={() => navigation.navigate('ProfilePage')} />
-        <FlatList
-          data={items}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <View>
-              <Text>{item.name}</Text>
-            </View>
-          )}
-        />
+        <Text style={styles.text}>Travel with people. Make new friends.</Text>
+        {/* Container for horizontal scroll view and category buttons */}
+        <View style={styles.horizontalScrollContainer}>
+          <ScrollView horizontal={true} contentContainerStyle={styles.horizontalScroll}>
+            {/* Add horizontal scroll view content here */}
+            <Button title="reduce1" onPress={() => handleCategoryPress1('Category1')} />
+            <Button title="reuse1" onPress={() => handleCategoryPress1('Category1')} />
+            <Button title="Recycle1" onPress={() => handleCategoryPress1('Category1')} />
+            <Button title="Orgevents1" onPress={() => handleCategoryPress1('Category1')} />
+          </ScrollView>
+        </View>
+        {/* First Row of Icons */}
+        <View style={styles.row}>
+          <TouchableOpacity onPress={() => handleIconPress('Category3')}>
+            <Image
+              source={require('../assets/laptop_ce.jpg')}
+              style={styles.icon}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => handleIconPress('Category3')}>
+            <Image
+              source={require('../assets/kitchen_ce.jpg')}
+              style={styles.icon}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => handleIconPress('Category3')}>
+            <Image
+              source={require('../assets/furniture_ce.jpg')}
+              style={styles.icon}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+        </View>
+
+        {/* Second Row of Icons */}
+        <View style={styles.row}>
+          <TouchableOpacity onPress={() => handleIconPress('Category3')}>
+            <Image
+              source={require('../assets/Health_Makeup.jpg')}
+              style={styles.icon}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => handleIconPress('Category3')}>
+            <Image
+              source={require('../assets/carparts_ce.jpg')}
+              style={styles.icon}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => handleIconPress('Category3')}>
+            <Image
+              source={require('../assets/clothiing__ce.jpg')}
+              style={styles.icon}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  background1: {
+    width: '100%',
+    height: '100%',
+  },
+  logo: {
+    width: 100,
+    height: 100,
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  background: {
-    backgroundColor: 'lightgreen',
-    padding: 20,
-    borderRadius: 10,
-    width: '80%',
+  text: {
+    fontSize: 18,
+    marginTop: 10,
   },
-  title: {
-    fontSize: 24,
-    marginBottom: 20,
+  signup: {
+    fontSize: 16,
+    marginTop: 20,
+    color: 'blue',
   },
-  input: {
-    width: '100%',
-    padding: 10,
+  horizontalScrollContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  horizontalScroll: {
+    alignItems: 'center',
+  },
+  login: {
+    fontSize: 16,
+    marginTop: 10,
+    color: 'blue',
+  },
+  row: {
+    flexDirection: 'row',
+  },
+  icon: {
+    width: 100,
+    height: 100,
     margin: 10,
-    backgroundColor: '#f1f1f1',
   },
 });
 
