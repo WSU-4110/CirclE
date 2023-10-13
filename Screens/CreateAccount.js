@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import LinearGradient from 'react-native-linear-gradient';
 
 
 const CreateAccount = () => {
@@ -11,7 +10,7 @@ const CreateAccount = () => {
   const [password, setPassword] = useState('');
 
   const handleCreateAccount = () => {
-    // Your account creation logic here
+    //  account creation logic here
     console.log(`Username: ${username}, Email: ${email}, Password: ${password}`);
     navigation.navigate('Home');
   };

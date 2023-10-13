@@ -69,6 +69,7 @@ const HomeScreen = ({ navigation }) => {
           value={search}
           onChangeText={(text) => setSearch(text)}
         />
+<<<<<<< HEAD
 
         {/* Container for horizontal scroll view and category buttons */}
         <View style={styles.horizontalScrollContainer}>
@@ -86,6 +87,11 @@ const HomeScreen = ({ navigation }) => {
           <Button title="Category 4" onPress={() => handleCategoryPress('Category4')} />
         </View>
 
+=======
+        <Button title="Category 1" onPress={() => handleCategoryPress('Category1')} />
+        <Button title="Category 2" onPress={() => handleCategoryPress('Category2')} />
+        <Button title="ProfilePage" onPress={() => navigation.navigate('ProfilePage')} />
+>>>>>>> 171e24aceb25e4e14560e9eec4c6989486a526e4
         <FlatList
           data={items}
           keyExtractor={(item) => item.id.toString()}
