@@ -91,6 +91,12 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 <!-- GETTING STARTED -->
 ## Getting Started
+Circle app Planing document
+* Sprint log/ meeting minutes-nini: https://docs.google.com/document/d/1yt_1jmwHtfVYIcl2i4GvckcMC0rwi7S8fenFz85J-0U/edit?usp=sharing
+* item research link- nini: https://docs.google.com/document/d/1VZSDFtTxHdPN25jUomN3U-h9xV3b1erLX-ZW_4V9FHw/edit?usp=sharing
+* Mock-databse design- nini: https://docs.google.com/presentation/d/1-j3bbAMvOVBF4fmak3GYt5jJUVDjK9lBi8uRol9L3Vk/edit?usp=sharing
+* Database type and structure rationale-nini: https://docs.google.com/document/d/1FQLG4Qq6kWYiiqYRi2XTv7bJ2IZiLJG-JesjsNvq6j8/edit?usp=sharing
+* srs Document-team:https://docs.google.com/document/d/1qijALci7uZQfd4W33JxsN55gpUtQWkmEg2QyoS19aZo/edit?usp=sharing
 
 
 ### Prerequisites
