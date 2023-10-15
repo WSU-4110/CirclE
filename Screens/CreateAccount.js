@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
+import { EmailAccountCreation } from './AccountCreationStrategy'; // Import strategy
 
 const CreateAccount = () => {
   const navigation = useNavigation();
@@ -9,12 +9,16 @@ const CreateAccount = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  // Initialize strategy
+  const strategy = new EmailAccountCreation();
+
   const handleCreateAccount = () => {
-    //  account creation logic here
-    console.log(`Username: ${username}, Email: ${email}, Password: ${password}`);
+    // Use strategy to create account
+    strategy.createAccount(username, email, password);
+
+    // Navigate to Home
     navigation.navigate('Home');
   };
-
   return (
 
     
