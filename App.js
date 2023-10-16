@@ -15,6 +15,8 @@ import Category3 from './Screens/Category3';
 import LoadingScreen from './Screens/LoadingScreen';
 import ProfilePage from './Screens/ProfilePage';
 import Settings from './Screens/Settings';
+import Chatroom from './Screens/Chatroom';
+import Location from './Screens/Location';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -29,6 +31,12 @@ const BottomTabNavigator = () => (
         } else if (route.name === 'Settings') {
           iconName = focused ? 'settings' : 'settings-outline';
         }
+        else if (route.name === 'Location') {
+          iconName = focused ? 'location' : 'location-sharp';
+        }
+        else if (route.name === 'Chatroom') {
+          iconName = focused ? 'chatbox' : 'chatbox-sharp';
+        }
         return <Ionicons name={iconName} size={size} color={color} />;
       },
     })}
@@ -39,6 +47,8 @@ const BottomTabNavigator = () => (
   >
     <Tab.Screen name="Home" component={HomeScreen} />
     <Tab.Screen name="Settings" component={Settings} />
+    <Tab.Screen name="Location" component={Location} />
+    <Tab.Screen name="Chatroom" component={Chatroom} />
   </Tab.Navigator>
 );
 
@@ -52,7 +62,6 @@ export default function App() {
         <Stack.Screen name="Welcome" component={Welcome} options={{ title: 'Welcome' }} />
         <Stack.Screen name="CreateAccount" component={CreateAccount} options={{ title: 'Create Account' }} />
         <Stack.Screen name="Login" component={Login} options={{ title: 'Login' }} />
-        <Stack.Screen name="Home" component={BottomTabNavigator} options={{ title: 'Home' }} />
         <Stack.Screen name="Category1" component={Category1} options={{ title: 'Category 1' }} />
         <Stack.Screen name="Category2" component={Category2} options={{ title: 'Category 2' }} />
         <Stack.Screen name="Category3" component={Category3} options={{ title: 'Category 3' }} />
