@@ -30,6 +30,7 @@ const HomeScreen = ({ navigation }) => {
 
   return (
 
+
     <ImageBackground
       source={require('../assets/background.jpg')}
       style={styles.background1}
@@ -39,6 +40,7 @@ const HomeScreen = ({ navigation }) => {
           source={require('../assets/Logo1.png')}
           style={styles.logo}
           resizeMode="contain"
+
         />
        <Text style={styles.text}>Recycling with Circle</Text>
 <TextInput
@@ -152,9 +154,11 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
+    backgroundColor: '#E8F5E9',
     alignItems: 'center',
+    justifyContent: 'center',
   },
+
   text: {
     fontSize: 18,
     marginTop: 10,
@@ -224,12 +228,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#3498db', // Button background color
     borderRadius: 5,
     marginBottom: 10,
+
   },
   input: {
+    height: 40,
+    borderColor: '#A5D6A7',
+    borderWidth: 1,
+    borderRadius: 5,
+    marginBottom: 15,
+    paddingLeft: 10,
     width: '100%',
-    padding: 10,
-    margin: 10,
-    backgroundColor: '#f1f1f1',
   },
   image: {
     width: 150,
