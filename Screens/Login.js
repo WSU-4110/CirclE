@@ -1,5 +1,9 @@
-
+//login.js
 import React, { useState } from 'react';
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth'
+import 'firebase/compat/database';
+
 import {
   View,
   Text,
@@ -17,19 +21,34 @@ const Login = () => {
   const navigation = useNavigation();
   
   // Declare state variables for username, password, and error message
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');  // Declare email state variable
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
 
   // Function to handle form submission
   const handleSubmit = () => {
-    // Check if the username and password are correct
-    if (username === 'admin' && password === 'password') {
-      setError(null); // Reset error message
-      navigation.navigate('Home'); // Navigate to Home screen
-    } else {
-      setError('Invalid username or password'); // Set error message
-    }
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // The user is signed in
+        
+        // Get the UID of the signed-in user
+        var uid = userCredential.user.uid;
+  
+        // Retrieve user data from the database
+        firebase.database().ref('/users/' + uid).once('value').then((snapshot) => {
+          var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+          var email = (snapshot.val() && snapshot.val().email) || 'Anonymous';
+          console.log(`Username: ${username}, Email: ${email}`);
+          // Do something with the retrieved user data
+        });
+  
+        setError(null); // Reset error message
+        navigation.navigate('Home'); // Navigate to Home screen
+      })
+      .catch((error) => {
+        // Error occurred during sign in
+        setError(error.message); // Set error message
+      });
   };
 
   // Function to handle the Create Account button press
@@ -47,9 +66,9 @@ const Login = () => {
         {error && <Text style={styles.errorText}>{error}</Text>}
         <TextInput
           style={styles.input}
-          placeholder="Username"
-          value={username}
-          onChangeText={(text) => setUsername(text)} // Update username state
+          placeholder="Email"
+          value={email}
+          onChangeText={(text) => setEmail(text)} // Update email state
         />
         <TextInput
           style={styles.input}
@@ -111,6 +130,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     width: '100%',
   },
+
   button: {
     backgroundColor: '#4CAF50',
     paddingVertical: 10,
