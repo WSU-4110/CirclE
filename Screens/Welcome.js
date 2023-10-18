@@ -1,7 +1,30 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
+//  Using the factory design pattern for the Login Options, this is the abstract
+class LoginOptionsFactory {
+  createLoginOption(navigation) {
+    // This'll be used by subclasses
+  }
+}
+
+// Using the factory design pattern for the Login Options
+class ConcreteLoginOptionsFactory extends LoginOptionsFactory {
+  createLoginOption(navigation, optionName) {
+    return (
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate(optionName)}
+      >
+        <Text style={styles.buttonText}>{optionName}</Text>
+      </TouchableOpacity>
+    );
+  }
+}
+
 const LoginOptions = ({ navigation }) => {
+  const factory = new ConcreteLoginOptionsFactory();
+
   return (
     <View style={styles.container}>
       <View style={styles.card}>
@@ -12,24 +35,9 @@ const LoginOptions = ({ navigation }) => {
           />
         </View>
         <Text style={styles.title}>Choose an Option:</Text>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate('Login')}
-        >
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate('CreateAccount')}
-        >
-          <Text style={styles.buttonText}>Create Account</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate('HomeScreen')}
-        >
-          <Text style={styles.buttonText}>Continue As Guest</Text>
-        </TouchableOpacity>
+        {factory.createLoginOption(navigation, 'Login')}
+        {factory.createLoginOption(navigation, 'CreateAccount')}
+        {factory.createLoginOption(navigation, 'HomeScreen')}
       </View>
     </View>
   );
