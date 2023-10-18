@@ -1,0 +1,220 @@
+import React, { useState } from 'react';
+import { View, Text, TextInput, Button, StyleSheet, FlatList, ImageBackground, Image, TouchableOpacity } from 'react-native';
+import axios from 'axios';
+import { useFocusEffect } from '@react-navigation/native';
+
+
+const HomeScreen = ({ navigation }) => {
+  const [search, setSearch] = useState('');
+  const [items, setItems] = useState([]);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const fetchData = () => {
+        if (search.trim() !== '') {
+          const endpoint = `http://127.0.0.1:5000/items/${search}`;
+          axios.get(endpoint)
+            .then((response) => {
+              setItems(response.data);
+            })
+            .catch((error) => {
+              console.error('Error fetching items:', error);
+            });
+        }
+      };
+
+      fetchData();
+    }, [search])
+  );
+
+  const handleCategoryPress = (category) => {
+    setSearch(category);
+
+    const endpoint = `http://127.0.0.1:5000/items/${category}`;
+    axios.get(endpoint)
+      .then((response) => {
+        setItems(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching items:', error);
+      })
+      .finally(() => {
+        navigation.navigate(category);
+      });
+  };
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.background}>
+        <Text style={styles.title}>Welcome to the Homepage!</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Search..."
+          value={search}
+          onChangeText={(text) => setSearch(text)}
+        />
+
+<ImageBackground
+      
+      >
+        <View>
+          <Image
+            source={require('../assets/Logo1.png')}
+            style={styles.logo}
+            resizeMode="contain"
+          >
+          </Image>
+          <Text style={styles.text}>Travel with people. Make new friends.</Text>
+          <TouchableOpacity 
+            onPress={this.signupPressed}
+          >
+            <Text style={styles.signup}>Sign Up</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={this.loginPressed}
+          >
+            <Text style={styles.login}>Log In</Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
+        <Button title="Category 1" onPress={() => handleCategoryPress('Category1')} />
+        <Button title="Category 2" onPress={() => handleCategoryPress('Category2')} />
+        <Button title="Category 3" onPress={() => handleCategoryPress('Category3')} />
+        <Button title="ProfilePage" onPress={() => navigation.navigate('ProfilePage')} />
+        <FlatList
+          data={items}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <View>
+              <Text>{item.name}</Text>
+            </View>
+          )}
+        />
+      </View>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+
+  background: {
+    width: '100%',
+    height: '100%'
+  },
+
+  logo:{
+    width: 280,
+    height: 280,
+    marginLeft: '15%',
+    marginTop: '10%'
+  },  
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  background: {
+    backgroundColor: 'lightgreen',
+    padding: 20,
+    borderRadius: 10,
+    width: '500%',
+    length: '1000%',
+  },
+  title: {
+    fontSize: 24,
+    marginBottom: 20,
+  },
+  input: {
+    width: '100%',
+    padding: 10,
+    margin: 10,
+    backgroundColor: '#f1f1f1',
+  },
+});
+
+export default HomeScreen;
+
+
+
+import React from 'react';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+
+const HomeScreen = ({ navigation }) => {
+  const handleIconPress = (pageName) => {
+    // Navigate to the specified page when an icon is pressed
+    navigation.navigate(pageName);
+  };
+
+  return (
+    <View style={styles.container}>
+      {/* First Row */}
+      <View style={styles.row}>
+        <TouchableOpacity onPress={() => handleIconPress('Page1')}>
+          <Image
+            source={require('../assets/laptop_ce.jpg')}
+            style={styles.icon}
+            resizeMode="contain"
+          />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleIconPress('Page2')}>
+          <Image
+            source={require('../assets/carparts_ce.jpg')}
+            style={styles.icon}
+            resizeMode="contain"
+          />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleIconPress('Page3')}>
+          <Image
+            source={require('../assets/clothiing__ce.jpg')}
+            style={styles.icon}
+            resizeMode="contain"
+          />
+        </TouchableOpacity>
+      </View>
+
+      {/* Second Row */}
+      <View style={styles.row}>
+        <TouchableOpacity onPress={() => handleIconPress('Page4')}>
+          <Image
+            source={require('../assets/kitchen_ce.jpg')}
+            style={styles.icon}
+            resizeMode="contain"
+          />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleIconPress('Page5')}>
+          <Image
+            source={require('../assets/furniture_ce.jpg')}
+            style={styles.icon}
+            resizeMode="contain"
+          />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleIconPress('Page6')}>
+          <Image
+            source={require('../assets/Health_Makeup.jpg')}
+            style={styles.icon}
+            resizeMode="contain"
+          />
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  icon: {
+    width: 100,
+    height: 100,
+    margin: 10,
+  },
+});
+
+export default HomeScreen;
