@@ -1,7 +1,10 @@
+//CreateAccount.js
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth'
+import 'firebase/compat/database';
 
 const CreateAccount = () => {
   const navigation = useNavigation();
@@ -10,9 +13,27 @@ const CreateAccount = () => {
   const [password, setPassword] = useState('');
 
   const handleCreateAccount = () => {
-    //  account creation logic here
-    console.log(`Username: ${username}, Email: ${email}, Password: ${password}`);
-    navigation.navigate('Home');
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // The user account has been created
+        console.log(`Username: ${username}, Email: ${email}, Password: ${password}`);
+        
+        // Get the UID of the new user
+        var uid = userCredential.user.uid;
+  
+        // Create a new entry in the database using the UID as the key
+        firebase.database().ref('users/' + uid).set({
+          username: username,
+          email: email,
+          // add any additional user info here
+        });
+  
+        navigation.navigate('Home');
+      })
+      .catch((error) => {
+        // Error occurred
+        console.error(error.message);
+      });
   };
 
   return (
