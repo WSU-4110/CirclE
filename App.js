@@ -10,6 +10,7 @@ import Category1 from './Screens/Category1';
 import Category2 from './Screens/Category2'; 
 import LoadingScreen from './Screens/LoadingScreen';
 import ProfilePage from './Screens/ProfilePage';
+import Category3 from './Screens/Category3';
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,8 @@ export default function App() {
         <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Home' }} />
         <Stack.Screen name="Category1" component={Category1} options={{ title: 'Category 1' }} />
         <Stack.Screen name="Category2" component={Category2} options={{ title: 'Category 2' }} />
+        <Stack.Screen name="Category3" component={Category3} options={{ title: 'Category 3' }} />
+
         {/* Add more category screens here */}
       </Stack.Navigator>
     </NavigationContainer>
