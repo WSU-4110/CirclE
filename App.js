@@ -19,6 +19,7 @@ import Chatroom from './Screens/Chatroom';
 import Location from './Screens/Location';
 
 import firebase from 'firebase/compat/app'
+import 'firebase/firestore';
 import 'firebase/compat/auth'
 import 'firebase/compat/database';
 
