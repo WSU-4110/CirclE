@@ -1,13 +1,13 @@
-// Category2.js
+// Category3.js
 import React from 'react';
 import { View, Text } from 'react-native';
 
-const Category2 = () => {
+const Category3 = () => {
   return (
     <View>
-      <Text>Category 2 Page</Text>
+      <Text>Category 3 Page</Text>
     </View>
   );
 };
 
-export default Category2;
+export default Category3;
