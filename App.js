@@ -11,6 +11,7 @@ import Category1 from './Screens/Category1';
 import Category2 from './Screens/Category2'; 
 import LoadingScreen from './Screens/LoadingScreen';
 import ProfilePage from './Screens/ProfilePage';
+import OrganizationHome from './Screens/OrganizationHome';  // new import
 
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
@@ -47,6 +48,7 @@ export default function App() {
         <Stack.Screen name="CreateAccount" component={CreateAccount} options={{ title: 'Create Account' }} />
         <Stack.Screen name="Login" component={Login} options={{ title: 'Login' }} />
         <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Home' }} />
+        <Stack.Screen name="OrganizationHome" component={OrganizationHome} options={{ title: 'Organization Home' }} />
         <Stack.Screen name="Category1" component={Category1} options={{ title: 'Category 1' }} />
         <Stack.Screen name="Category2" component={Category2} options={{ title: 'Category 2' }} />
         {/* Add more category screens here */}

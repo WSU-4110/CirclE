@@ -1,6 +1,6 @@
 //CreateAccount.js
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Image, TouchableOpacity, Switch } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
@@ -11,6 +11,9 @@ const CreateAccount = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isOrganization, setIsOrganization] = useState(false); // new state for organization flag
+
+
 
   const handleCreateAccount = () => {
     firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -25,10 +28,16 @@ const CreateAccount = () => {
         firebase.database().ref('users/' + uid).set({
           username: username,
           email: email,
+          isOrganization: isOrganization,  // save organization flag
           // add any additional user info here
         });
+
+        if (isOrganization) {
+          navigation.navigate('OrganizationHome');
+        } else {
+          navigation.navigate('Home');
+        }
   
-        navigation.navigate('Home');
       })
       .catch((error) => {
         // Error occurred
@@ -46,6 +55,14 @@ const CreateAccount = () => {
             style={styles.logo}
             source={require('../assets/Logo1.png')}
         />
+        <Text>Is this an organization account?</Text>
+      <Switch
+        trackColor={{ false: "#767577", true: "#81b0ff" }}
+        thumbColor={isOrganization ? "#f5dd4b" : "#f4f3f4"}
+        ios_backgroundColor="#3e3e3e"
+        onValueChange={() => setIsOrganization(!isOrganization)}
+        value={isOrganization}
+      />
         <Text style={styles.title}>Create Account</Text>
         <TextInput
           style={styles.input}

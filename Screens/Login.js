@@ -25,31 +25,34 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
 
-  // Function to handle form submission
-  const handleSubmit = () => {
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        // The user is signed in
-        
-        // Get the UID of the signed-in user
-        var uid = userCredential.user.uid;
-  
-        // Retrieve user data from the database
-        firebase.database().ref('/users/' + uid).once('value').then((snapshot) => {
-          var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-          var email = (snapshot.val() && snapshot.val().email) || 'Anonymous';
-          console.log(`Username: ${username}, Email: ${email}`);
-          // Do something with the retrieved user data
-        });
-  
-        setError(null); // Reset error message
-        navigation.navigate('Home'); // Navigate to Home screen
-      })
-      .catch((error) => {
-        // Error occurred during sign in
-        setError(error.message); // Set error message
+// Function to handle form submission
+const handleSubmit = () => {
+  firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      // The user is signed in
+
+      // Get the UID of the signed-in user
+      var uid = userCredential.user.uid;
+
+      // Retrieve user data from the database
+      firebase.database().ref('/users/' + uid).once('value').then((snapshot) => {
+        const isOrganization = snapshot.val().isOrganization;
+
+        // Navigate to different Home screen based on the user type
+        if (isOrganization) {
+          navigation.navigate('OrganizationHome');  // Navigate to Organization Home screen
+        } else {
+          navigation.navigate('Home');  // Navigate to Home screen for regular users
+        }
       });
-  };
+
+      setError(null); // Reset error message
+    })
+    .catch((error) => {
+      // Error occurred during sign in
+      setError(error.message); // Set error message
+    });
+};
 
   // Function to handle the Create Account button press
   const handleCreateAccountPress = () => {
