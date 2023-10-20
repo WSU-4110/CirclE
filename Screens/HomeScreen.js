@@ -5,11 +5,26 @@ import 'firebase/firestore';
 
 
 
+
+
+
+
+const HomeScreen = ({ navigation }) => {
+
+  
+    // Firestore is ready, you can now use it
+   
+    // Rest of your code
+
+
+
   const [search, setSearch] = useState('');
   const [items, setItems] = useState([]);
   
     // Initialize Firestore reference
     // Reference to the Firestore database
+
+    
 const db = firebase.firestore();
 
 // Reference a collection
@@ -30,12 +45,6 @@ const Citems = db.collection('Categories');
     });
   };
 
-  
-    
-
-
-
-const HomeScreen = ({ navigation }) => {
   
 // search bar code
   const handleIconPress = (pageName) => {
@@ -69,7 +78,7 @@ const HomeScreen = ({ navigation }) => {
 
  />
         <FlatList
-          data={setItems(querySnapshot.docs.map((doc) => doc.data()))}
+          data={querySnapshot.docs.map((doc) => doc.data())}
           keyExtractor={(items) => items.id}
           renderItem={({ items }) => <Text>{items.name}</Text>}
         />

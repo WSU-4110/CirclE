@@ -1,7 +1,6 @@
 //firebaseConfig.js
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 import 'firebase/firestore'
-import 'firebase/database'
 import 'firebase/auth';
 
 // Optionally import the services that you want to use
@@ -15,7 +14,6 @@ import 'firebase/auth';
 const firebaseConfig = {
     apiKey: "AIzaSyA-1_M8ZRIe6N-AgWKZwWsgtLOmVnLApjQ",
     authDomain: "circlee-a4b5d.firebaseapp.com",
-    databaseURL:" https://circlee-a4b5d-default-rtdb.firebaseio.com/",
     projectId: "circlee-a4b5d",
     storageBucket: "circlee-a4b5d.appspot.com",
     messagingSenderId: "361381373341",
@@ -28,4 +26,4 @@ const firebaseConfig = {
     firebase.initializeApp(firebaseConfig);
   }
 
-  const db = firebase.firestore();
+  
