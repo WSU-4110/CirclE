@@ -56,6 +56,7 @@ const HomeScreen = ({ navigation }) => {
         <Button title="Category 1" onPress={() => handleCategoryPress('Category1')} />
         <Button title="Category 2" onPress={() => handleCategoryPress('Category2')} />
         <Button title="ProfilePage" onPress={() => navigation.navigate('ProfilePage')} />
+
         <FlatList
           data={items}
           keyExtractor={(item) => item.id.toString()}
