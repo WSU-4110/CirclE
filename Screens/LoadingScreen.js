@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, Image, Animated } from 'react-native';
+import { View, Text, StyleSheet,Button, Image, Animated } from 'react-native';
 
 const LoadingScreen = ({ navigation }) => {
   const logoTranslateX = useRef(new Animated.Value(0)).current;
@@ -44,8 +44,11 @@ const LoadingScreen = ({ navigation }) => {
           source={require('../assets/Logo1.png')}
         />
         <Text style={styles.title}>CircleE is Loading...</Text>
+        <Button title="Welcome" onPress={() => navigation.navigate('Welcome')} />
+
       </View>
     </View>
+    
   );
 };
 
