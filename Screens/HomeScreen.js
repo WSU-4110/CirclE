@@ -59,6 +59,7 @@ const HomeScreen = ({ navigation }) => {
 
 
         <Button title="ProfilePage" onPress={() => navigation.navigate('ProfilePage')} />
+
         <FlatList
           data={items}
           keyExtractor={(item) => item.id.toString()}
