@@ -1,3 +1,4 @@
+
 // App.js
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
@@ -14,9 +15,13 @@ import Category2 from './Screens/Category2';
 import Category3 from './Screens/Category3'; 
 import LoadingScreen from './Screens/LoadingScreen';
 import ProfilePage from './Screens/ProfilePage';
+
+import OrganizationHome from './Screens/OrganizationHome';  // new import
+
 import Settings from './Screens/Settings';
 import Chatroom from './Screens/Chatroom';
 import Location from './Screens/Location';
+
 
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
@@ -84,6 +89,8 @@ export default function App() {
         <Stack.Screen name="Welcome" component={Welcome} options={{ title: 'Welcome' }} />
         <Stack.Screen name="CreateAccount" component={CreateAccount} options={{ title: 'Create Account' }} />
         <Stack.Screen name="Login" component={Login} options={{ title: 'Login' }} />
+        <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Home' }} />
+        <Stack.Screen name="OrganizationHome" component={OrganizationHome} options={{ title: 'Organization Home' }} />
         <Stack.Screen name="Category1" component={Category1} options={{ title: 'Category 1' }} />
         <Stack.Screen name="Category2" component={Category2} options={{ title: 'Category 2' }} />
         <Stack.Screen name="Category3" component={Category3} options={{ title: 'Category 3' }} />
@@ -92,3 +99,4 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
