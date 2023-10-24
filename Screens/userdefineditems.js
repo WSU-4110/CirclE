@@ -3,6 +3,10 @@ import { View, Text, TextInput, StyleSheet, FlatList, Alert, ScrollView, Touchab
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 
+
+
+
+
 const UserDefinedItems = () => {
   const [newItem, setNewItem] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('General');
@@ -10,18 +14,24 @@ const UserDefinedItems = () => {
   const itemsRef = firebase.database().ref('userDefinedItems');
 
   const handleAddItem = () => {
+    
+    const userId = firebase.auth().currentUser.uid;
+    const itemsRef = firebase.database().ref(`userDefinedItems/${userId}`);
+    
     if (newItem.trim() !== '') {
       const newItemRef = itemsRef.push();
       newItemRef.set({
         id: newItemRef.key,
         name: newItem,
-        category: selectedCategory
+        category: selectedCategory  // Include the category
       });
       setNewItem('');
     }
   };
-
+  
   const handleDeleteItem = (id) => {
+    const userId = firebase.auth().currentUser.uid;
+    
     Alert.alert(
       'Warning',
       'Are you sure you want to delete this item?',
@@ -34,7 +44,7 @@ const UserDefinedItems = () => {
         {
           text: 'OK',
           onPress: () => {
-            const itemRef = firebase.database().ref(`/userDefinedItems/${id}`);
+            const itemRef = firebase.database().ref(`/userDefinedItems/${userId}/${id}`);
             itemRef.remove();
             setItems(items.filter(item => item.id !== id));
           },
@@ -47,12 +57,18 @@ const UserDefinedItems = () => {
 
   // Fetch items from Firebase when the component mounts
   useEffect(() => {
-    itemsRef.on('value', (snapshot) => {
+    const userId = firebase.auth().currentUser.uid;
+    const userItemsRef = firebase.database().ref(`userDefinedItems/${userId}`);
+    
+    userItemsRef.on('value', (snapshot) => {
       const data = snapshot.val();
       const firebaseItems = data ? Object.values(data) : [];
       setItems(firebaseItems);
     });
   }, []);
+  
+  
+  
 
   return (
     <View style={styles.container}>
@@ -83,7 +99,7 @@ const UserDefinedItems = () => {
 </TouchableOpacity>
         <FlatList
   data={items}
-  keyExtractor={(item) => item.id.toString()}
+  keyExtractor={(item) => item.id ? item.id.toString() : ''}
   renderItem={({ item }) => (
     <View style={styles.listItem}>
       <Text>{item.name}</Text>
