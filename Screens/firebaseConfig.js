@@ -1,6 +1,6 @@
 //firebaseConfig.js
-import * as firebase from 'firebase';
-import 'firebase/auth';
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 // Optionally import the services that you want to use
 // import {...} from "firebase/auth";
 // import {...} from "firebase/database";
@@ -19,6 +19,6 @@ const firebaseConfig = {
     measurementId: "G-NGWS4NW9QB"
   };
 
-  if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-  }
+  const app = initializeApp(firebaseConfig);
+
+  export const db = getFirestore(app);

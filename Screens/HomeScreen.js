@@ -1,31 +1,36 @@
-import React, { useState } from 'react';
+import { collection, getDocs, query, where } from "firebase/firestore";ort { collection, getDocs } from "firebase/firestore";
+import {db} from '../Screens/firebaseConfig';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, FlatList, ScrollView, Image,TouchableOpacity,ImageBackground } from 'react-native';
-import axios from 'axios';
-import { useFocusEffect } from '@react-navigation/native';
 
 
 
 const HomeScreen = ({ navigation }) => {
+  const [search, setSearch] = useState('');
+  const [items, setItems] = useState([]);
   const handleIconPress = (pageName) => {
     // Navigate to the specified page when an icon is pressed
     navigation.navigate(pageName);
   };
 
-  const HandleCategoryPress1 = (category1) => {
-    setSearch(category1);
-
-    const endpoint = `http://127.0.0.1:5000/items/${category}`;
-    axios.get(endpoint)
-      .then((response) => {
-        setItems(response.data);
-      })
-      .catch((error) => {
-        console.error('Error fetching items:', error);
-      })
-      .finally(() => {
-        navigation.navigate(category1);
+  const HandleCategoryPress1 = async() => {
+    try {
+      const q = query(collection(db, "Categories"), where('name', '==', search));
+      const querySnapshot = await getDocs(q);
+      const searchData = [];
+      querySnapshot.forEach((doc) => {
+        searchData.push(doc.data());
       });
+      setItems(searchData);
+      console.log(search, searchData);
+    } catch (error) {
+      console.error('Error searching Firestore:', error);
+    }
   };
+
+  useEffect(() => {
+    // Handle initial data load or any other setup if needed
+  }, []);
 
 
   return (
@@ -46,8 +51,22 @@ const HomeScreen = ({ navigation }) => {
 <TextInput
   style={styles.input}
   placeholder="Search..."
+  value={search}
+  onChangeText={(text) => setSearch(text)}
+
 />
 
+<Button title="Search" onPress={HandleCategoryPress1} />
+    
+    <FlatList
+      data={items}
+      keyExtractor={(item) => item.id}
+      renderItem={({ item }) => (
+        <View>
+          {/* Display your search results here */}
+        </View>
+      )}
+    />
         {/* Container for horizontal scroll view and category buttons */}
         <View style={styles.horizontalScrollContainer}>
           
