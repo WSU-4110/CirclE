@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, FlatList } from 'react-native';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
+import { Alert } from 'react-native';  // Add this import at the top
+import { TouchableOpacity } from 'react-native';  // Add TouchableOpacity
+
 
 const UserDefinedItems = () => {
   const [newItem, setNewItem] = useState('');
@@ -21,6 +24,30 @@ const UserDefinedItems = () => {
       setNewItem('');
     }
   };
+
+  const handleDeleteItem = (id) => {
+    Alert.alert(
+      'Warning',
+      'Are you sure you want to delete this item?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {
+          text: 'OK',
+          onPress: () => {
+            const itemRef = firebase.database().ref(`/userDefinedItems/${id}`);
+            itemRef.remove();
+            setItems(items.filter(item => item.id !== id));
+          },
+        },
+      ],
+      { cancelable: false }
+    );
+  };
+  
 
   // Fetch items from Firebase when the component mounts
   useEffect(() => {
@@ -43,14 +70,18 @@ const UserDefinedItems = () => {
         />
         <Button title="Add Item" onPress={handleAddItem} />
         <FlatList
-          data={items}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <View>
-              <Text>{item.name}</Text>
-            </View>
-          )}
-        />
+  data={items}
+  keyExtractor={(item) => item.id.toString()}
+  renderItem={({ item }) => (
+    <View style={styles.listItem}>
+      <Text>{item.name}</Text>
+      <TouchableOpacity style={styles.deleteButton} onPress={() => handleDeleteItem(item.id)}>
+        <Text style={styles.deleteButtonText}>Delete</Text>
+      </TouchableOpacity>
+    </View>
+  )}
+/>
+
       </View>
     </View>
   );
@@ -85,6 +116,24 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     width: '100%',
   },
-});
+    listItem: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      backgroundColor: '#F1F1F1',
+      padding: 15,
+      marginVertical: 5,
+      borderRadius: 5,
+    },
+    deleteButton: {
+      backgroundColor: '#FF0000',
+      padding: 10,
+      borderRadius: 5,
+    },
+    deleteButtonText: {
+      color: '#FFFFFF',
+    },
+  });
+  
 
 export default UserDefinedItems;

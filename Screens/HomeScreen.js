@@ -56,7 +56,9 @@ const HomeScreen = ({ navigation }) => {
         <Button title="Category 1" onPress={() => handleCategoryPress('Category1')} />
         <Button title="Category 2" onPress={() => handleCategoryPress('Category2')} />
         <Button title="Category 3" onPress={() => handleCategoryPress('Category3')} />
-        <Button title="userdefineditems" onPress={() => navigation.navigate('userdefineditems')} />
+        <Button title="User Items" onPress={() => navigation.navigate('userdefineditems')} />
+        <Button title="Go to Save Page" onPress={() => navigation.navigate('save', { items })} />
+
 
 
 
