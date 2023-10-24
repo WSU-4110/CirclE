@@ -3,18 +3,42 @@ import { View, Text, TextInput, StyleSheet, FlatList, Alert, ScrollView, Touchab
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 
+// Observable Class
+class ItemsObservable {
+  constructor() {
+    this.observers = [];
+  }
 
+  subscribe(fn) {
+    this.observers.push(fn);
+  }
 
+  unsubscribe(fn) {
+    this.observers = this.observers.filter((subscriber) => subscriber !== fn);
+  }
 
+  notify(data) {
+    this.observers.forEach((observer) => observer(data));
+  }
+}
+
+const itemsObservable = new ItemsObservable();
 
 const UserDefinedItems = () => {
   const [newItem, setNewItem] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('General');
   const [items, setItems] = useState([]);
-  const itemsRef = firebase.database().ref('userDefinedItems');
+
+  // Subscribe to changes
+  useEffect(() => {
+    itemsObservable.subscribe(setItems);
+
+    return () => {
+      itemsObservable.unsubscribe(setItems);
+    };
+  }, []);
 
   const handleAddItem = () => {
-    
     const userId = firebase.auth().currentUser.uid;
     const itemsRef = firebase.database().ref(`userDefinedItems/${userId}`);
     
@@ -23,7 +47,7 @@ const UserDefinedItems = () => {
       newItemRef.set({
         id: newItemRef.key,
         name: newItem,
-        category: selectedCategory  // Include the category
+        category: selectedCategory
       });
       setNewItem('');
     }
@@ -55,7 +79,6 @@ const UserDefinedItems = () => {
   };
   
 
-  // Fetch items from Firebase when the component mounts
   useEffect(() => {
     const userId = firebase.auth().currentUser.uid;
     const userItemsRef = firebase.database().ref(`userDefinedItems/${userId}`);
@@ -63,9 +86,10 @@ const UserDefinedItems = () => {
     userItemsRef.on('value', (snapshot) => {
       const data = snapshot.val();
       const firebaseItems = data ? Object.values(data) : [];
-      setItems(firebaseItems);
+      itemsObservable.notify(firebaseItems);
     });
   }, []);
+
   
   
   
