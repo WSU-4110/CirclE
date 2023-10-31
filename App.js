@@ -79,6 +79,7 @@ const BottomTabNavigator = () => (
     <Tab.Screen name="Settings" component={Settings} />
     <Tab.Screen name="Location" component={Location} />
     <Tab.Screen name="chatroom" component={chatroom} />
+    <Tab.Screen name="User Items" component={userdefineditems} />
   </Tab.Navigator>
 );
 

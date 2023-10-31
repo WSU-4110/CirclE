@@ -57,14 +57,32 @@ const UserDefinedItems = () => {
 
   // Fetch items from Firebase when the component mounts
   useEffect(() => {
+    // Handle authentication state changes
+    const unsubscribeAuth = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in.
+        // Your existing code here
+      } else {
+        // User is signed out.
+        navigation.navigate('Login'); // Navigate to Login screen
+      }
+    });
+
+    // Fetch user-defined items
     const userId = firebase.auth().currentUser.uid;
     const userItemsRef = firebase.database().ref(`userDefinedItems/${userId}`);
     
-    userItemsRef.on('value', (snapshot) => {
+    const unsubscribeItems = userItemsRef.on('value', (snapshot) => {
       const data = snapshot.val();
       const firebaseItems = data ? Object.values(data) : [];
       setItems(firebaseItems);
     });
+
+    // Cleanup subscriptions on unmount
+    return () => {
+      unsubscribeAuth();
+      unsubscribeItems();
+    };
   }, []);
   
   
