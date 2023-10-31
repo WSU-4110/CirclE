@@ -19,7 +19,7 @@ import ProfilePage from './Screens/ProfilePage';
 import OrganizationHome from './Screens/OrganizationHome';  // new import
 
 import Settings from './Screens/Settings';
-import Chatroom from './Screens/Chatroom';
+import chatroom from './Screens/chatroom';
 import Location from './Screens/Location';
 
 
@@ -75,7 +75,7 @@ const BottomTabNavigator = () => (
     <Tab.Screen name="Home" component={HomeScreen} />
     <Tab.Screen name="Settings" component={Settings} />
     <Tab.Screen name="Location" component={Location} />
-    <Tab.Screen name="Chatroom" component={Chatroom} />
+    <Tab.Screen name="chatroom" component={chatroom} />
   </Tab.Navigator>
 );
 
