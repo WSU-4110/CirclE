@@ -158,6 +158,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#E8F5E9',
     alignItems: 'center',
+    backgroundColor: '#E8F5E9',
+    alignItems: 'center',
     justifyContent: 'center',
   },
 
@@ -233,6 +235,12 @@ const styles = StyleSheet.create({
 
   },
   input: {
+    height: 40,
+    borderColor: '#A5D6A7',
+    borderWidth: 1,
+    borderRadius: 5,
+    marginBottom: 15,
+    paddingLeft: 10,
     height: 40,
     borderColor: '#A5D6A7',
     borderWidth: 1,

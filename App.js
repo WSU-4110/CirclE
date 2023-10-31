@@ -17,6 +17,9 @@ import LoadingScreen from './Screens/LoadingScreen';
 import ProfilePage from './Screens/ProfilePage';
 
 import OrganizationHome from './Screens/OrganizationHome';  // new import
+import userdefineditems from './Screens/userdefineditems';  // new import
+import save from './Screens/save';  // new import
+
 
 import Settings from './Screens/Settings';
 import chatroom from './Screens/chatroom';
@@ -94,6 +97,9 @@ export default function App() {
         <Stack.Screen name="Category1" component={Category1} options={{ title: 'Category 1' }} />
         <Stack.Screen name="Category2" component={Category2} options={{ title: 'Category 2' }} />
         <Stack.Screen name="Category3" component={Category3} options={{ title: 'Category 3' }} />
+        <Stack.Screen name="userdefineditems" component={userdefineditems} options={{ title: 'user defined items' }} />
+        <Stack.Screen name="save" component={save} options={{ title: 'Save' }} />
+
         {/* Add more category screens here */}
       </Stack.Navigator>
     </NavigationContainer>
