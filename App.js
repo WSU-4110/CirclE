@@ -57,20 +57,22 @@ const BottomTabNavigator = () => (
           iconName = focused ? 'home' : 'home-outline';
         } else if (route.name === 'Settings') {
           iconName = focused ? 'settings' : 'settings-outline';
-        }
-        else if (route.name === 'Location') {
+        } else if (route.name === 'Location') {
           iconName = focused ? 'location' : 'location-sharp';
-        }
-        else if (route.name === 'Chatroom') {
+        } else if (route.name === 'Chatroom') {
           iconName = focused ? 'chatbox' : 'chatbox-sharp';
         }
         return <Ionicons name={iconName} size={size} color={color} />;
       },
+      tabBarActiveTintColor: "tomato",  // Moved this from tabBarOptions
+      tabBarInactiveTintColor: "gray",  // Moved this from tabBarOptions
+      tabBarStyle: [  // Moved this from tabBarOptions
+        {
+          display: "flex"
+        },
+        null
+      ]
     })}
-    tabBarOptions={{
-      activeTintColor: 'tomato',
-      inactiveTintColor: 'gray',
-    }}
   >
     <Tab.Screen name="Home" component={HomeScreen} />
     <Tab.Screen name="Settings" component={Settings} />

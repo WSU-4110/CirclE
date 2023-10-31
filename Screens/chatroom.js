@@ -1,11 +1,11 @@
-// orgPage.js
+// chatroom.js
 import React from 'react';
 import { View, Text } from 'react-native';
 
 const Chatroom = () => {
   return (
     <View>
-      <Text>OrgPage</Text>
+      <Text>Chatroom</Text>
     </View>
   );
 };
