@@ -60,12 +60,6 @@ const Item = ({ title, imageIndex, navigation }) => {
 
 
 
-const Category1 = ({ navigation }) => {
-  const showFirstPageAlert = () => {
-    Alert.alert("Attention", "This is the first page!");
-  };
-
-  return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.headerTitle}>circl-E Eco Friendly recycle categories</Text>
       <VirtualizedList
@@ -162,3 +156,4 @@ const styles = StyleSheet.create({
 });
 
 export default Category1;
+

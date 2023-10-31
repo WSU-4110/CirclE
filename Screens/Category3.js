@@ -65,6 +65,7 @@ const Category3 = ({ navigation }) => {
 };
 
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -131,5 +132,6 @@ const styles = StyleSheet.create({
     color: '#2a7f62',
   },
 });
+
 
 export default Category3;
