@@ -1,4 +1,6 @@
+
 import React from 'react';
+import firestore from '@react-native-firebase/firestore';
 import {
   SafeAreaView,
   TouchableOpacity,
@@ -9,7 +11,6 @@ import {
   Image,
   Alert,
   View,
-  
 } from 'react-native';
 
 const images = [
@@ -27,18 +28,37 @@ const getItem = (_data, index) => ({
 
 const getItemCount = _data => 4;
 
-const Item = ({ title, imageIndex, navigation }) => (
-  <TouchableOpacity 
-    style={styles.item}
-    onPress={() => {} } // I've made this an empty function for now, as navigating to an empty route can cause issues.
-  >
-    <Text style={styles.title}>{title}</Text>
-    <Image
-      style={styles.tinyLogo}
-      source={images[imageIndex].uri}
-    />
-  </TouchableOpacity>
-);
+const Item = ({ title, imageIndex, navigation }) => {
+  const handlePress = async () => {
+    try {
+      const documentSnapshot = await firebase.firestore()
+        .collection('Categories')
+        .doc(title)
+        .get();
+      
+      const firebaseData = documentSnapshot.data();
+      console.log(firebaseData); 
+
+    } catch (error) {
+      console.error("Error fetching data from Firestore:", error);
+    }
+  };
+
+  return (
+    <TouchableOpacity 
+      style={styles.item}
+      onPress={handlePress}
+    >
+      <Text style={styles.title}>{title}</Text>
+      <Image
+        style={styles.tinyLogo}
+        source={images[imageIndex].uri}
+      />
+    </TouchableOpacity>
+  );
+};
+
+
 
 const Category1 = ({ navigation }) => {
   const showFirstPageAlert = () => {
