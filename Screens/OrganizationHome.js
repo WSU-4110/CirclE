@@ -52,10 +52,27 @@ const EditListingModal = ({ visible, setVisible }) => (
   </Modal>
 );
 
+// Modal for creating a new newsletter
+const CreateNewsletterModal = ({ visible, setVisible }) => (
+  <Modal
+    animationType="slide"
+    transparent={true}
+    visible={visible}
+    onRequestClose={() => setVisible(false)}
+  >
+    <View style={styles.modalView}>
+      <Text style={styles.modalText}>Create a Newsletter</Text>
+      <TextInput placeholder="Enter newsletter details" style={styles.modalInput} />
+      <ActionButton title="Submit" onPress={() => setVisible(false)} />
+    </View>
+  </Modal>
+);
+
 // Main component
 const OrganizationHome = ({ navigation }) => {
   const [createModalVisible, setCreateModalVisible] = useState(false);
   const [editModalVisible, setEditModalVisible] = useState(false);
+  const [newsletterModalVisible, setNewsletterModalVisible] = useState(false);
 
   return (
     <View style={styles.container}>
@@ -64,10 +81,12 @@ const OrganizationHome = ({ navigation }) => {
       <View style={styles.actionContainer}>
         <ActionButton title="Create Listing" onPress={() => setCreateModalVisible(true)} />
         <ActionButton title="Edit Listing" onPress={() => setEditModalVisible(true)} />
+        <ActionButton title="Create Newsletter" onPress={() => setNewsletterModalVisible(true)} />
         <ActionButton title="Sign Out" onPress={() => handleSignOut(navigation)} />
       </View>
       <CreateListingModal visible={createModalVisible} setVisible={setCreateModalVisible} />
       <EditListingModal visible={editModalVisible} setVisible={setEditModalVisible} />
+      <CreateNewsletterModal visible={newsletterModalVisible} setVisible={setNewsletterModalVisible} />
     </View>
   );
 };
