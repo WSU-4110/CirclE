@@ -1,4 +1,4 @@
-// Import required modules
+//CreateAccount.js            
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Image, TouchableOpacity, Switch, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -7,7 +7,7 @@ import 'firebase/compat/auth';
 import 'firebase/compat/database';
 
 const CreateAccount = () => {
-  // Initialize React Navigation and component state
+    // Initialize React Navigation and component state
   const navigation = useNavigation();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -16,10 +16,10 @@ const CreateAccount = () => {
 
   // Function to handle account creation
   const handleCreateAccount = () => {
-    // Create a new user using Firebase Auth
+      // Create a new user using Firebase Auth
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        // If successful, save the user info in Firebase Realtime Database
+        // Add the user to the database
         const uid = userCredential.user.uid;
         firebase.database().ref('users/' + uid).set({
           username,
@@ -27,7 +27,7 @@ const CreateAccount = () => {
           isOrganization,
         });
 
-        // Navigate to the appropriate home screen based on account type
+        // Navigate to the appropriate home screen based on user type
         if (isOrganization) {
           navigation.navigate('OrganizationHome');
         } else {
@@ -35,24 +35,21 @@ const CreateAccount = () => {
         }
       })
       .catch((error) => {
-        // Log any errors
+        // Display error message if account creation fails
         console.error(error.message);
       });
   };
-
-  // Function to explain the purpose of the organization switch
+  // Function to explain the switch
   const explainSwitch = () => {
     Alert.alert("Is this an organization account?", "Toggle this switch on if you're registering as an organization. This will tailor the app's features to better suit organizational needs.");
   };
 
-  // Render the component
+  // Return the JSX component
   return (
     <View style={styles.container}>
       <View style={styles.card}>
-        // Display app logo
         <Image style={styles.logo} source={require('../assets/Logo1.png')} />
         
-        // Organization switch and help icon
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Text>Is this an organization account?</Text>
           <Switch
@@ -67,7 +64,6 @@ const CreateAccount = () => {
           </TouchableOpacity>
         </View>
         
-        // Account creation form
         <Text style={styles.title}>Create Account</Text>
 
         <TextInput
@@ -76,12 +72,14 @@ const CreateAccount = () => {
           value={username}
           onChangeText={setUsername}
         />
+
         <TextInput
           style={styles.input}
           placeholder="Email"
           value={email}
           onChangeText={setEmail}
         />
+
         <TextInput
           style={styles.input}
           placeholder="Password"
@@ -90,14 +88,12 @@ const CreateAccount = () => {
           onChangeText={setPassword}
         />
 
-        // Account creation button
         <TouchableOpacity onPress={handleCreateAccount}>
           <View style={styles.button}>
             <Text style={styles.buttonText}>Create Account</Text>
           </View>
         </TouchableOpacity>
 
-        // Navigation back button
         <Button title="Back" onPress={() => navigation.goBack()} color="#8BC34A" />
       </View>
     </View>
@@ -105,6 +101,7 @@ const CreateAccount = () => {
 };
 
 // Styles for the component
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
