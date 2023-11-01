@@ -1,0 +1,66 @@
+import React, { useState } from 'react';
+import { View, TextInput, Button, StyleSheet } from 'react-native';
+
+// Define the SearchStrategy interface
+class SearchStrategy {
+  search(query) {
+    // This method should be implemented by concrete strategies
+  }
+}
+
+// Concrete SearchStrategy for users
+class ElectronicSearchStrategy extends SearchStrategy {
+  search(query) {
+    // Implement the user search logic here
+    // You can access the user database
+    console.log(`Searching users for query: ${query}`);
+  }
+}
+
+// Concrete SearchStrategy for products
+class Health_makeupSearchStrategy extends SearchStrategy {
+  search(query) {
+    // Implement the product search logic here
+    // You can access the product database
+    console.log(`Searching products for query: ${query}`);
+  }
+}
+
+// SearchBar component
+const SearchBar = ({ strategy }) => {
+  const [query, setQuery] = useState('');
+
+  const handleSearch = () => {
+    strategy.search(query);
+  };
+
+  return (
+    <View style={styles.container}>
+      <TextInput
+        style={styles.input}
+        placeholder="Search..."
+        value={query}
+        onChangeText={text => setQuery(text)}
+      />
+      <Button title="Search" onPress={handleSearch} />
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  input: {
+    flex: 1,
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 5,
+    marginRight: 10,
+    paddingLeft: 10,
+  },
+});
+
+export default SearchBar;

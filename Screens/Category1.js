@@ -12,6 +12,14 @@ import {
   View,
 } from 'react-native';
 
+class ElectronicSearchStrategy extends SearchStrategy {
+  search(query) {
+    // Implement the user search logic here
+    // You can access the user database
+    console.log(`Searching users for query: ${query}`);
+  }
+}
+
 const images = [
   { uri: require('../assets/HealthAndPersonalCare.png'), name: 'Health & Personal Care' },
   { uri: require('../assets/HomeDecorAndFurnishings.png'), name: 'Home Decor & Furnishings' },

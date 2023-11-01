@@ -10,7 +10,13 @@ import {
   Alert,
   View,
 } from 'react-native';
-
+class Health_makeupSearchStrategy extends SearchStrategy {
+  search(query) {
+    // Implement the product search logic here
+    // You can access the product database
+    console.log(`Searching products for query: ${query}`);
+    }
+  }
 const images = [
   { uri: require('../assets/Crafts_and_Hobbies.png'), name: 'Crafts and Hobbies' },
   { uri: require('../assets/Electronic.png'), name: 'Electronic' },

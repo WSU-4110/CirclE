@@ -1,0 +1,92 @@
+import React, { useState } from 'react';
+import { View, TextInput, Button, StyleSheet } from 'react-native';
+
+// Define the SearchStrategy interface
+class Search {
+    const [search, setQuery] = useState('');
+    const [results, setResults] = useState([]);
+  
+    handleSearch = async (text) => {
+        try {
+          const db = getFirestore(app);
+          const collectionRef = collection(db, 'CirLaptops');
+          const q = query(collectionRef, where("name", ">=", text), where("name", "<=", text + '\uf8ff'));
+          const querySnapshot = await getDocs(q);
+    
+          const res = [];
+          querySnapshot.forEach((country) => {
+            res.push({
+              id: country.id,
+              ...country.data()
+            });
+          });
+    
+          setResults(res);
+        } catch (error) {
+          console.error('Error searching:', error);
+        }
+      }
+}
+
+// Concrete SearchStrategy for users
+class UserSearchStrategy extends Search {
+  search(query) {
+    // Implement the user search logic here
+    // You can access the user database
+  }
+}
+
+// Concrete SearchStrategy for products
+class ProductSearchStrategy extends Search {
+  search(query) {
+    // Implement the product search logic here
+    // You can access the product database
+  }
+}
+
+// SearchBar component
+class SearchBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      query: '',
+    };
+  }
+
+  handleSearch = () => {
+    const { strategy } = this.props;
+    strategy.search(this.state.query);
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <TextInput
+          style={styles.input}
+          placeholder="Search..."
+          value={this.state.query}
+          onChangeText={(text) => this.setState({ query: text })}
+        />
+        <Button title="Search" onPress={this.handleSearch} />
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  input: {
+    flex: 1,
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 5,
+    marginRight: 10,
+    paddingLeft: 10,
+  },
+});
+
+export default SearchBar;
