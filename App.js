@@ -19,7 +19,7 @@ import ProfilePage from './Screens/ProfilePage';
 import OrganizationHome from './Screens/OrganizationHome';  // new import
 
 import Settings from './Screens/Settings';
-import Chatroom from './Screens/Chatroom';
+import Chatroom from './Screens/chatroom';
 import Location from './Screens/Location';
 
 
