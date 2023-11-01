@@ -1,6 +1,6 @@
-
 import React from 'react';
-import firestore from '@react-native-firebase/firestore';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
 import {
   SafeAreaView,
   TouchableOpacity,
@@ -58,27 +58,55 @@ const Item = ({ title, imageIndex, navigation }) => {
   );
 };
 
+const CompositeComponent = ({ components }) => {
+  return (
+    <>
+      {components.map((Component, index) => <Component key={index} />)}
+    </>
+  );
+};
 
+const HeaderComponent = () => {
+  return (
+    <Text style={styles.headerTitle}>circl-E Eco Friendly recycle categories</Text>
+  );
+};
 
+const ItemsList = ({ navigation }) => {
+  return (
+    <VirtualizedList
+      data={Array(4).fill(null)}
+      initialNumToRender={4}
+      renderItem={({ item }) => <Item title={item.title} imageIndex={item.imageIndex} navigation={navigation} />}
+      keyExtractor={item => item.id}
+      getItemCount={getItemCount}
+      getItem={getItem}
+      contentContainerStyle={styles.listContent}
+    />
+  );
+};
+
+const PaginationComponent = ({ navigation }) => {
+  const showFirstPageAlert = () => {
+    Alert.alert("Attention", "This is the first page!");
+  };
+
+  return (
+    <View style={styles.paginationContainer}>
+      <TouchableOpacity onPress={showFirstPageAlert} style={styles.pageButton}>
+        <Text style={styles.pageButtonText}>Previous</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('Category2')} style={styles.pageButton}>
+        <Text style={styles.pageButtonText}>Next Page</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+const Category1 = ({ navigation }) => {
+  return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.headerTitle}>circl-E Eco Friendly recycle categories</Text>
-      <VirtualizedList
-        data={Array(4).fill(null)}  // Added this to provide data to VirtualizedList
-        initialNumToRender={4}
-        renderItem={({ item }) => <Item title={item.title} imageIndex={item.imageIndex} navigation={navigation} />}
-        keyExtractor={item => item.id}
-        getItemCount={getItemCount}
-        getItem={getItem}
-        contentContainerStyle={styles.listContent}
-      />
-      <View style={styles.paginationContainer}>
-        <TouchableOpacity onPress={showFirstPageAlert} style={styles.pageButton}>
-          <Text style={styles.pageButtonText}>Previous</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('Category2')} style={styles.pageButton}>
-          <Text style={styles.pageButtonText}>Next Page</Text>
-        </TouchableOpacity>
-      </View>
+      <CompositeComponent components={[HeaderComponent, () => <ItemsList navigation={navigation} />, () => <PaginationComponent navigation={navigation} />]} />
     </SafeAreaView>
   );
 };
@@ -95,7 +123,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginVertical: 20,
     color: '#2a7f62', 
-    
   },
   tinyLogo: {
     width: 280,
@@ -126,11 +153,7 @@ const styles = StyleSheet.create({
     fontSize: 32,
     marginBottom: 20, 
     color: '#2a7f62', 
-
   },
-
-  //////
-
   listContent: {
     paddingBottom: 60,  
   },
