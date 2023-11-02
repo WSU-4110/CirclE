@@ -21,11 +21,14 @@ import LoadingScreen from './Screens/LoadingScreen';
 import ProfilePage from './Screens/ProfilePage';
 
 import OrganizationHome from './Screens/OrganizationHome';  // new import
+import userdefineditems from './Screens/userdefineditems';  // new import
+import SavedItems from './Screens/SavedItems';  // new import
+
 
 import Settings from './Screens/Settings';
-import Chatroom from './Screens/chatroom';
+import chatroom from './Screens/chatroom';
 import Location from './Screens/Location';
-import OrgPage from './Screens/OrgPage';
+import orgPage from './Screens/orgPage';
 
 
 import firebase from 'firebase/compat/app'
@@ -71,6 +74,10 @@ const BottomTabNavigator = () => (
         } else if (route.name === 'Chatroom') {
           iconName = focused ? 'chatbox' : 'chatbox-sharp';
         }
+
+        else if (route.name === 'orgPage') {
+          iconName = focused ? 'chatbox' : 'chatbox-sharp';
+        }
         else if (route.name === 'orgPage') {
           iconName = focused ? 'chatbox' : 'chatbox-sharp';
         }
@@ -89,8 +96,9 @@ const BottomTabNavigator = () => (
     <Tab.Screen name="Home" component={HomeScreen} />
     <Tab.Screen name="Settings" component={Settings} />
     <Tab.Screen name="Location" component={Location} />
-    <Tab.Screen name="Chatroom" component={Chatroom} />
-    <Tab.Screen name="OrgPage" component={OrgPage} />
+    <Tab.Screen name="chatroom" component={chatroom} />
+    <Tab.Screen name="User Items" component={userdefineditems} />
+    <Tab.Screen name="orgPage" component={orgPage} />
   </Tab.Navigator>
 );
 
@@ -111,6 +119,9 @@ export default function App() {
         <Stack.Screen name="Category1" component={Category1} options={{ title: 'Category 1' }} />
         <Stack.Screen name="Category2" component={Category2} options={{ title: 'Category 2' }} />
         <Stack.Screen name="Category3" component={Category3} options={{ title: 'Category 3' }} />
+        <Stack.Screen name="userdefineditems" component={userdefineditems} options={{ title: 'user defined items' }} />
+        <Stack.Screen name="SavedItems" component={SavedItems} options={{ title: 'Saved Items' }} />
+
         {/* Add more category screens here */}
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,5 +1,6 @@
 // orgPage.js
 import {StyleSheet, Text, View, SafeAreaView} from 'react-native';
+import {StyleSheet, Text, View, SafeAreaView} from 'react-native';
 import React from 'react';
 import algoliasearch from 'algoliasearch';
 import {InstantSearch} from 'react-instantsearch-native';
