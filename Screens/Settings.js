@@ -1,11 +1,14 @@
-// settings.js
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
 
-const Settings = () => {
+const Settings = ({ navigation }) => {
   return (
-    <View>
-      <Text>Category 3 Page</Text>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Settings Page</Text>
+      <Button 
+        title="Go to Profile Page" 
+        onPress={() => navigation.navigate('ProfilePage')}
+      />
     </View>
   );
 };

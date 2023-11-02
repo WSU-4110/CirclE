@@ -9,6 +9,8 @@ import 'firebase/compat/database';
 
 const UserDefinedItems = () => {
   const [newItem, setNewItem] = useState('');
+  const [recyclingLocation, setRecyclingLocation] = useState('');
+
   const [selectedCategory, setSelectedCategory] = useState('General');
   const [items, setItems] = useState([]);
   const itemsRef = firebase.database().ref('userDefinedItems');
@@ -18,14 +20,17 @@ const UserDefinedItems = () => {
     const userId = firebase.auth().currentUser.uid;
     const itemsRef = firebase.database().ref(`userDefinedItems/${userId}`);
     
-    if (newItem.trim() !== '') {
+    if (newItem.trim() !== '' && recyclingLocation.trim() !== '') {
       const newItemRef = itemsRef.push();
       newItemRef.set({
         id: newItemRef.key,
         name: newItem,
-        category: selectedCategory  // Include the category
+        category: selectedCategory,
+        recyclingLocation: recyclingLocation ,
+
       });
       setNewItem('');
+      setRecyclingLocation('');
     }
   };
   
@@ -111,6 +116,12 @@ const UserDefinedItems = () => {
           value={newItem}
           onChangeText={(text) => setNewItem(text)}
         />
+        <TextInput
+  style={styles.input}
+  placeholder="Enter recycling location..."
+  value={recyclingLocation}
+  onChangeText={(text) => setRecyclingLocation(text)}
+/>
 
 <TouchableOpacity style={styles.addButton} onPress={handleAddItem}>
   <Text style={styles.addButtonText}>Add Item</Text>
@@ -121,6 +132,9 @@ const UserDefinedItems = () => {
   renderItem={({ item }) => (
     <View style={styles.listItem}>
       <Text>{item.name}</Text>
+      
+      <Text style={styles.recyclingText}>Recycle at: {item.recyclingLocation}</Text>
+
       <TouchableOpacity style={styles.deleteButton} onPress={() => handleDeleteItem(item.id)}>
         <Text style={styles.deleteButtonText}>Delete</Text>
       </TouchableOpacity>
@@ -161,6 +175,10 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     paddingLeft: 10,
     width: '100%',
+  },
+  recyclingText: {
+    fontSize: 14,
+    color: '#666', // Light gray
   },
   listItem: {
     flexDirection: 'row',

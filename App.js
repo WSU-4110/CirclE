@@ -28,7 +28,7 @@ import SavedItems from './Screens/SavedItems';  // new import
 import Settings from './Screens/Settings';
 import chatroom from './Screens/chatroom';
 import Location from './Screens/Location';
-import OrgPage from './Screens/OrgPage';
+import orgPage from './Screens/orgPage';
 
 
 import firebase from 'firebase/compat/app'
@@ -74,7 +74,7 @@ const BottomTabNavigator = () => (
         } else if (route.name === 'Chatroom') {
           iconName = focused ? 'chatbox' : 'chatbox-sharp';
         }
-        
+
         else if (route.name === 'orgPage') {
           iconName = focused ? 'chatbox' : 'chatbox-sharp';
         }
@@ -98,7 +98,7 @@ const BottomTabNavigator = () => (
     <Tab.Screen name="Location" component={Location} />
     <Tab.Screen name="chatroom" component={chatroom} />
     <Tab.Screen name="User Items" component={userdefineditems} />
-    <Tab.Screen name="OrgPage" component={OrgPage} />
+    <Tab.Screen name="orgPage" component={orgPage} />
   </Tab.Navigator>
 );
 
