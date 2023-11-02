@@ -1,9 +1,7 @@
-//login.js
 import React, { useState } from 'react';
-import firebase from 'firebase/compat/app'
-import 'firebase/compat/auth'
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 import 'firebase/compat/database';
-
 import {
   View,
   Text,
@@ -15,79 +13,76 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-// the Login component
+// Login component responsible for user authentication
 const Login = () => {
-  // Initialize React Navigation
+  // Navigation hook for React Navigation
   const navigation = useNavigation();
-  
-  // Declare state variables for username, password, and error message
-  const [email, setEmail] = useState('');  // Declare email state variable
+
+  // State variables to hold email, password, and any error messages
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
 
-  // Function to handle form submission
-  const handleSubmit = () => {
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        // The user is signed in
-        
-        // Get the UID of the signed-in user
-        var uid = userCredential.user.uid;
-  
-        // Retrieve user data from the database
-        firebase.database().ref('/users/' + uid).once('value').then((snapshot) => {
-          var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-          var email = (snapshot.val() && snapshot.val().email) || 'Anonymous';
-          console.log(`Username: ${username}, Email: ${email}`);
-          // Do something with the retrieved user data
-        });
-  
-        setError(null); // Reset error message
-        navigation.navigate('Home'); // Navigate to Home screen
-      })
-      .catch((error) => {
-        // Error occurred during sign in
-        setError(error.message); // Set error message
-      });
+  // Function to handle successful login
+  const handleSuccessfulLogin = (uid) => {
+    // Fetch user details from the database
+    firebase.database().ref(`/users/${uid}`).once('value').then((snapshot) => {
+      const isOrganization = snapshot.val().isOrganization;
+
+      // Navigate to the appropriate home screen based on user type
+      const targetScreen = isOrganization ? 'OrganizationHome' : 'Home';
+      navigation.navigate(targetScreen);
+    });
   };
 
-  // Function to handle the Create Account button press
-  const handleCreateAccountPress = () => {
-    navigation.navigate('CreateAccount'); // Navigate to Create Account screen
+  // Function to perform the login action
+  const handleLogin = () => {
+    firebase.auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((userCredential) => handleSuccessfulLogin(userCredential.user.uid))
+      .catch((error) => setError(error.message));
   };
 
-  // Render the component
+  // Function to navigate to the Create Account screen
+  const navigateToCreateAccount = () => {
+    navigation.navigate('CreateAccount');
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.card}>
         <Image style={styles.logo} source={require('../assets/Logo1.png')} />
         <Text style={styles.title}>Login</Text>
-        {/* Conditional rendering of error message */}
+        
+        {/* Display error message if it exists */}
         {error && <Text style={styles.errorText}>{error}</Text>}
+
         <TextInput
           style={styles.input}
           placeholder="Email"
           value={email}
-          onChangeText={(text) => setEmail(text)} // Update email state
+          onChangeText={setEmail}
         />
         <TextInput
           style={styles.input}
           placeholder="Password"
           value={password}
-          secureTextEntry={true}
-          onChangeText={(text) => setPassword(text)} // Update password state
+          secureTextEntry
+          onChangeText={setPassword}
         />
-        <TouchableOpacity onPress={handleSubmit}>
+        
+        {/* Login button */}
+        <TouchableOpacity onPress={handleLogin}>
           <View style={styles.button}>
             <Text style={styles.buttonText}>Login</Text>
           </View>
         </TouchableOpacity>
-        {/* Forgot Password handler */}
+        
+        {/* Navigation to Forgot Password and Create Account */}
         <TouchableOpacity onPress={() => Alert.alert('Forgot Password', 'Redirecting to forgot password screen.')}>
           <Text style={styles.forgotPassword}>Forgot Password?</Text>
         </TouchableOpacity>
-        {/* Create Account handler */}
-        <TouchableOpacity onPress={handleCreateAccountPress}>
+        <TouchableOpacity onPress={navigateToCreateAccount}>
           <Text style={styles.signUp}>Don't have an account? Sign Up</Text>
         </TouchableOpacity>
       </View>

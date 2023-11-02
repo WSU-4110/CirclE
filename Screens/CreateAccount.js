@@ -1,84 +1,97 @@
-//CreateAccount.js
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Image, TouchableOpacity, Switch } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import firebase from 'firebase/compat/app'
-import 'firebase/compat/auth'
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 import 'firebase/compat/database';
 
 const CreateAccount = () => {
+  // Declare and initialize state variables
   const navigation = useNavigation();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isOrganization, setIsOrganization] = useState(false);
 
+  // Function to handle account creation
   const handleCreateAccount = () => {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        // The user account has been created
-        console.log(`Username: ${username}, Email: ${email}, Password: ${password}`);
-        
-        // Get the UID of the new user
-        var uid = userCredential.user.uid;
-  
-        // Create a new entry in the database using the UID as the key
+        // Successful account creation
+        const uid = userCredential.user.uid;
+
+        // Create a database entry for the new user
         firebase.database().ref('users/' + uid).set({
-          username: username,
-          email: email,
-          // add any additional user info here
+          username,
+          email,
+          isOrganization,
         });
-  
-        navigation.navigate('Home');
+
+        // Navigate to different home screens based on user type
+        if (isOrganization) {
+          navigation.navigate('OrganizationHome');
+        } else {
+          navigation.navigate('Home');
+        }
       })
       .catch((error) => {
-        // Error occurred
+        // Handle account creation failure
         console.error(error.message);
       });
   };
 
+  // Main render function
   return (
-
-    
     <View style={styles.container}>
       <View style={styles.card}>
+        <Image style={styles.logo} source={require('../assets/Logo1.png')} />
         
-        <Image
-            style={styles.logo}
-            source={require('../assets/Logo1.png')}
+        <Text>Is this an organization account?</Text>
+        <Switch
+          trackColor={{ false: "#767577", true: "#81b0ff" }}
+          thumbColor={isOrganization ? "#f5dd4b" : "#f4f3f4"}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={() => setIsOrganization(!isOrganization)}
+          value={isOrganization}
         />
+
         <Text style={styles.title}>Create Account</Text>
+
         <TextInput
           style={styles.input}
           placeholder="Username"
           value={username}
-          onChangeText={(text) => setUsername(text)}
+          onChangeText={setUsername}
         />
+
         <TextInput
           style={styles.input}
           placeholder="Email"
           value={email}
-          onChangeText={(text) => setEmail(text)}
+          onChangeText={setEmail}
         />
+
         <TextInput
           style={styles.input}
           placeholder="Password"
           value={password}
           secureTextEntry={true}
-          onChangeText={(text) => setPassword(text)}
+          onChangeText={setPassword}
         />
+
         <TouchableOpacity onPress={handleCreateAccount}>
           <View style={styles.button}>
             <Text style={styles.buttonText}>Create Account</Text>
           </View>
         </TouchableOpacity>
+
         <Button title="Back" onPress={() => navigation.goBack()} color="#8BC34A" />
       </View>
     </View>
-    
-
   );
 };
 
+// Component styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -126,4 +139,3 @@ const styles = StyleSheet.create({
 });
 
 export default CreateAccount;
-

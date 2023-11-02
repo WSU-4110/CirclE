@@ -58,6 +58,7 @@ const Citems = db.collection('Categories');
   return (
 
 
+
     <ImageBackground
       source={require('../assets/background.jpg')}
       style={styles.background1}
@@ -67,6 +68,7 @@ const Citems = db.collection('Categories');
           source={require('../assets/Logo1.png')}
           style={styles.logo}
           resizeMode="contain"
+
 
         />
        <Text style={styles.text}>Recycling with Circle</Text>
