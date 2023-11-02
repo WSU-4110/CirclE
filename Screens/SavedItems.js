@@ -3,7 +3,7 @@ import { View, Button, StyleSheet } from 'react-native';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 
-const save = ({ route }) => {
+const SavedItems = ({ route }) => {
   const { items } = route.params;
 
   // Reference to your Firebase database
@@ -29,4 +29,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default save;
+export default SavedItems;

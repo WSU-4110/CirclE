@@ -18,7 +18,7 @@ import ProfilePage from './Screens/ProfilePage';
 
 import OrganizationHome from './Screens/OrganizationHome';  // new import
 import userdefineditems from './Screens/userdefineditems';  // new import
-import save from './Screens/save';  // new import
+import SavedItems from './Screens/SavedItems';  // new import
 
 
 import Settings from './Screens/Settings';
@@ -101,7 +101,7 @@ export default function App() {
         <Stack.Screen name="Category2" component={Category2} options={{ title: 'Category 2' }} />
         <Stack.Screen name="Category3" component={Category3} options={{ title: 'Category 3' }} />
         <Stack.Screen name="userdefineditems" component={userdefineditems} options={{ title: 'user defined items' }} />
-        <Stack.Screen name="save" component={save} options={{ title: 'Save' }} />
+        <Stack.Screen name="SavedItems" component={SavedItems} options={{ title: 'Saved Items' }} />
 
         {/* Add more category screens here */}
       </Stack.Navigator>
