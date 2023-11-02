@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Alert } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, StatusBar } from 'react-native';
+
 import ImagePicker from 'react-native-image-picker';
 import algoliasearch from 'algoliasearch';
 
-const searchClient = algoliasearch('ZGVYKOZVLW', 'c766c1f14843c6346b506053b96c6c56');
+
+const searchClient = algoliasearch('ZGVYKOZVLW', '15dea6a36dbc2457f06dcc473813946c')
+
 const algoliaIndex = searchClient.initIndex('Sell_items');
 
 const Category3  = () => {
