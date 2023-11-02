@@ -12,7 +12,10 @@ const handleSignOut = (navigation) => {
       console.error(error);
     });
 };
-
+const handleIconPress = (navigation) => {
+  // Navigate to the specified page when an icon is pressed
+  navigation.navigate('Category3');
+};
 // Custom button component
 const ActionButton = ({ title, onPress }) => (
   <TouchableOpacity style={styles.actionButton} onPress={onPress}>
@@ -52,22 +55,43 @@ const EditListingModal = ({ visible, setVisible }) => (
   </Modal>
 );
 
+// Modal for creating a new newsletter
+const CreateNewsletterModal = ({ visible, setVisible }) => (
+  <Modal
+    animationType="slide"
+    transparent={true}
+    visible={visible}
+    onRequestClose={() => setVisible(false)}
+  >
+    <View style={styles.modalView}>
+      <Text style={styles.modalText}>Create a Newsletter</Text>
+      <TextInput placeholder="Enter newsletter details" style={styles.modalInput} />
+      <ActionButton title="Submit" onPress={() => setVisible(false)} />
+    </View>
+  </Modal>
+);
+
 // Main component
 const OrganizationHome = ({ navigation }) => {
   const [createModalVisible, setCreateModalVisible] = useState(false);
   const [editModalVisible, setEditModalVisible] = useState(false);
+  const [newsletterModalVisible, setNewsletterModalVisible] = useState(false);
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to CircleE!</Text>
       <Text style={styles.subtitle}>Promoting Reuse, Recycle, and Reduce</Text>
       <View style={styles.actionContainer}>
+        <ActionButton title="Sell on Circle" onPress={() => handleIconPress(navigation)} />
         <ActionButton title="Create Listing" onPress={() => setCreateModalVisible(true)} />
         <ActionButton title="Edit Listing" onPress={() => setEditModalVisible(true)} />
+        <ActionButton title="Create Newsletter" onPress={() => setNewsletterModalVisible(true)} />
         <ActionButton title="Sign Out" onPress={() => handleSignOut(navigation)} />
+        
       </View>
       <CreateListingModal visible={createModalVisible} setVisible={setCreateModalVisible} />
       <EditListingModal visible={editModalVisible} setVisible={setEditModalVisible} />
+      <CreateNewsletterModal visible={newsletterModalVisible} setVisible={setNewsletterModalVisible} />
     </View>
   );
 };

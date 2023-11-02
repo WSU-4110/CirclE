@@ -31,7 +31,7 @@ const CreateAccount = () => {
         if (isOrganization) {
           navigation.navigate('OrganizationHome');
         } else {
-          navigation.navigate('Home');
+          navigation.navigate('HomeScreen');
         }
       })
       .catch((error) => {

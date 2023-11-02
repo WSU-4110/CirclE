@@ -30,12 +30,11 @@ const Login = () => {
       const isOrganization = snapshot.val().isOrganization;
 
       // Navigate to the appropriate home screen based on user type
-      const targetScreen = isOrganization ? 'OrganizationHome' : 'Home';
+      const targetScreen = isOrganization ? 'OrganizationHome' : 'HomeScreen';
       navigation.navigate(targetScreen);
     });
   };
 
-  // Function to perform the login action
   const handleLogin = () => {
     firebase.auth()
       .signInWithEmailAndPassword(email, password)
