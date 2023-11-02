@@ -9,19 +9,16 @@ import { useInfiniteHits } from 'react-instantsearch-core';
 const InfiniteHits =  ({hits, hasMore, refineNext}) => {
     console.log(hits)
     return (
+      <View>
       <FlatList
         data={hits}
-        keyExtractor={(item) => item.objectID}
+        keyExtractor={(item,index) => item.objectID}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
         onEndReached={() => hasMore && refineNext()}
-        renderItem={({ item }) => (
-          <View style={styles.item}>
-            <Text style={styles.titleText}>
-          <Highlight attribute="name" hit={item} />
-        </Text>
-          </View>
-        )}
-      />
+        renderItem={({ item }) => 
+            <Text> {item.objectID} </Text>} />
+           
+       </View>
     );
   };
   
@@ -38,8 +35,9 @@ const InfiniteHits =  ({hits, hasMore, refineNext}) => {
     item: {
       padding: 10,
       flexDirection: 'column',
-      //backgroundColor: 'coral',
+      backgroundColor: 'white', // Set a visible background color for testing
     },
+    
     titleText: {
       fontWeight: 'bold',
     },

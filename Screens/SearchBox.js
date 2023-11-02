@@ -5,8 +5,9 @@ import {connectSearchBox} from 'react-instantsearch-native';
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
-    backgroundColor: 'coral',
+    padding: 10,
+    backgroundColor: 'green',
+    width: '100%'
   },
   input: {
     height: 48,
@@ -29,7 +30,7 @@ const SearchBox = ({currentRefinement, refine}) => (
       style={styles.input}
       onChangeText={value => refine(value)}
       value={currentRefinement}
-      placeholder="what are you looking for?"
+      placeholder="Search CirclE"
     />
   </View>
 );

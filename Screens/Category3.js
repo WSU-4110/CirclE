@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, Button, Alert } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
-import algoliasearch from 'algoliasearch/reactnative';
+import algoliasearch from 'algoliasearch';
 
-
-const searchClient = algoliasearch('ZGVYKOZVLW', '15dea6a36dbc2457f06dcc473813946c')
-
-const algoliaIndex = algoliaClient.initIndex('Sell_items');
+const searchClient = algoliasearch('ZGVYKOZVLW', 'c766c1f14843c6346b506053b96c6c56');
+const algoliaIndex = searchClient.initIndex('Sell_items');
 
 const Category3 = () => {
   const [name, setName] = useState('');
@@ -34,27 +32,23 @@ const Category3 = () => {
       image,
     };
 
-    // Save the item data to Firestore
-
-
-    // Save the item data to Algolia
+    // Save the item data to Algolia with auto-generating objectID
     saveItemToAlgolia(itemData);
   };
 
- 
-
   const saveItemToAlgolia = (itemData) => {
-    // Add the item data to Algolia
-    algoliaIndex.addObject(itemData, (err, content) => {
+    algoliaIndex.saveObject(itemData, { autoGenerateObjectIDIfNotExist: true }, (err, content) => {
       if (err) {
         console.error(err);
+        Alert.alert('Error', 'Failed to save item to Algolia.');
       } else {
         console.log('Item added to Algolia:', content);
+        Alert.alert('Success', 'Item added to Algolia.');
         // Reset the form fields
         setName('');
         setDescription('');
         setCategory('');
-        setImage(null);
+        setImage(pickImage);
       }
     });
   };

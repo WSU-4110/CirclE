@@ -6,7 +6,9 @@ import 'firebase/firestore';
 import algoliasearch from 'algoliasearch';
 import { InstantSearch,Configure} from 'react-instantsearch-native';
 import SearchBox from './SearchBox';
+
 import InfiniteHits from './InfiniteHits';
+//import { InfiniteHits } from './InfiniteHits'; 
 import Highlight from './Highlight';
 
 const searchClient1 = algoliasearch('ZGVYKOZVLW', '15dea6a36dbc2457f06dcc473813946c')
@@ -37,26 +39,23 @@ const HomeScreen = ({ navigation }) => {
 
   return (
 
-
+<ScrollView>
 
     <ImageBackground
       source={require('../assets/background.jpg')}
       style={styles.background1}
     >
-      <View style={styles.container}>
-        <Image
-          source={require('../assets/Logo1.png')}
-          style={styles.logo}
-          resizeMode="contain"
-
-
-        />
-       <Text style={styles.text}>Recycling with Circle</Text>
-     
+       <View style={styles.container}>
+    <View style={styles.headerContainer}>
+      <Image
+        source={require('../assets/Logo1.png')}
+        style={styles.logo}
+        resizeMode="contain"
+      />
+      <Text style={styles.text}>Recycling with Circle</Text>
+    </View>
        
        <SafeAreaView style={styles.searchContainer}>
-      
-
       <InstantSearch searchClient={searchClient1} indexName="Circle_data">
         <SearchBox />
         <InfiniteHits hitComponent = {Hit} />
@@ -103,60 +102,80 @@ const HomeScreen = ({ navigation }) => {
         {/* First Row of Icons */}
         
         <View style={styles.row}>
-          <TouchableOpacity onPress={() => handleIconPress('Category3')}>
-            <Image
-              source={require('../assets/laptop_ce.jpg')}
-              style={styles.icon}
-              resizeMode="contain"
-            />
-            <View style={styles.overlay} />
-            
-            
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => handleIconPress('Category3')}>
-            <Image
-              source={require('../assets/kitchen_ce.jpg')}
-              style={styles.icon}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => handleIconPress('Category3')}>
-            <Image
-              source={require('../assets/furniture_ce.jpg')}
-              style={styles.icon}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-        </View>
+            <TouchableOpacity
+              style={styles.iconContainer}
+              onPress={() => handleIconPress('Category1')}
+            >
+              <Image
+                source={require('../assets/laptop_ce.jpg')}
+                style={[styles.icon, { marginRight: 20 }]} // Adjust the margin for spacing
+                resizeMode="contain"
+              />
+              <View style={styles.overlay} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.iconContainer}
+              onPress={() => handleIconPress('Category3')}
+            >
+              <Image
+                source={require('../assets/kitchen_ce.jpg')}
+                style={[styles.icon, { marginRight: 20 }]} // Adjust the margin for spacing
+                resizeMode="contain"
+              />
+              <View style={styles.overlay} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.iconContainer}
+              onPress={() => handleIconPress('Category3')}
+            >
+              <Image
+                source={require('../assets/furniture_ce.jpg')}
+                style={styles.icon}
+                resizeMode="contain"
+              />
+              <View style={styles.overlay} />
+            </TouchableOpacity>
+          </View>
 
-        {/* Second Row of Icons */}
-        <View style={styles.row}>
-          <TouchableOpacity onPress={() => handleIconPress('Category3')}>
-            <Image
-              source={require('../assets/Health_Makeup.jpg')}
-              style={styles.icon}
-              resizeMode="contain"
-            />
-
-            
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => handleIconPress('Category3')}>
-            <Image
-              source={require('../assets/carparts_ce.jpg')}
-              style={styles.icon}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => handleIconPress('Category3')}>
-            <Image
-              source={require('../assets/clothiing__ce.jpg')}
-              style={styles.icon}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
+          {/* Second Row of Icons */}
+          <View style={styles.row}>
+            <TouchableOpacity
+              style={styles.iconContainer}
+              onPress={() => handleIconPress('Category3')}
+            >
+              <Image
+                source={require('../assets/Health_Makeup.jpg')}
+                style={[styles.icon, { marginRight: 20 }]} // Adjust the margin for spacing
+                resizeMode="contain"
+              />
+              <View style={styles.overlay} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.iconContainer}
+              onPress={() => handleIconPress('Category3')}
+            >
+              <Image
+                source={require('../assets/carparts_ce.jpg')}
+                style={[styles.icon, { marginRight: 20 }]} // Adjust the margin for spacing
+                resizeMode="contain"
+              />
+              <View style={styles.overlay} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.iconContainer}
+              onPress={() => handleIconPress('Category3')}
+            >
+              <Image
+                source={require('../assets/clothiing__ce.jpg')}
+                style={styles.icon}
+                resizeMode="contain"
+              />
+              <View style={styles.overlay} />
+            </TouchableOpacity>
         </View>
       </View>
     </ImageBackground>
+    </ScrollView>
   );
 };
 
@@ -183,14 +202,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   searchContainer: {
-    flex: 1, // Adjust this value to control the proportion
-    width: '80%', // 100% of the parent width
+    flex: 0.5, // Adjust this value to control the proportion
+    width: '95%', // 100% of the parent width
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'white', // Background color for the search bar
-    borderTopWidth: 1, // Add a top border if needed
+   // borderTopWidth: 1, // Add a top border if needed
     borderBottomWidth: 1, // Add a bottom border if needed
     //borderColor: 'gray', // Border color
+    height: 200,
     
   },
 
@@ -202,6 +222,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 20,
     color: 'blue',
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10, // Add margin to separate from other content
   },
 
   overlay: {
