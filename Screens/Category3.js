@@ -1,66 +1,89 @@
-import React from 'react';
-import {
-  SafeAreaView,
-  TouchableOpacity,
-  VirtualizedList,
-  StyleSheet,
-  Text,
-  StatusBar,
-  Image,
-  Alert,
-  View,
-} from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, Button } from 'react-native';
+import ImagePicker from 'react-native-image-picker';
+import algoliasearch from 'algoliasearch/reactnative';
 
-const images = [
-  { uri: require('../assets/Home_Office.png'), name: 'Home Office' },
-  { uri: require('../assets/Kids_Toy.png'), name: 'Kids Toy' },
-  { uri: require('../assets/Kitchen_Tools.png'), name: 'Kitchen Tools' },
-  { uri: require('../assets/Travel_and_Luggage.png'), name: 'Travel and Luggage' },
-];
 
-const getItem = (_data, index) => ({
-  id: Math.random().toString(12).substring(0),
-  title: images[index].name,
-  imageIndex: index % images.length,
-});
+const searchClient = algoliasearch('ZGVYKOZVLW', '15dea6a36dbc2457f06dcc473813946c')
 
-const getItemCount = _data => 4;
+const algoliaIndex = algoliaClient.initIndex('Sell_items');
 
-const Item = ({ title, imageIndex, navigation }) => (
-  <TouchableOpacity 
-    style={styles.item}
-    onPress={() => {} }
-  >
-    <Text style={styles.title}>{title}</Text>
-    <Image
-      style={styles.tinyLogo}
-      source={images[imageIndex].uri}
-    />
-  </TouchableOpacity>
-);
+const Category3 = () => {
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [category, setCategory] = useState('');
+  const [image, setImage] = useState(null);
 
-const Category3 = ({ navigation }) => {
+  const pickImage = () => {
+    ImagePicker.showImagePicker((response) => {
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else {
+        setImage(response.uri);
+      }
+    });
+  };
+
+  const submitItem = () => {
+    const itemData = {
+      name,
+      description,
+      category,
+      image,
+    };
+
+    // Save the item data to Firestore
+
+
+    // Save the item data to Algolia
+    saveItemToAlgolia(itemData);
+  };
+
+ 
+
+  const saveItemToAlgolia = (itemData) => {
+    // Add the item data to Algolia
+    algoliaIndex.addObject(itemData, (err, content) => {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log('Item added to Algolia:', content);
+        // Reset the form fields
+        setName('');
+        setDescription('');
+        setCategory('');
+        setImage(null);
+      }
+    });
+  };
+
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.headerTitle}>circl-E Eco Friendly recycle categories</Text>
-      <VirtualizedList
-        data={Array(4).fill(null)}
-        initialNumToRender={4}
-        renderItem={({ item }) => <Item title={item.title} imageIndex={item.imageIndex} navigation={navigation} />}
-        keyExtractor={item => item.id}
-        getItemCount={getItemCount}
-        getItem={getItem}
-        contentContainerStyle={styles.listContent}
+    <View>
+      <Text>Item Name:</Text>
+      <TextInput
+        value={name}
+        onChangeText={(text) => setName(text)}
+        placeholder="Enter item name"
       />
-      <View style={styles.paginationContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate('Category2')} style={styles.pageButton}>
-          <Text style={styles.pageButtonText}>Previous</Text>
-        </TouchableOpacity>
-        {/* <TouchableOpacity onPress={() => navigation.navigate('')} style={styles.pageButton}>
-          <Text style={styles.pageButtonText}>Next Page</Text>
-        </TouchableOpacity> */}
-      </View>
-    </SafeAreaView>
+
+      <Text>Item Description:</Text>
+      <TextInput
+        value={description}
+        onChangeText={(text) => setDescription(text)}
+        placeholder="Enter item description"
+      />
+
+      <Text>Item Category:</Text>
+      <TextInput
+        value={category}
+        onChangeText={(text) => setCategory(text)}
+        placeholder="Enter item category"
+      />
+
+      <Button title="Submit Item" onPress={submitItem} />
+    </View>
   );
 };
 

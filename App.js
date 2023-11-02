@@ -5,6 +5,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
+import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import algoliasearch from 'algoliasearch/lite';
+import {Configure, InstantSearch } from 'react-instantsearch-core';
+//import { Highlight } from './Highlight';
 
 import Welcome from './Screens/Welcome';
 import CreateAccount from './Screens/CreateAccount';
@@ -24,12 +28,15 @@ import SavedItems from './Screens/SavedItems';  // new import
 import Settings from './Screens/Settings';
 import chatroom from './Screens/chatroom';
 import Location from './Screens/Location';
+import OrgPage from './Screens/OrgPage';
 
 
 import firebase from 'firebase/compat/app'
+import 'firebase/firestore';
 import 'firebase/compat/auth'
 import 'firebase/compat/database';
 
+//const searchClient = algoliasearch('ZGVYKOZVLW', '15dea6a36dbc2457f06dcc473813946c');
 
 // Initialize Firebase
 // Make sure to replace the configuration with your Firebase project's details
@@ -48,6 +55,8 @@ const firebaseConfig = {
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
+
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -63,6 +72,13 @@ const BottomTabNavigator = () => (
         } else if (route.name === 'Location') {
           iconName = focused ? 'location' : 'location-sharp';
         } else if (route.name === 'Chatroom') {
+          iconName = focused ? 'chatbox' : 'chatbox-sharp';
+        }
+        
+        else if (route.name === 'orgPage') {
+          iconName = focused ? 'chatbox' : 'chatbox-sharp';
+        }
+        else if (route.name === 'orgPage') {
           iconName = focused ? 'chatbox' : 'chatbox-sharp';
         }
         return <Ionicons name={iconName} size={size} color={color} />;
@@ -82,11 +98,14 @@ const BottomTabNavigator = () => (
     <Tab.Screen name="Location" component={Location} />
     <Tab.Screen name="chatroom" component={chatroom} />
     <Tab.Screen name="User Items" component={userdefineditems} />
+    <Tab.Screen name="OrgPage" component={OrgPage} />
   </Tab.Navigator>
 );
 
 export default function App() {
   return (
+    
+
     <NavigationContainer>
       <Stack.Navigator initialRouteName="LoadingScreen">
         <Stack.Screen name="ProfilePage" component={ProfilePage} options={{ title: 'Profile' }} />
@@ -106,6 +125,10 @@ export default function App() {
         {/* Add more category screens here */}
       </Stack.Navigator>
     </NavigationContainer>
+
+  
   );
 }
+
+
 

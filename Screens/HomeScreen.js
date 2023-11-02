@@ -1,31 +1,38 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, FlatList, ScrollView, Image,TouchableOpacity,ImageBackground } from 'react-native';
-import axios from 'axios';
-import { useFocusEffect } from '@react-navigation/native';
+import { View, StatusBar, Text, TextInput, Button, StyleSheet, FlatList, ScrollView, Image,TouchableOpacity,ImageBackground,SafeAreaView} from 'react-native';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+
+import algoliasearch from 'algoliasearch';
+import { InstantSearch,Configure} from 'react-instantsearch-native';
+import SearchBox from './SearchBox';
+import InfiniteHits from './InfiniteHits';
+import Highlight from './Highlight';
+
+const searchClient1 = algoliasearch('ZGVYKOZVLW', '15dea6a36dbc2457f06dcc473813946c')
+
+
+
 
 
 
 const HomeScreen = ({ navigation }) => {
+
+  
+    // Firestore is ready, you can now use it
+   
+    // Rest of your code
+
+
+
+  
+// search bar code
   const handleIconPress = (pageName) => {
     // Navigate to the specified page when an icon is pressed
     navigation.navigate(pageName);
   };
 
-  const HandleCategoryPress1 = (category1) => {
-    setSearch(category1);
-
-    const endpoint = `http://127.0.0.1:5000/items/${category}`;
-    axios.get(endpoint)
-      .then((response) => {
-        setItems(response.data);
-      })
-      .catch((error) => {
-        console.error('Error fetching items:', error);
-      })
-      .finally(() => {
-        navigation.navigate(category1);
-      });
-  };
+  
 
 
   return (
@@ -45,10 +52,19 @@ const HomeScreen = ({ navigation }) => {
 
         />
        <Text style={styles.text}>Recycling with Circle</Text>
-<TextInput
-  style={styles.input}
-  placeholder="Search..."
-/>
+     
+       
+       <SafeAreaView style={styles.searchContainer}>
+      
+
+      <InstantSearch searchClient={searchClient1} indexName="Circle_data">
+        <SearchBox />
+        <InfiniteHits hitComponent = {Hit} />
+      </InstantSearch>
+  
+    </SafeAreaView>
+      
+
 
         {/* Container for horizontal scroll view and category buttons */}
         <View style={styles.horizontalScrollContainer}>
@@ -145,6 +161,12 @@ const HomeScreen = ({ navigation }) => {
 };
 
 // constant values here 
+
+function Hit({ hit }) {
+  return (
+    <Text>{hit.name}</Text>
+  );
+}
 const styles = StyleSheet.create({
   background1: {
     width: '100%',
@@ -161,6 +183,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#E8F5E9',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  searchContainer: {
+    flex: 1, // Adjust this value to control the proportion
+    width: '80%', // 100% of the parent width
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white', // Background color for the search bar
+    borderTopWidth: 1, // Add a top border if needed
+    borderBottomWidth: 1, // Add a bottom border if needed
+    //borderColor: 'gray', // Border color
+    
   },
 
   text: {
@@ -194,6 +227,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 10,
     color: 'blue',
+  },
+  safe: {
+    flex: 1,
+    backgroundColor: '#252b33',
+  },
+  container222: {
+    flex: 4,
+    backgroundColor: '#ffffff',
+    flexDirection: 'column',
   },
   row: {
     flexDirection: 'row',
