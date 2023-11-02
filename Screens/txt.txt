@@ -1,3 +1,113 @@
+import React from 'react';
+import {StyleSheet, Text, View, FlatList} from 'react-native';
+import PropTypes from 'prop-types';
+import { useInfiniteHits } from 'react-instantsearch-core';
+import {connectInfiniteHits} from 'react-instantsearch-native';
+import Highlight from './Highlight';
+
+const styles = StyleSheet.create({
+  separator: {
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
+  },
+  item: {
+    padding: 10,
+    flexDirection: 'column',
+    backgroundColor: 'coral',
+  },
+  titleText: {
+    fontWeight: 'bold',
+  },
+});
+
+const InfiniteHits = ({hits, hasMore, refineNext}) => (
+  <FlatList
+    data={hits}
+    keyExtractor={item => item.objectID}
+    ItemSeparatorComponent={() => <View style={styles.separator} />}
+    onEndReached={() => hasMore && refineNext()}
+    renderItem={({item}) => (
+      <View style={styles.item}>
+        <Text style={styles.titleText}>
+          <Highlight attribute="name" hit={item} />
+        </Text>
+      </View>
+    )}
+  />
+);
+
+InfiniteHits.propTypes = {
+  hits: PropTypes.arrayOf(PropTypes.object).isRequired,
+  hasMore: PropTypes.bool.isRequired,
+  refineNext: PropTypes.func.isRequired,
+};
+
+export default connectInfiniteHits(InfiniteHits);
+
+import React, { useState, useEffect , useRef} from 'react';
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+//import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
+import PropTypes from 'prop-types';
+import {connectSearchBox} from 'react-instantsearch-native';
+import { useSearchBox } from 'react-instantsearch-core';
+//import { app } from '../firebaseConfig';
+//import '../App.css';
+
+const SearchBox = ({currentRefinement, refine}) => (
+  <View style={styles.container}>
+    <TextInput
+      style={styles.input}
+      onChangeText={value => refine(value)}
+      value={currentRefinement}
+      placeholder="what are you looking for?"
+    />
+  </View>
+);
+
+SearchBox.propTypes = {
+  currentRefinement: PropTypes.string.isRequired,
+  refine: PropTypes.func.isRequired,
+};
+
+const styles = StyleSheet.create({
+
+    background: {
+      width: '100%',
+      height: '100%'
+    },
+  
+    logo:{
+      width: 280,
+      height: 280,
+      marginLeft: '15%',
+      marginTop: '10%'
+    },  
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    background: {
+      backgroundColor: 'lightgreen',
+      padding: 20,
+      borderRadius: 10,
+      width: '500%',
+      length: '10%',
+    },
+    title: {
+      fontSize: 24,
+      marginBottom: 20,
+    },
+    input: {
+      width: '100%',
+      padding: 10,
+      margin: 10,
+      backgroundColor: '#f1f1f1',
+    },
+  });
+  
+
+export default connectSearchBox(SearchBox);
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, FlatList, ImageBackground, Image, TouchableOpacity } from 'react-native';
 import axios from 'axios';

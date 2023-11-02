@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, FlatList, ScrollView, Image,TouchableOpacity,ImageBackground } from 'react-native';
+import { View, StatusBar, Text, TextInput, Button, StyleSheet, FlatList, ScrollView, Image,TouchableOpacity,ImageBackground,SafeAreaView} from 'react-native';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
+import algoliasearch from 'algoliasearch';
+import { InstantSearch,Configure} from 'react-instantsearch-native';
+import SearchBox from './SearchBox';
+import InfiniteHits from './InfiniteHits';
+import Highlight from './Highlight';
+
+const searchClient1 = algoliasearch('ZGVYKOZVLW', '15dea6a36dbc2457f06dcc473813946c')
 
 
 
@@ -17,33 +24,6 @@ const HomeScreen = ({ navigation }) => {
     // Rest of your code
 
 
-
-  const [search, setSearch] = useState('');
-  const [items, setItems] = useState([]);
-  
-    // Initialize Firestore reference
-    // Reference to the Firestore database
-
-    
-const db = firebase.firestore();
-
-// Reference a collection
-const Citems = db.collection('Categories');
-
-  handleSearch = (text) => {
-    // Update the search input state
-
-    // Dynamically update the Firestore query
-    const query = this.Citems.where('name', '>=', text).where('name', '<=', text + '\uf8ff');
-
-    // Execute the query
-    query.get().then((querySnapshot) => {
-      setItems(querySnapshot.docs.map((doc) => doc.data()));
-  
-    }).catch((error) => {
-      console.error('Error fetching data:', error);
-    });
-  };
 
   
 // search bar code
@@ -72,18 +52,17 @@ const Citems = db.collection('Categories');
 
         />
        <Text style={styles.text}>Recycling with Circle</Text>
-<TextInput
-  style={styles.input}
-  placeholder="Search..."
-  value={search}
-  onChangeText={(text) => handleSearch(setSearch(text))}
+     
+       
+       <SafeAreaView style={styles.searchContainer}>
+      
 
- />
-        <FlatList
-          data={querySnapshot.docs.map((doc) => doc.data())}
-          keyExtractor={(items) => items.id}
-          renderItem={({ items }) => <Text>{items.name}</Text>}
-        />
+      <InstantSearch searchClient={searchClient1} indexName="Circle_data">
+        <SearchBox />
+        <InfiniteHits hitComponent = {Hit} />
+      </InstantSearch>
+  
+    </SafeAreaView>
       
 
 
@@ -182,6 +161,12 @@ const Citems = db.collection('Categories');
 };
 
 // constant values here 
+
+function Hit({ hit }) {
+  return (
+    <Text>{hit.name}</Text>
+  );
+}
 const styles = StyleSheet.create({
   background1: {
     width: '100%',
@@ -196,6 +181,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#E8F5E9',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  searchContainer: {
+    flex: 1, // Adjust this value to control the proportion
+    width: '80%', // 100% of the parent width
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white', // Background color for the search bar
+    borderTopWidth: 1, // Add a top border if needed
+    borderBottomWidth: 1, // Add a bottom border if needed
+    //borderColor: 'gray', // Border color
+    
   },
 
   text: {
@@ -229,6 +225,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 10,
     color: 'blue',
+  },
+  safe: {
+    flex: 1,
+    backgroundColor: '#252b33',
+  },
+  container222: {
+    flex: 4,
+    backgroundColor: '#ffffff',
+    flexDirection: 'column',
   },
   row: {
     flexDirection: 'row',

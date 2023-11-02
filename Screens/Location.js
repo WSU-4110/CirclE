@@ -5,7 +5,7 @@ import { View, Text } from 'react-native';
 const Location = () => {
   return (
     <View>
-      <Text>Location</Text>
+      <Text>OrgPage</Text>
     </View>
   );
 };
