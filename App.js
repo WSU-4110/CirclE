@@ -26,8 +26,6 @@ import Settings from './Screens/Settings';
 import Chatroom from './Screens/Chatroom';
 import Location from './Screens/Location';
 import OrgPage from './Screens/OrgPage';
-
-
 import firebase from 'firebase/compat/app'
 import 'firebase/firestore';
 import 'firebase/compat/auth'
@@ -59,7 +57,7 @@ const BottomTabNavigator = () => (
         else if (route.name === 'Chatroom') {
           iconName = focused ? 'chatbox' : 'chatbox-sharp';
         }
-        else if (route.name === 'orgPage') {
+        else if (route.name === 'OrgPage') {
           iconName = focused ? 'chatbox' : 'chatbox-sharp';
         }
         return <Ionicons name={iconName} size={size} color={color} />;

@@ -47,23 +47,24 @@ const HomeScreen = ({ navigation }) => {
     >
        <View style={styles.container}>
     <View style={styles.headerContainer}>
+    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
       <Image
         source={require('../assets/Logo1.png')}
-        style={styles.logo}
+        style={[styles.logo, { marginRight: 100 }]}
         resizeMode="contain"
       />
       <Text style={styles.text}>Recycling with Circle</Text>
+    
+       </View>
+      
     </View>
-       
-       <SafeAreaView style={styles.searchContainer}>
+    <SafeAreaView style={styles.searchContainer}>
       <InstantSearch searchClient={searchClient1} indexName="Circle_data">
         <SearchBox />
         <InfiniteHits hitComponent = {Hit} />
       </InstantSearch>
   
     </SafeAreaView>
-      
-
 
         {/* Container for horizontal scroll view and category buttons */}
         <View style={styles.horizontalScrollContainer}>
@@ -202,16 +203,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   searchContainer: {
-    flex: 0.5, // Adjust this value to control the proportion
+    flex: 0.4, // Adjust this value to control the proportion
     width: '95%', // 100% of the parent width
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'white', // Background color for the search bar
-   // borderTopWidth: 1, // Add a top border if needed
+    // borderTopWidth: 1, // Add a top border if needed
     borderBottomWidth: 1, // Add a bottom border if needed
     //borderColor: 'gray', // Border color
     height: 200,
-    
+    marginTop: 20, // Adjust the top margin to lower the container
   },
 
   text: {
@@ -256,7 +257,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#252b33',
   },
   container222: {
-    flex: 4,
+    flex: 5,
     backgroundColor: '#ffffff',
     flexDirection: 'column',
   },

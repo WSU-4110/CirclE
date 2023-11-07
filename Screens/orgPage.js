@@ -1,38 +1,76 @@
-// orgPage.js
-import {StyleSheet, Text, View, SafeAreaView} from 'react-native';
-import React from 'react';
-import algoliasearch from 'algoliasearch';
-import {InstantSearch} from 'react-instantsearch-native';
+import * as React from "react";
+import { Button, StyleSheet, Text, View, TouchableOpacity} from "react-native";
+import Modal from "react-native-modal";
 import SearchBox from './SearchBox';
+import { InstantSearch,Configure} from 'react-instantsearch-native';
+import algoliasearch from 'algoliasearch';
 import InfiniteHits from './InfiniteHits';
-import Highlight from './Highlight';
-
 
 
 const searchClient1 = algoliasearch('ZGVYKOZVLW', '15dea6a36dbc2457f06dcc473813946c')
 
 
-const styles = StyleSheet.create({
-  
-});
-
 const OrgPage = () => {
-  return (
-    <SafeAreaView style={styles.searchContainer}>
-      
+ 
 
+
+  const [isModalVisible, setIsModalVisible] = React.useState(false);
+
+  const handleModal = () => setIsModalVisible(() => !isModalVisible);
+
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity onPress={handleModal}>
+    
       <InstantSearch searchClient={searchClient1} indexName="Circle_data">
         <SearchBox />
-        <InfiniteHits hitComponent = {Hit} />
+       
       </InstantSearch>
   
-    </SafeAreaView>
-      
+   
+           
+          </TouchableOpacity>
+      <Modal isVisible={isModalVisible}>
+        <View style={{ flex: 1 }}>
+       
+    
+    <InstantSearch searchClient={searchClient1} indexName="Circle_data">
+      <SearchBox />
+<InfiniteHits hitComponent = {Hit} />
+      </InstantSearch>
+  
+ 
+         
+        
+        </View>
+      </Modal>
+    </View>
   );
-};
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  text: {
+    fontSize: 16,
+    fontWeight: "400",
+    textAlign: "center",
+  },
+  separator: {
+    marginVertical: 30,
+    height: 1,
+    width: "80%",
+  },
+});
+
 function Hit({ hit }) {
-  return (
-    <Text>{hit.name}</Text>
-  );
+  return <Text>{hit.name}</Text>;
 }
 export default OrgPage;
