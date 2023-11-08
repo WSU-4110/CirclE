@@ -4,6 +4,8 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
+
+
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
 import algoliasearch from 'algoliasearch/lite';

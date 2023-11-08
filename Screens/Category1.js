@@ -1,5 +1,8 @@
 import React from 'react';
-//import firestore from '@react-native-firebase/firestore';
+import firebase from 'firebase/compat/app'
+//import 'firebase/firestore';
+
+
 import {
   SafeAreaView,
   TouchableOpacity,
@@ -47,6 +50,7 @@ const Item = ({ title, imageIndex, navigation }) => {
     <TouchableOpacity 
       style={styles.item}
       onPress={handlePress}
+      testID="virtualized-item"
     >
       <Text style={styles.title}>{title}</Text>
       <Image
@@ -78,13 +82,14 @@ const Category1 = ({ navigation }) => {
       />
       <View style={styles.paginationContainer}>
         <TouchableOpacity onPress={showFirstPageAlert} style={styles.pageButton}>
-          <Text style={styles.pageButtonText}>Previous</Text>
+          <Text style={styles.pageButtonText} accessibilityRole="button">Previous</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Category2')} style={styles.pageButton}>
           <Text style={styles.pageButtonText}>Next Page</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
+
   );
 };
 
@@ -161,3 +166,4 @@ const styles = StyleSheet.create({
 });
 
 export default Category1;
+export { getItemCount };
