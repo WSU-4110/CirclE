@@ -76,7 +76,7 @@ it('has a next page button', () => {
   it('renders correct number of items in VirtualizedList', async () => {
     const { getAllByTestId } = render(<Category1 navigation={navigation} />);
     
-    // 等待元素变得可用
+    // waiting element be useful
     await waitFor(() => {
       expect(getAllByTestId('virtualized-item').length).toBe(getItemCount(null));
     });
