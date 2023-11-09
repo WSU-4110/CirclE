@@ -30,6 +30,8 @@ import Settings from './Screens/Settings';
 import chatroom from './Screens/chatroom';
 import Location from './Screens/Location';
 import orgPage from './Screens/orgPage';
+import ChangePassword from './Screens/ChangePassword';
+
 
 
 import firebase from 'firebase/compat/app'
@@ -122,6 +124,8 @@ export default function App() {
         <Stack.Screen name="Category3" component={Category3} options={{ title: 'Category 3' }} />
         <Stack.Screen name="userdefineditems" component={userdefineditems} options={{ title: 'user defined items' }} />
         <Stack.Screen name="SavedItems" component={SavedItems} options={{ title: 'Saved Items' }} />
+        <Stack.Screen name="ChangePassword" component={ChangePassword} />
+
 
         {/* Add more category screens here */}
       </Stack.Navigator>
