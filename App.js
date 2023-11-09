@@ -21,11 +21,14 @@ import LoadingScreen from './Screens/LoadingScreen';
 import ProfilePage from './Screens/ProfilePage';
 
 import OrganizationHome from './Screens/OrganizationHome';  // new import
+import userdefineditems from './Screens/userdefineditems';  // new import
+import SavedItems from './Screens/SavedItems';  // new import
+
 
 import Settings from './Screens/Settings';
-import Chatroom from './Screens/Chatroom';
+import chatroom from './Screens/chatroom';
 import Location from './Screens/Location';
-import OrgPage from './Screens/OrgPage';
+import orgPage from './Screens/orgPage';
 
 import 'firebase/firestore';
 import 'firebase/compat/auth'
@@ -36,7 +39,21 @@ import 'firebase/compat/database';
 // Initialize Firebase
 // Make sure to replace the configuration with your Firebase project's details
 
+const firebaseConfig = {
+  apiKey: "AIzaSyA-1_M8ZRIe6N-AgWKZwWsgtLOmVnLApjQ",
+  authDomain: "circlee-a4b5d.firebaseapp.com",
+  databaseURL: "https://circlee-a4b5d-default-rtdb.firebaseio.com/",
+  projectId: "circlee-a4b5d",
+  storageBucket: "circlee-a4b5d.appspot.com",
+  messagingSenderId: "361381373341",
+  appId: "1:361381373341:web:0838b1f671b92f56d2bb74",
+  measurementId: "G-NGWS4NW9QB"
+  
+};
 
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
 //const searchClient = algoliasearch('ZGVYKOZVLW', '15dea6a36dbc2457f06dcc473813946c');
 
@@ -56,11 +73,13 @@ const BottomTabNavigator = () => (
           iconName = focused ? 'home' : 'home-outline';
         } else if (route.name === 'Settings') {
           iconName = focused ? 'settings' : 'settings-outline';
-        }
-        else if (route.name === 'Location') {
+        } else if (route.name === 'Location') {
           iconName = focused ? 'location' : 'location-sharp';
+        } else if (route.name === 'Chatroom') {
+          iconName = focused ? 'chatbox' : 'chatbox-sharp';
         }
-        else if (route.name === 'Chatroom') {
+
+        else if (route.name === 'orgPage') {
           iconName = focused ? 'chatbox' : 'chatbox-sharp';
         }
         else if (route.name === 'OrgPage') {
@@ -68,17 +87,22 @@ const BottomTabNavigator = () => (
         }
         return <Ionicons name={iconName} size={size} color={color} />;
       },
+      tabBarActiveTintColor: "tomato",  // Moved this from tabBarOptions
+      tabBarInactiveTintColor: "gray",  // Moved this from tabBarOptions
+      tabBarStyle: [  // Moved this from tabBarOptions
+        {
+          display: "flex"
+        },
+        null
+      ]
     })}
-    tabBarOptions={{
-      activeTintColor: 'tomato',
-      inactiveTintColor: 'gray',
-    }}
   >
     <Tab.Screen name="Home" component={HomeScreen} />
     <Tab.Screen name="Settings" component={Settings} />
     <Tab.Screen name="Location" component={Location} />
-    <Tab.Screen name="Chatroom" component={Chatroom} />
-    <Tab.Screen name="OrgPage" component={OrgPage} />
+    <Tab.Screen name="chatroom" component={chatroom} />
+    <Tab.Screen name="User Items" component={userdefineditems} />
+    <Tab.Screen name="orgPage" component={orgPage} />
   </Tab.Navigator>
 );
 
@@ -99,6 +123,9 @@ export default function App() {
         <Stack.Screen name="Category1" component={Category1} options={{ title: 'Category 1' }} />
         <Stack.Screen name="Category2" component={Category2} options={{ title: 'Category 2' }} />
         <Stack.Screen name="Category3" component={Category3} options={{ title: 'Category 3' }} />
+        <Stack.Screen name="userdefineditems" component={userdefineditems} options={{ title: 'user defined items' }} />
+        <Stack.Screen name="SavedItems" component={SavedItems} options={{ title: 'Saved Items' }} />
+
         {/* Add more category screens here */}
       </Stack.Navigator>
     </NavigationContainer>

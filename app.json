@@ -26,6 +26,19 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    
+      "plugins": [
+          [
+            "expo-location",
+            {
+              "locationAlwaysAndWhenInUsePermission": "Allow $(CIRCLE) to use your location."
+            }
+          ]
+        ]
+      
+    
+    
   }
 }
+
