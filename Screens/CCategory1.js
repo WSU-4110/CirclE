@@ -1,19 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { collection, getDocs } from 'firebase/firestore';
+import firestore from '@react-native-firebase/firestore';
 
-// Make sure that `db` is initialized correctly as a Firestore instance
-import {db} from '../Screens/firebaseConfig';
+const usersCollection = firestore().collection('Categories').get()
+.then(collectionSnapshot => {
+    console.log('Total users: ', collectionSnapshot.size);
+    collectionSnapshot
+        .forEach(documentSnapshot => {
+            console.log('User ID: ', documentSnapshot.id,
+                documentSnapshot.data());
+        });
+});
+
 const Category1 = () => {
-  const [documentData, setDocumentData] = useState([]);
+  const [data1, setDocumentData] = useState([]);
 
   useEffect(() => {
     // Specify the collection path you want to query
-    const collectionPath = 'Categories/ElectronicItems/ElecSubCat1'; // Remove the leading '/'
+    
 
-    // Create a reference to the specified collection
-    const categoryCollection = collection(db, collectionPath);
-
+    firebase.firestore().collection('Categories').get().then((querySnapshot) => {
+      querySnapshot.forEach(snapshot => {
+          let data1 = snapshot.data();
+          console.log(data1);
+      }
+  })
+  
     // Query the collection and fetch the documents
     getDocs(categoryCollection)
       .then((querySnapshot) => {
@@ -22,9 +35,6 @@ const Category1 = () => {
           documents.push(doc.data());
         });
         setDocumentData(documents);
-
-        // Log the data here
-        console.log(documents);
       })
       .catch((error) => {
         console.error('Error getting documents: ', error);
@@ -32,6 +42,7 @@ const Category1 = () => {
   }, []);
 
   return (
+    console.log(documentData),
     <View>
       <Text>Category 1 Page</Text>
       <FlatList

@@ -12,7 +12,7 @@ const InfiniteHits = ({ hits, hasMore, refineNext }) => (
     keyExtractor={(item) => item.objectID}
     ItemSeparatorComponent={() => <View style={styles.separator} />}
     onEndReached={() => hasMore && refineNext()}
-    onEndReachedThreshold={0.8}
+    onEndReachedThreshold={2}
     renderItem={({ item }) => (
       <View style={styles.item}>
         <Avatar
@@ -43,16 +43,16 @@ const styles = StyleSheet.create({
     borderColor: '#ddd',
   },
   item: {
-    padding: 10,
+    padding: 5,
     flexDirection: 'row', // Adjust flexDirection to create the desired layout
     backgroundColor: 'lightgreen', // Light green background
     alignItems: 'center', // Center content vertically
   },
   titleText: {
-    marginLeft: 10, // Add left margin for spacing
+    marginLeft: 19, // Add left margin for spacing
   },
   avatarContainer: {
-    backgroundColor: 'white', // Add white background for the circular avatar
+    backgroundColor: 'lightgreen', // Add white background for the circular avatar
   },
 });
 

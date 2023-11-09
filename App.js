@@ -26,7 +26,7 @@ import Settings from './Screens/Settings';
 import Chatroom from './Screens/Chatroom';
 import Location from './Screens/Location';
 import OrgPage from './Screens/OrgPage';
-import firebase from 'firebase/compat/app'
+
 import 'firebase/firestore';
 import 'firebase/compat/auth'
 import 'firebase/compat/database';
@@ -36,6 +36,12 @@ import 'firebase/compat/database';
 // Initialize Firebase
 // Make sure to replace the configuration with your Firebase project's details
 
+
+
+//const searchClient = algoliasearch('ZGVYKOZVLW', '15dea6a36dbc2457f06dcc473813946c');
+
+// Initialize Firebase
+// Make sure to replace the configuration with your Firebase project's details
 
 
 const Stack = createStackNavigator();
@@ -84,7 +90,7 @@ export default function App() {
       <Stack.Navigator initialRouteName="LoadingScreen">
         <Stack.Screen name="ProfilePage" component={ProfilePage} options={{ title: 'Profile' }} />
         <Stack.Screen name="LoadingScreen" component={LoadingScreen} options={{ title: 'Loading' }} />
-        <Stack.Screen name="HomeScreen" component={BottomTabNavigator} />
+        <Stack.Screen options={{headerShown: false}}  name="HomeScreen" component={BottomTabNavigator} />
         <Stack.Screen name="Welcome" component={Welcome} options={{ title: 'Welcome' }} />
         <Stack.Screen name="CreateAccount" component={CreateAccount} options={{ title: 'Create Account' }} />
         <Stack.Screen name="Login" component={Login} options={{ title: 'Login' }} />

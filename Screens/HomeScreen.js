@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+
 import { View, StatusBar, Text, TextInput, Button, StyleSheet, FlatList, ScrollView, Image,TouchableOpacity,ImageBackground,SafeAreaView} from 'react-native';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
@@ -10,6 +10,11 @@ import SearchBox from './SearchBox';
 import InfiniteHits from './InfiniteHits';
 //import { InfiniteHits } from './InfiniteHits'; 
 import Highlight from './Highlight';
+import { collection, getDocs, query, where } from "firebase/firestore";
+
+import {db} from './firebaseConfig';
+import React, { useState, useEffect } from 'react';
+
 
 const searchClient1 = algoliasearch('ZGVYKOZVLW', '15dea6a36dbc2457f06dcc473813946c')
 
@@ -50,10 +55,10 @@ const HomeScreen = ({ navigation }) => {
     <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
       <Image
         source={require('../assets/Logo1.png')}
-        style={[styles.logo, { marginRight: 100 }]}
+        style={[styles.logo, { marginRight: 10 }]}
         resizeMode="contain"
       />
-      <Text style={styles.text}>Recycling with Circle</Text>
+      <Text style={styles.boldText}>Sustainability Simplified With Circle</Text>
     
        </View>
       
@@ -67,6 +72,7 @@ const HomeScreen = ({ navigation }) => {
     </SafeAreaView>
 
         {/* Container for horizontal scroll view and category buttons */}
+        <Text style={styles.boldText3}>Popular on CircleE</Text>
         <View style={styles.horizontalScrollContainer}>
           
         <ScrollView horizontal={true} contentContainerStyle={styles.horizontalScroll}>
@@ -101,40 +107,69 @@ const HomeScreen = ({ navigation }) => {
     </ScrollView>
         </View>
         {/* First Row of Icons */}
-        
+        <Text style={styles.boldText2}>Browse CircleE categories</Text>
         <View style={styles.row}>
+          
             <TouchableOpacity
               style={styles.iconContainer}
               onPress={() => handleIconPress('Category1')}
             >
+              <View style={styles.iconUnderlay}>
+                    <View style={styles.iconGreyUnderlay} />
+                    <View style={styles.overlay} />
+      <View style={styles.label}>
+        <Text style={styles.labelText}>Browse Circle</Text>
+                    </View>
               <Image
                 source={require('../assets/laptop_ce.jpg')}
                 style={[styles.icon, { marginRight: 20 }]} // Adjust the margin for spacing
                 resizeMode="contain"
               />
-              <View style={styles.overlay} />
+               <View style={styles.iconGreenUnderlay} />
+                  </View>
             </TouchableOpacity>
+
+
+
             <TouchableOpacity
               style={styles.iconContainer}
               onPress={() => handleIconPress('Category3')}
             >
+              <View style={styles.iconUnderlay}>
+                    <View style={styles.iconGreyUnderlay} />
+                    <View style={styles.overlay} />
+      <View style={styles.label}>
+        <Text style={styles.labelText}>Browse Circle</Text>
+                    </View>
               <Image
                 source={require('../assets/kitchen_ce.jpg')}
                 style={[styles.icon, { marginRight: 20 }]} // Adjust the margin for spacing
                 resizeMode="contain"
               />
-              <View style={styles.overlay} />
+               <View style={styles.iconGreenUnderlay} />
+                  </View>
             </TouchableOpacity>
+
+
+
+
             <TouchableOpacity
               style={styles.iconContainer}
               onPress={() => handleIconPress('Category3')}
             >
+            
+                    <View style={styles.iconGreyUnderlay} />
+                    <View style={styles.overlay} />
+      <View style={styles.label}>
+        <Text style={styles.labelText}>Browse Circle</Text>
+                    </View>
               <Image
                 source={require('../assets/furniture_ce.jpg')}
                 style={styles.icon}
                 resizeMode="contain"
               />
-              <View style={styles.overlay} />
+               <View style={styles.iconGreenUnderlay} />
+           
             </TouchableOpacity>
           </View>
 
@@ -144,34 +179,52 @@ const HomeScreen = ({ navigation }) => {
               style={styles.iconContainer}
               onPress={() => handleIconPress('Category3')}
             >
+             
+                    <View style={styles.iconGreyUnderlay} />
+                    <View style={styles.overlay} />
+      <View style={styles.label}>
+        <Text style={styles.labelText}>Browse Circle</Text>
+                    </View>
               <Image
                 source={require('../assets/Health_Makeup.jpg')}
                 style={[styles.icon, { marginRight: 20 }]} // Adjust the margin for spacing
                 resizeMode="contain"
               />
-              <View style={styles.overlay} />
+              <View style={styles.iconGreenUnderlay} />
             </TouchableOpacity>
+
             <TouchableOpacity
               style={styles.iconContainer}
               onPress={() => handleIconPress('Category3')}
             >
+             
+                    <View style={styles.iconGreyUnderlay} />
+                    <View style={styles.overlay} />
+      <View style={styles.label}>
+        <Text style={styles.labelText}>Browse Circle</Text>
+                    </View>
               <Image
                 source={require('../assets/carparts_ce.jpg')}
                 style={[styles.icon, { marginRight: 20 }]} // Adjust the margin for spacing
                 resizeMode="contain"
               />
-              <View style={styles.overlay} />
+             <View style={styles.iconGreenUnderlay} />
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.iconContainer}
               onPress={() => handleIconPress('Category3')}
             >
+              <View style={styles.iconGreyUnderlay} />
+                    <View style={styles.overlay} />
+      <View style={styles.label}>
+        <Text style={styles.labelText}>Browse Circle</Text>
+                    </View>
               <Image
                 source={require('../assets/clothiing__ce.jpg')}
                 style={styles.icon}
                 resizeMode="contain"
               />
-              <View style={styles.overlay} />
+             <View style={styles.iconGreenUnderlay} />
             </TouchableOpacity>
         </View>
       </View>
@@ -195,6 +248,7 @@ const styles = StyleSheet.create({
   logo: {
     width: 40,
     height: 40,
+    marginTop: 20,
   },
   container: {
     flex: 1,
@@ -204,7 +258,7 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     flex: 0.4, // Adjust this value to control the proportion
-    width: '95%', // 100% of the parent width
+    width: '98%', // 100% of the parent width
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'white', // Background color for the search bar
@@ -212,7 +266,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1, // Add a bottom border if needed
     //borderColor: 'gray', // Border color
     height: 200,
-    marginTop: 20, // Adjust the top margin to lower the container
+    marginTop: 10, // Adjust the top margin to lower the container
   },
 
   text: {
@@ -231,14 +285,32 @@ const styles = StyleSheet.create({
   },
 
   overlay: {
+    
     position: 'absolute',
     top: 0,
+    right: 0,
+    bottom: 0,
     left: 0,
-    width: '100%',
-    height: '100%',
+    opacity: 0.5, // Adjust the opacity to your preference
+    borderRadius: 50,
      // Dark green with some opacity
   },
-
+label: {
+   
+    
+   // bottom: 5,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+  },
+  labelText: {
+    //backgroundColor: 'lightgreen',
+   // paddingVertical: 4,
+   // paddingHorizontal: 10,
+    //borderRadius: 5,
+    color: 'black',
+    fontWeight: 'bold',
+  },
   horizontalScrollContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -246,6 +318,24 @@ const styles = StyleSheet.create({
   },
   horizontalScroll: {
     alignItems: 'center',
+  },
+  boldText: {
+    fontWeight: "bold",
+    fontSize: 18,
+    marginTop: 20,
+  },
+  boldText2: {
+    fontWeight: "bold",
+    fontSize: 18,
+    marginTop:15,
+    marginRight: 150,
+  },
+  boldText3: {
+    fontWeight: "bold",
+    fontSize: 18,
+    //marginBottom: 5,
+    marginTop:25,
+    marginRight: 220,
   },
   login: {
     fontSize: 16,
@@ -279,11 +369,38 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   iconContainer: {
+    flex: 1,
     alignItems: 'center', // Center the icon and label horizontally
+    margin: 10,
+  },
+  iconUnderlay: {
+    width: 120,  // Set the desired width for the container
+    height: 120, // Set the desired height for the container
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  iconGreyUnderlay: {
+    position: 'absolute',
+    top: -3,    // Slight top margin to make it slightly bigger
+    right: -5,  // Slight right margin to make it slightly bigger
+    bottom: -3, // Slight bottom margin to make it slightly bigger
+    left: -5,   // Slight left margin to make it slightly bigger
+    backgroundColor: 'lightgreen', // Grey underlay color
+    borderRadius: 60, // Half of the width and height to make it round
+    marginRight: 10,
+  },
+  iconGreenUnderlay: {
+    position: 'absolute',
+    bottom: -10, // Slight bottom margin to make it slightly bigger
+    backgroundColor: 'grey', // Green underlay color
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 10,
   },
   icon: {
     width: 100,  // Set the width and height of your icon
     height: 100,
+    borderRadius: 50,
     resizeMode: 'contain', // Ensure the image fits within the container
   },
   iconLabel: {
