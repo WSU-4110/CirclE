@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import ProfilePage from './ProfilePage';
 
 const Settings = ({ navigation }) => {
   const [isProfileVisible, setProfileVisible] = useState(false);
+
   const handleNavigation = (screenName) => {
     navigation.navigate(screenName);
   };
@@ -21,12 +22,43 @@ const Settings = ({ navigation }) => {
       .auth()
       .signOut()
       .then(() => {
-        // Go to login page
+        // Go to the login page
         navigation.navigate('Login');
       })
       .catch((error) => {
         console.error('Sign-out error:', error);
       });
+  };
+
+  // Function to delete account
+  const handleDeleteAccount = () => {
+    Alert.alert(
+      'Delete Account',
+      'Are you sure you want to delete your account? This action is irreversible.',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Delete',
+          onPress: () => {
+            const user = firebase.auth().currentUser;
+            if (user) {
+              user
+                .delete()
+                .then(() => {
+                  //Go to the login page
+                  navigation.navigate('Login');
+                })
+                .catch((error) => {
+                  console.error('Account deletion error:', error);
+                });
+            }
+          },
+        },
+      ]
+    );
   };
 
   return (
@@ -41,15 +73,7 @@ const Settings = ({ navigation }) => {
         <Text style={styles.buttonText}>Profile</Text>
       </TouchableOpacity>
 
-      {/* Contact Support*/}
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => alert('Call us at 586-446-2440')}
-      >
-        <Text style={styles.buttonText}>Contact Support</Text>
-      </TouchableOpacity>
-
-      {/*Change Password */}
+      {/* Change Password */}
       <TouchableOpacity
         style={styles.button}
         onPress={() => handleNavigation('ChangePassword')}
@@ -57,15 +81,23 @@ const Settings = ({ navigation }) => {
         <Text style={styles.buttonText}>Change Password</Text>
       </TouchableOpacity>
 
+      {/* Contact Support */}
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => alert('Call us at 586-446-2440')}
+      >
+        <Text style={styles.buttonText}>Contact Support</Text>
+      </TouchableOpacity>
+
       {/* Delete Account */}
       <TouchableOpacity
         style={styles.deleteButton}
-        onPress={() => handleNavigation('DeleteAccount')}
+        onPress={handleDeleteAccount}
       >
         <Text style={styles.buttonText}>Delete Account</Text>
       </TouchableOpacity>
 
-      {/* sign-out */}
+      {/* Sign Out */}
       <TouchableOpacity
         style={styles.logoutButton}
         onPress={handleSignOut}
@@ -73,7 +105,7 @@ const Settings = ({ navigation }) => {
         <Text style={styles.buttonText}>Log Out</Text>
       </TouchableOpacity>
 
-      {/* Render the ProfilePage if isProfileVisible is true */}
+      {/* Show the ProfilePage if true */}
       {isProfileVisible && <ProfilePage />}
     </View>
   );
