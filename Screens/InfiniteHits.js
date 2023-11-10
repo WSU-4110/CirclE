@@ -12,7 +12,7 @@ const InfiniteHits = ({ hits, hasMore, refineNext }) => (
     keyExtractor={(item) => item.objectID}
     ItemSeparatorComponent={() => <View style={styles.separator} />}
     onEndReached={() => hasMore && refineNext()}
-    onEndReachedThreshold={2}
+    onEndReachedThreshold={3}
     renderItem={({ item }) => (
       <View style={styles.item}>
         <Avatar

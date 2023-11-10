@@ -4,9 +4,9 @@ import { collection, getDocs } from 'firebase/firestore';
 import { View, StatusBar, Text, Button, StyleSheet, FlatList, Pressable } from 'react-native';
 import { getFirestore, onSnapshot } from 'firebase/firestore';
 
-const Category1 = () => {
+const Category5 = () => {
   const [documentData, setDocumentData] = useState([]);
-  const collectionPath = 'ElectronicItems'; // Replace with your collection name
+  const collectionPath = 'cosmetics'; // Replace with your collection name
 
   useEffect(() => {
     const db = getFirestore(app);
@@ -71,4 +71,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Category1;
+export default Category5;

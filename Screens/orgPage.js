@@ -6,6 +6,7 @@ import { InstantSearch, Configure } from 'react-instantsearch-native';
 import algoliasearch from 'algoliasearch';
 import InfiniteHits from './InfiniteHits';
 
+
 const searchClient1 = algoliasearch('ZGVYKOZVLW', '15dea6a36dbc2457f06dcc473813946c');
 
 const OrgPage = () => {
@@ -20,10 +21,13 @@ const OrgPage = () => {
       </View>
       <View style={styles.sectionsContainer}>
         <Section title="Org Products" />
+        
+    
         <Section title="Org News" />
+        
         <Section title="Org Events">
           <ScrollView contentContainerStyle={styles.scrollContent}>
-          <InstantSearch searchClient={searchClient1} indexName="Circle_data">
+          <InstantSearch searchClient={searchClient1} indexName="Sell_items">
         
             <InfiniteHits hitComponent={Hit} />
           </InstantSearch>

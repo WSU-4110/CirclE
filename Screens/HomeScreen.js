@@ -118,7 +118,7 @@ const HomeScreen = ({ navigation }) => {
                     <View style={styles.iconGreyUnderlay} />
                     <View style={styles.overlay} />
       <View style={styles.label}>
-        <Text style={styles.labelText}>Browse Circle</Text>
+        <Text style={styles.labelText}>Electronic</Text>
                     </View>
               <Image
                 source={require('../assets/laptop_ce.jpg')}
@@ -133,13 +133,13 @@ const HomeScreen = ({ navigation }) => {
 
             <TouchableOpacity
               style={styles.iconContainer}
-              onPress={() => handleIconPress('Category3')}
+              onPress={() => handleIconPress('Category4')}
             >
               <View style={styles.iconUnderlay}>
                     <View style={styles.iconGreyUnderlay} />
                     <View style={styles.overlay} />
       <View style={styles.label}>
-        <Text style={styles.labelText}>Browse Circle</Text>
+        <Text style={styles.labelText}>Kitchen</Text>
                     </View>
               <Image
                 source={require('../assets/kitchen_ce.jpg')}
@@ -155,13 +155,13 @@ const HomeScreen = ({ navigation }) => {
 
             <TouchableOpacity
               style={styles.iconContainer}
-              onPress={() => handleIconPress('Category3')}
+              onPress={() => handleIconPress('Category2')}
             >
             
                     <View style={styles.iconGreyUnderlay} />
                     <View style={styles.overlay} />
       <View style={styles.label}>
-        <Text style={styles.labelText}>Browse Circle</Text>
+        <Text style={styles.labelText}>Furniture</Text>
                     </View>
               <Image
                 source={require('../assets/furniture_ce.jpg')}
@@ -177,13 +177,13 @@ const HomeScreen = ({ navigation }) => {
           <View style={styles.row}>
             <TouchableOpacity
               style={styles.iconContainer}
-              onPress={() => handleIconPress('Category3')}
+              onPress={() => handleIconPress('Category2')}
             >
              
                     <View style={styles.iconGreyUnderlay} />
                     <View style={styles.overlay} />
       <View style={styles.label}>
-        <Text style={styles.labelText}>Browse Circle</Text>
+        <Text style={styles.labelText}>Cosmetics</Text>
                     </View>
               <Image
                 source={require('../assets/Health_Makeup.jpg')}
@@ -195,13 +195,13 @@ const HomeScreen = ({ navigation }) => {
 
             <TouchableOpacity
               style={styles.iconContainer}
-              onPress={() => handleIconPress('Category3')}
+              onPress={() => handleIconPress('Category5')}
             >
              
                     <View style={styles.iconGreyUnderlay} />
                     <View style={styles.overlay} />
       <View style={styles.label}>
-        <Text style={styles.labelText}>Browse Circle</Text>
+        <Text style={styles.labelText}>Car Parts</Text>
                     </View>
               <Image
                 source={require('../assets/carparts_ce.jpg')}
@@ -217,7 +217,7 @@ const HomeScreen = ({ navigation }) => {
               <View style={styles.iconGreyUnderlay} />
                     <View style={styles.overlay} />
       <View style={styles.label}>
-        <Text style={styles.labelText}>Browse Circle</Text>
+        <Text style={styles.labelText}>Clothing</Text>
                     </View>
               <Image
                 source={require('../assets/clothiing__ce.jpg')}
