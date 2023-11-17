@@ -1,15 +1,13 @@
+// SavedItems.js
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import firebase from 'firebase/compat/app';
-import 'firebase/compat/database';
 
-const SavedItems = ({ }) => {
+const SavedItems = () => {
   const [likedItems, setLikedItems] = useState([]);
   
-
   // Reference to the user's likes in Firebase
   const userId = firebase.auth().currentUser.uid;
-
   const userLikesRef = firebase.database().ref(`users/${userId}/Likes`);
 
   useEffect(() => {
@@ -17,11 +15,10 @@ const SavedItems = ({ }) => {
     userLikesRef.on('value', snapshot => {
       const likesData = snapshot.val();
       if (likesData) {
-        // Convert the likes data to an array of items
         const itemsArray = Object.keys(likesData).map(itemId => {
           return {
             id: itemId,
-            liked: likesData[itemId],
+            liked: likesData[itemId].liked, // Ensure this matches the structure of your data
           };
         });
         setLikedItems(itemsArray.filter(item => item.liked));
@@ -39,9 +36,9 @@ const SavedItems = ({ }) => {
     const itemRef = firebase.database().ref(`users/${userId}/likes/${itemId}`);
     itemRef.once('value', snapshot => {
       if (snapshot.exists()) {
-        itemRef.set(!snapshot.val());
+        itemRef.set(!snapshot.val().liked); // Ensure correct property is toggled
       } else {
-        itemRef.set(true);
+        itemRef.set({ liked: true }); // Adjust based on your data structure
       }
     });
   };
@@ -61,14 +58,16 @@ const SavedItems = ({ }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Liked Items</Text>
-      <FlatList
-        data={likedItems}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-      />
+      {likedItems.map(item => (
+        <View key={item.id} style={styles.itemContainer}>
+          <Text style={styles.itemText}>Item ID: {item.id}</Text>
+          {/* Optionally render Like/Unlike button here, if needed */}
+        </View>
+      ))}
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {
