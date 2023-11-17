@@ -31,12 +31,9 @@ jest.mock('firebase/compat/app', () => ({
 describe('SavedItems', () => {
     it('should render liked items correctly', async () => {
       const { getByText } = render(<SavedItems />);
-      // Wait for the items to be fetched and rendered
       await waitFor(() => {
         expect(getByText('Item ID: 1')).toBeTruthy();
-        // Optionally, add more checks for other items or conditions
       });
     });
 
-  // Additional tests...
 });
