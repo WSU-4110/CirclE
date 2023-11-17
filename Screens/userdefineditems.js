@@ -1,151 +1,76 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, StyleSheet, FlatList, Alert, ScrollView, TouchableOpacity } from 'react-native';
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/database';
-
-
-
-
+// UserDefinedItems.js
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
 const UserDefinedItems = () => {
   const [newItem, setNewItem] = useState('');
   const [recyclingLocation, setRecyclingLocation] = useState('');
-
   const [selectedCategory, setSelectedCategory] = useState('General');
   const [items, setItems] = useState([]);
-  const itemsRef = firebase.database().ref('userDefinedItems');
 
   const handleAddItem = () => {
-    
-    const userId = firebase.auth().currentUser.uid;
-    const itemsRef = firebase.database().ref(`userDefinedItems/${userId}`);
-    
     if (newItem.trim() !== '' && recyclingLocation.trim() !== '') {
-      const newItemRef = itemsRef.push();
-      newItemRef.set({
-        id: newItemRef.key,
+      const newId = new Date().getTime().toString();
+      const newItemObj = {
+        id: newId,
         name: newItem,
         category: selectedCategory,
-        recyclingLocation: recyclingLocation ,
-
-      });
+        recyclingLocation: recyclingLocation,
+      };
+      setItems([...items, newItemObj]);
       setNewItem('');
       setRecyclingLocation('');
     }
   };
-  
+
   const handleDeleteItem = (id) => {
-    const userId = firebase.auth().currentUser.uid;
-    
-    Alert.alert(
-      'Warning',
-      'Are you sure you want to delete this item?',
-      [
-        {
-          text: 'Cancel',
-          onPress: () => console.log('Cancel Pressed'),
-          style: 'cancel',
-        },
-        {
-          text: 'OK',
-          onPress: () => {
-            const itemRef = firebase.database().ref(`/userDefinedItems/${userId}/${id}`);
-            itemRef.remove();
-            setItems(items.filter(item => item.id !== id));
-          },
-        },
-      ],
-      { cancelable: false }
-    );
+    setItems(items.filter(item => item.id !== id));
   };
-  
 
-  // Fetch items from Firebase when the component mounts
-  useEffect(() => {
-    // Handle authentication state changes
-    const unsubscribeAuth = firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        // User is signed in.
-        // Your existing code here
-      } else {
-        // User is signed out.
-        navigation.navigate('Login'); // Navigate to Login screen
-      }
-    });
-
-    // Fetch user-defined items
-    const userId = firebase.auth().currentUser.uid;
-    const userItemsRef = firebase.database().ref(`userDefinedItems/${userId}`);
-    
-    const unsubscribeItems = userItemsRef.on('value', (snapshot) => {
-      const data = snapshot.val();
-      const firebaseItems = data ? Object.values(data) : [];
-      setItems(firebaseItems);
-    });
-
-    // Cleanup subscriptions on unmount
-    return () => {
-      unsubscribeAuth();
-      unsubscribeItems();
-    };
-  }, []);
+  // Mock category selection for testing
+  const categories = ['General', 'Electronics', 'Clothing', 'Food'];
   
-  
-  
-
   return (
     <View style={styles.container}>
-      <View style={styles.card}>
-        <Text style={styles.title}>User Defined Items</Text>
-
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {['General', 'Electronics', 'Clothing', 'Food'].map((category) => (
-            <TouchableOpacity
-              key={category}
-              style={[styles.categoryButton, selectedCategory === category && styles.selectedCategory]}
-              onPress={() => setSelectedCategory(category)}
-            >
-              <Text style={styles.categoryText}>{category}</Text>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-
-        <TextInput
-          style={styles.input}
-          placeholder="Add new item..."
-          value={newItem}
-          onChangeText={(text) => setNewItem(text)}
-        />
-        <TextInput
-  style={styles.input}
-  placeholder="Enter recycling location..."
-  value={recyclingLocation}
-  onChangeText={(text) => setRecyclingLocation(text)}
-/>
-
-<TouchableOpacity style={styles.addButton} onPress={handleAddItem}>
-  <Text style={styles.addButtonText}>Add Item</Text>
-</TouchableOpacity>
-        <FlatList
-  data={items}
-  keyExtractor={(item) => item.id ? item.id.toString() : ''}
-  renderItem={({ item }) => (
-    <View style={styles.listItem}>
-      <Text>{item.name}</Text>
-      
-      <Text style={styles.recyclingText}>Recycle at: {item.recyclingLocation}</Text>
-
-      <TouchableOpacity style={styles.deleteButton} onPress={() => handleDeleteItem(item.id)}>
-        <Text style={styles.deleteButtonText}>Delete</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Add new item..."
+        value={newItem}
+        onChangeText={setNewItem}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Enter recycling location..."
+        value={recyclingLocation}
+        onChangeText={setRecyclingLocation}
+      />
+      <TouchableOpacity style={styles.addButton} onPress={handleAddItem}>
+        <Text style={styles.addButtonText}>Add Item</Text>
       </TouchableOpacity>
-    </View>
-  )}
-/>
 
+      {/* Category selection for testing */}
+      <View style={styles.categoryContainer}>
+        {categories.map((category) => (
+          <TouchableOpacity key={category} onPress={() => setSelectedCategory(category)}>
+            <Text style={selectedCategory === category ? styles.selectedCategoryText : styles.categoryText}>
+              {category}
+            </Text>
+          </TouchableOpacity>
+        ))}
       </View>
+
+      {items.map((item) => (
+  <View key={item.id} style={styles.listItem}>
+    <Text>{item.name}</Text>
+    <TouchableOpacity style={styles.deleteButton} onPress={() => handleDeleteItem(item.id)}>
+      <Text style={styles.deleteButtonText}>Delete</Text>
+    </TouchableOpacity>
+  </View>
+))}
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {
@@ -263,7 +188,21 @@ const styles = StyleSheet.create({
   selectedCategoryText: {
     color: '#FFF', 
   },
-    });
+
+  categoryContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: 10,
+  },
+  categoryText: {
+    // Styles for category buttons
+  },
+  selectedCategoryText: {
+    // Styles for selected category
+  },
+  // ... rest of your styles
+});
+
     
 
 export default UserDefinedItems;
