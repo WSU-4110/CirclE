@@ -7,6 +7,7 @@ const UserDefinedItems = () => {
   const [recyclingLocation, setRecyclingLocation] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('General');
   const [items, setItems] = useState([]);
+  const [itemCount, setItemCount] = useState(0);
 
   const handleAddItem = () => {
     if (newItem.trim() !== '' && recyclingLocation.trim() !== '') {
@@ -25,6 +26,14 @@ const UserDefinedItems = () => {
 
   const handleDeleteItem = (id) => {
     setItems(items.filter(item => item.id !== id));
+  };
+
+  const resetCategories = () => {
+    setSelectedCategory('General');
+  };
+
+  const incrementItemCount = () => {
+    setItemCount(itemCount + 1);
   };
 
   // Mock category selection for testing
@@ -47,28 +56,48 @@ const UserDefinedItems = () => {
       <TouchableOpacity style={styles.addButton} onPress={handleAddItem}>
         <Text style={styles.addButtonText}>Add Item</Text>
       </TouchableOpacity>
-
-      {/* Category selection for testing */}
+  
+      {/* Category selection */}
       <View style={styles.categoryContainer}>
         {categories.map((category) => (
-          <TouchableOpacity key={category} onPress={() => setSelectedCategory(category)}>
+          <TouchableOpacity 
+            key={category} 
+            onPress={() => setSelectedCategory(category)}
+            style={selectedCategory === category ? styles.selectedCategory : styles.categoryButton}
+          >
             <Text style={selectedCategory === category ? styles.selectedCategoryText : styles.categoryText}>
               {category}
             </Text>
           </TouchableOpacity>
         ))}
       </View>
-
+  
+      {/* Items list */}
       {items.map((item) => (
-  <View key={item.id} style={styles.listItem}>
-    <Text>{item.name}</Text>
-    <TouchableOpacity style={styles.deleteButton} onPress={() => handleDeleteItem(item.id)}>
-      <Text style={styles.deleteButtonText}>Delete</Text>
-    </TouchableOpacity>
-  </View>
-))}
+        <View key={item.id} style={styles.listItem}>
+          <Text>{item.name}</Text>
+          <TouchableOpacity 
+            style={styles.deleteButton} 
+            onPress={() => handleDeleteItem(item.id)}
+          >
+            <Text style={styles.deleteButtonText}>Delete</Text>
+          </TouchableOpacity>
+        </View>
+      ))}
+  
+      {/* New buttons for resetCategories and incrementItemCount */}
+      <TouchableOpacity onPress={resetCategories} style={styles.button}>
+        <Text>Reset Categories</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={incrementItemCount} style={styles.button}>
+        <Text>Increment Item Count</Text>
+      </TouchableOpacity>
+  
+      {/* Displaying the item count */}
+      <Text>Item Count: {itemCount}</Text>
     </View>
   );
+  
 };
 
 
@@ -101,10 +130,6 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     width: '100%',
   },
-  recyclingText: {
-    fontSize: 14,
-    color: '#666', // Light gray
-  },
   listItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -117,30 +142,13 @@ const styles = StyleSheet.create({
   itemText: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#333',  // Dark gray
+    color: '#333', // Dark gray
   },
-  deleteButtonOutside: {
-    position: 'absolute',
-    right: 10,
-    top: 10,
-    padding: 10,
-    borderRadius: 20,
-    backgroundColor: '#F44336',  // Red
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-  },
-  deleteButtonText: {
-    color: '#FFF',  // White
-  },
-    // Add Item Button
   addButton: {
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 20,
-    backgroundColor: '#2196F3',  
+    backgroundColor: '#2196F3',
     elevation: 3,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -149,13 +157,12 @@ const styles = StyleSheet.create({
   },
   addButtonText: {
     fontSize: 16,
-    color: '#FFF',  // White
+    color: '#FFF', // White
   },
-    // Delete Button
   deleteButton: {
     padding: 10,
     borderRadius: 50,
-    backgroundColor: '#F44336',  
+    backgroundColor: '#F44336',
     elevation: 3,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -163,44 +170,45 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
   },
   deleteButtonText: {
-    color: '#FFF',  
-    },
-    // Category Buttons
-  categoryButton: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    margin: 5,
-    borderRadius: 20,
-    backgroundColor: '#E0E0E0',  
-    elevation: 3,  
-    shadowColor: '#000',  
-    shadowOffset: { width: 0, height: 2 },  
-    shadowOpacity: 0.2,  
-    shadowRadius: 3,  
+    color: '#FFF', // White
   },
-  selectedCategory: {
-    backgroundColor: '#4CAF50',  
-  },
-  categoryText: {
-    fontSize: 16,
-    color: '#333', 
-  },
-  selectedCategoryText: {
-    color: '#FFF', 
-  },
-
   categoryContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     padding: 10,
   },
+  categoryButton: {
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    margin: 5,
+    borderRadius: 20,
+    backgroundColor: '#E0E0E0',
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+  },
+  selectedCategory: {
+    backgroundColor: '#4CAF50',
+  },
   categoryText: {
-    // Styles for category buttons
+    fontSize: 16,
+    color: '#333',
   },
   selectedCategoryText: {
-    // Styles for selected category
+    color: '#FFF',
   },
-  // ... rest of your styles
+  button: {
+    padding: 10,
+    marginTop: 10,
+    backgroundColor: '#3498db',
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: '#FFF',
+    fontSize: 16,
+  },
 });
 
     

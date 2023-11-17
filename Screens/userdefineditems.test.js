@@ -40,4 +40,17 @@ it('deletes an item correctly', async () => {
     // Assertions to check if the category has been updated
     // This depends on how the category change is reflected in your UI
   });
+
+
+  it('resets categories correctly', () => {
+    const { getByText } = render(<UserDefinedItems />);
+    fireEvent.press(getByText('Reset Categories'));
+    // Add assertions to check if the category reset works
+  });
+
+  it('increments item count correctly', () => {
+    const { getByText } = render(<UserDefinedItems />);
+    fireEvent.press(getByText('Increment Item Count'));
+    expect(getByText('Item Count: 1')).toBeTruthy();
+  });
 });
