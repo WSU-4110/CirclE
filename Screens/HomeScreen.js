@@ -1,6 +1,6 @@
 
 import { View, StatusBar, Text, TextInput, Button, StyleSheet, FlatList, ScrollView, Image,TouchableOpacity,ImageBackground,SafeAreaView} from 'react-native';
-import firebase from 'firebase/app';
+//nimport firebase from 'firebase/app';
 import 'firebase/firestore';
 
 import algoliasearch from 'algoliasearch';
@@ -16,14 +16,16 @@ import {db} from './firebaseConfig';
 import React, { useState, useEffect } from 'react';
 
 
-const searchClient1 = algoliasearch('ZGVYKOZVLW', '15dea6a36dbc2457f06dcc473813946c')
+//const searchClient1 = algoliasearch('ZGVYKOZVLW', '15dea6a36dbc2457f06dcc473813946c')
 
 
 
 
 
+import initializeAlgolia from './Algoliadatbase'; // Import the new function
 
 const HomeScreen = ({ navigation }) => {
+  const { searchClient, indexName } = initializeAlgolia();
 
   
     // Firestore is ready, you can now use it
@@ -64,7 +66,7 @@ const HomeScreen = ({ navigation }) => {
       
     </View>
     <SafeAreaView style={styles.searchContainer}>
-      <InstantSearch searchClient={searchClient1} indexName="Circle_data">
+      <InstantSearch searchClient={searchClient} indexName={indexName}>
         <SearchBox />
         <InfiniteHits hitComponent = {Hit} />
       </InstantSearch>
