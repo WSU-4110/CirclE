@@ -43,7 +43,6 @@ describe('Settings', () => {
 
         fireEvent.press(getByText('Profile'));
 
-        // Use queryByTestId to check if the element is not present
         expect(queryByTestId('profile-page')).toBeNull();
     });
 
@@ -63,7 +62,6 @@ describe('Settings', () => {
 
         fireEvent.press(getByText('Delete Account'));
 
-        // Wait for the Alert.alert to be called
         await waitFor(() => {
             expect(global.alert).toHaveBeenCalledWith(
                 'Confirmation',
@@ -81,7 +79,6 @@ describe('Settings', () => {
             callback(); // This triggers the 'Delete' option in the alert
         });
 
-        // Wait for the account deletion to complete
         await waitFor(() => {
             expect(firebase.auth().currentUser.delete).toHaveBeenCalled();
         });
