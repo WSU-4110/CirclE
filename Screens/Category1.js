@@ -60,7 +60,7 @@ const Item = ({ title, imageIndex, navigation }) => {
 
 
 
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container}>=
       <Text style={styles.headerTitle}>circl-E Eco Friendly recycle categories</Text>
       <VirtualizedList
         data={Array(4).fill(null)}  // Added this to provide data to VirtualizedList
