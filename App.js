@@ -18,8 +18,9 @@ import ProfilePage from './Screens/ProfilePage';
 
 import OrganizationHome from './Screens/OrganizationHome';  // new import
 
+import Newsletter from './Screens/Newsletter';
 import Settings from './Screens/Settings';
-import Chatroom from './Screens/Chatroom';
+import Chatroom from './Screens/chatroom';
 import Location from './Screens/Location';
 
 
@@ -64,6 +65,9 @@ const BottomTabNavigator = () => (
         else if (route.name === 'Chatroom') {
           iconName = focused ? 'chatbox' : 'chatbox-sharp';
         }
+        else if (route.name === 'Newsletter') {
+          iconName = focused ? 'newsletter' : 'newsletter-outline';
+        }
         return <Ionicons name={iconName} size={size} color={color} />;
       },
     })}
@@ -76,6 +80,7 @@ const BottomTabNavigator = () => (
     <Tab.Screen name="Settings" component={Settings} />
     <Tab.Screen name="Location" component={Location} />
     <Tab.Screen name="Chatroom" component={Chatroom} />
+    <Tab.Screen name="Newsletter" component={Newsletter} />
   </Tab.Navigator>
 );
 
