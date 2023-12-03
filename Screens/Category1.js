@@ -1,5 +1,4 @@
-import React from 'react';
-//import firestore from '@react-native-firebase/firestore';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   TouchableOpacity,
@@ -10,6 +9,7 @@ import {
   Image,
   Alert,
   View,
+  Modal,
 } from 'react-native';
 
 const images = [
@@ -27,37 +27,73 @@ const getItem = (_data, index) => ({
 
 const getItemCount = _data => 4;
 
-const Item = ({ title, imageIndex, navigation }) => {
-  const handlePress = async () => {
-    try {
-      const documentSnapshot = await firebase.firestore()
-        .collection('Categories')
-        .doc(title)
-        .get();
-      
-      const firebaseData = documentSnapshot.data();
-      console.log(firebaseData); 
+const ActionModal = ({ visible, onClose, title }) => (
+  <Modal
+    animationType="slide"
+    transparent={true}
+    visible={visible}
+    onRequestClose={onClose}
+  >
+    <View style={styles.centeredView}>
+      <View style={styles.modalView}>
+        <Text style={styles.modalText}>{title} Actions</Text>
+        <TouchableOpacity
+          style={[styles.button, styles.buttonClose]}
+          onPress={onClose}
+        >
+          <Text style={styles.textStyle}>Reuse</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.button, styles.buttonClose]}
+          onPress={onClose}
+        >
+          <Text style={styles.textStyle}>Reduce</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.button, styles.buttonClose]}
+          onPress={onClose}
+        >
+          <Text style={styles.textStyle}>Recycle</Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity
+          style={[styles.button, styles.buttonClose]}
+          onPress={onClose}
+        >
+          <Text style={styles.textStyle}>Cancel</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  </Modal>
+);
 
-    } catch (error) {
-      console.error("Error fetching data from Firestore:", error);
-    }
+const Item = ({ title, imageIndex }) => {
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const handlePress = () => {
+    setModalVisible(true);
   };
 
   return (
-    <TouchableOpacity 
-      style={styles.item}
-      onPress={handlePress}
-    >
-      <Text style={styles.title}>{title}</Text>
-      <Image
-        style={styles.tinyLogo}
-        source={images[imageIndex].uri}
+    <>
+      <TouchableOpacity 
+        style={styles.item}
+        onPress={handlePress}
+      >
+        <Text style={styles.title}>{title}</Text>
+        <Image
+          style={styles.tinyLogo}
+          source={images[imageIndex].uri}
+        />
+      </TouchableOpacity>
+      <ActionModal 
+        visible={modalVisible} 
+        onClose={() => setModalVisible(false)} 
+        title={title} 
       />
-    </TouchableOpacity>
+    </>
   );
 };
-
-
 
 const Category1 = ({ navigation }) => {
   const showFirstPageAlert = () => {
@@ -68,7 +104,7 @@ const Category1 = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <Text style={styles.headerTitle}>circl-E Eco Friendly recycle categories</Text>
       <VirtualizedList
-        data={Array(4).fill(null)}  // Added this to provide data to VirtualizedList
+        data={Array(4).fill(null)}
         initialNumToRender={4}
         renderItem={({ item }) => <Item title={item.title} imageIndex={item.imageIndex} navigation={navigation} />}
         keyExtractor={item => item.id}
@@ -92,15 +128,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: StatusBar.currentHeight,
-    backgroundColor: '#E8F5E9', 
+    backgroundColor: '#E8F5E9',
   },
   headerTitle: {
     fontSize: 36,
     fontWeight: 'bold',
     textAlign: 'center',
     marginVertical: 20,
-    color: '#2a7f62', 
-    
+    color: '#2a7f62',
   },
   tinyLogo: {
     width: 280,
@@ -112,7 +147,7 @@ const styles = StyleSheet.create({
   },
   item: {
     backgroundColor: '#FFF9C4',
-    height: 200, 
+    height: 200,
     justifyContent: 'center',
     marginVertical: 12,
     marginHorizontal: 16,
@@ -129,15 +164,11 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
-    marginBottom: 20, 
-    color: '#2a7f62', 
-
+    marginBottom: 20,
+    color: '#2a7f62',
   },
-
-  //////
-
   listContent: {
-    paddingBottom: 60,  
+    paddingBottom: 60,
   },
   paginationContainer: {
     flexDirection: 'row',
@@ -157,6 +188,48 @@ const styles = StyleSheet.create({
   pageButtonText: {
     fontSize: 18,
     color: '#2a7f62',
+  },
+  // New styles for the modal
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+    marginTop: 10,
+  },
+  buttonClose: {
+    backgroundColor: '#E8F5E1',
+  },
+  textStyle: {
+    color: 'black',
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
 
