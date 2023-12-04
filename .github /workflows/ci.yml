@@ -1,12 +1,17 @@
-name: CI Test
+name: React Native CI
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
-    - name: Run a one-line script
-      run: echo "Hello, world!"
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12'
+    - name: Install dependencies
+      run: npm install
+    - name: Run tests
+      run: npm test
