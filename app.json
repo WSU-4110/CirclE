@@ -16,29 +16,35 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.maqone.FirstProj"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.FOREGROUND_SERVICE"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    
-      "plugins": [
-          [
-            "expo-location",
-            {
-              "locationAlwaysAndWhenInUsePermission": "Allow $(CIRCLE) to use your location."
-            }
-          ]
-        ]
-      
-    
-    
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow $(CIRCLE) to use your location."
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "a57fc2f4-e1cd-4d63-a345-22f4205afc40"
+      }
+    }
   }
 }
-
