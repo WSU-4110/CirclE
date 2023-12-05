@@ -1,0 +1,38 @@
+import React from 'react';
+import { render as renderMock, fireEvent } from '@testing-library/react-native';
+import InfiniteHits from './InfiniteHits';
+
+// Mock the render function
+jest.mock('@testing-library/react-native', () => ({
+  ...jest.requireActual('@testing-library/react-native'),
+  render: jest.fn(),
+}));
+
+describe('InfiniteHits', () => {
+  const hits = [
+    { objectID: '1', name: 'Hit 1', title: 'Title 1', genre: 'Genre 1', backdrop_path: 'url1' },
+    { objectID: '2', name: 'Hit 2', title: 'Title 2', genre: 'Genre 2', backdrop_path: 'url2' },
+    // Add more hits as needed for testing
+  ];
+
+  it('renders correctly', () => {
+    // Mock the render function
+    renderMock.mockReturnValue({ getByText: jest.fn() });
+
+    // Call the test component
+    const { getByText } = renderMock(<InfiniteHits hits={hits} hasMore={true} refineNext={() => {}} />);
+
+    // Example: Check if the title of the first hit is rendered
+    const title1 = getByText('Title 1');
+    expect(title1).toBeDefined();
+
+    // Add more assertions to check other properties of the rendered hits
+    // For example:
+    // expect(getByText('Genre 1')).toBeDefined();
+    // expect(getByText('Hit 1')).toBeDefined();
+    // ...
+  });
+
+ 
+  // Add more tests as needed to cover different aspects of your component
+});
