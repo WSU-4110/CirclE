@@ -16,7 +16,7 @@ const Settings = ({ navigation }) => {
     setProfileVisible(!isProfileVisible);
   };
 
-  // Function for log out
+  // Function for log out of app
   const handleSignOut = () => {
     firebase
       .auth()
