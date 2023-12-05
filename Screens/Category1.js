@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 
 const images = [
-  { uri: require('../assets/HealthAndPersonalCare.png'), name: 'Health & Personal Care' },
+  { uri: require('../assets/camera.png'), name: 'Items:Camera' },
   { uri: require('../assets/HomeDecorAndFurnishings.png'), name: 'Home Decor & Furnishings' },
   { uri: require('../assets/Pets.png'), name: 'Pets' },
   { uri: require('../assets/ClothingAndAccessories.png'), name: 'Clothing & Accessories' },
