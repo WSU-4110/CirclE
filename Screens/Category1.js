@@ -14,8 +14,8 @@ import {
 
 const images = [
   { uri: require('../assets/camera.png'), name: 'Items:Camera' },
-  { uri: require('../assets/HomeDecorAndFurnishings.png'), name: 'Home Decor & Furnishings' },
-  { uri: require('../assets/Pets.png'), name: 'Pets' },
+  { uri: require('../assets/gameSystem.png'), name: 'Items: Gaming  products' },
+  { uri: require('../assets/laptop.png'), name: 'Items: Laptop' },
   { uri: require('../assets/ClothingAndAccessories.png'), name: 'Clothing & Accessories' },
 ];
 
