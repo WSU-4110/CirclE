@@ -102,7 +102,7 @@ const Category1 = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.headerTitle}>circl-E Eco Friendly recycle categories</Text>
+      <Text style={styles.headerTitle}>circl-E Eco Friendly recycle Items</Text>
       <VirtualizedList
         data={Array(4).fill(null)}
         initialNumToRender={4}
