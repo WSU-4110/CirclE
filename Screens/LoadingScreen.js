@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { View, Text, StyleSheet,Button, Image, Animated } from 'react-native';
+import { View, Text, StyleSheet, Button, Image, Animated } from 'react-native';
 
 const LoadingScreen = ({ navigation }) => {
   const logoTranslateX = useRef(new Animated.Value(0)).current;
@@ -28,7 +28,7 @@ const LoadingScreen = ({ navigation }) => {
 
     // Set up a timer to navigate after the delay
     const timer = setTimeout(() => {
-      // Navigate to the next screen (e.g., 'LoginOptions') after the delay
+      // Navigate to the next screen (e.g., 'Welcome') after the delay
       navigation.navigate('Welcome');
     }, delay);
 
@@ -44,11 +44,13 @@ const LoadingScreen = ({ navigation }) => {
           source={require('../assets/Logo1.png')}
         />
         <Text style={styles.title}>CircleE is Loading...</Text>
-        <Button title="Welcome" onPress={() => navigation.navigate('Welcome')} />
-
+        <Button
+          title="Welcome"
+          onPress={() => navigation.navigate('Welcome')}
+          testID="button-welcome"
+        />
       </View>
     </View>
-    
   );
 };
 
@@ -57,7 +59,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5F5F5', 
+    backgroundColor: '#F5F5F5',
   },
   background: {
     backgroundColor: 'white',
@@ -81,7 +83,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 26,
     fontWeight: 'bold',
-    color: '#333', 
+    color: '#333',
   },
 });
 
