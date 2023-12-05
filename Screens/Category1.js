@@ -17,6 +17,12 @@ const images = [
   { uri: require('../assets/gameSystem.png'), name: 'Items: Gaming  products' },
   { uri: require('../assets/laptop.png'), name: 'Items: Laptop' },
   { uri: require('../assets/monitor.png'), name: 'Items: Monitor' },
+  { uri: require('../assets/smartphone.png'), name: 'Items: Smartphone' },
+  { uri: require('../assets/tablet.png'), name: 'Items: Tablet' },
+  { uri: require('../assets/headphone.png'), name: 'Items: Headphones' },
+  { uri: require('../assets/speaker.png'), name: 'Items: Speaker' },
+  { uri: require('../assets/Keyboard.png'), name: 'Items: Keyboards' },
+  { uri: require('../assets/USB.png'), name: 'Items: USB Flash Drives' },
 ];
 
 const getItem = (_data, index) => ({
@@ -25,7 +31,7 @@ const getItem = (_data, index) => ({
   imageIndex: index % images.length,
 });
 
-const getItemCount = _data => 4;
+const getItemCount = _data => images.length;
 
 const ActionModal = ({ visible, onClose, title }) => (
   <Modal
