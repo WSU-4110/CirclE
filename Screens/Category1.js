@@ -21,7 +21,7 @@ const images = [
   { uri: require('../assets/tablet.png'), name: 'Items: Tablet' },
   { uri: require('../assets/headphone.png'), name: 'Items: Headphones' },
   { uri: require('../assets/speaker.png'), name: 'Items: Speaker' },
-  { uri: require('../assets/Keyboard.png'), name: 'Items: Keyboards' },
+  { uri: require('../assets/keyboard.png'), name: 'Items: Keyboards' },
   { uri: require('../assets/USB.png'), name: 'Items: USB Flash Drives' },
 ];
 
