@@ -47,7 +47,7 @@ const LoadingScreen = ({ navigation }) => {
         <Button
           title="Welcome"
           onPress={() => navigation.navigate('Welcome')}
-          testID="button-welcome"
+          testID="welcome-button"
         />
       </View>
     </View>
