@@ -16,7 +16,7 @@ const images = [
   { uri: require('../assets/camera.png'), name: 'Items:Camera' },
   { uri: require('../assets/gameSystem.png'), name: 'Items: Gaming  products' },
   { uri: require('../assets/laptop.png'), name: 'Items: Laptop' },
-  { uri: require('../assets/ClothingAndAccessories.png'), name: 'Clothing & Accessories' },
+  { uri: require('../assets/monitor.png'), name: 'Items: Monitor' },
 ];
 
 const getItem = (_data, index) => ({
