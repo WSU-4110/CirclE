@@ -1,12 +1,15 @@
 # Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
 
+<<<<<<< Updated upstream
+=======
 # dependencies
-node_modules/
+node_modules
 
 # Expo
 .expo/
 dist/
 web-build/
+>>>>>>> Stashed changes
 
 # Native
 *.orig.*

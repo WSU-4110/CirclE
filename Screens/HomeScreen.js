@@ -1,7 +1,7 @@
 
 import { View, StatusBar, Text, TextInput, Button, StyleSheet, FlatList, ScrollView, Image,TouchableOpacity,ImageBackground,SafeAreaView} from 'react-native';
 //nimport firebase from 'firebase/app';
-import 'firebase/firestore';
+//import 'firebase/firestore';
 
 import algoliasearch from 'algoliasearch';
 import { InstantSearch,Configure} from 'react-instantsearch-native';

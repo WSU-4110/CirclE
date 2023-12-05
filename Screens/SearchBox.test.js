@@ -1,6 +1,13 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
+import { connectSearchBox } from 'react-instantsearch-native';
 import SearchBox from './SearchBox';
+
+// Mock the entire 'react-instantsearch-native' module
+jest.mock('react-instantsearch-native', () => ({
+  ...jest.requireActual('react-instantsearch-native'), // Use actual implementations for other functions
+  connectSearchBox: jest.fn((SearchBoxComponent) => SearchBoxComponent), // Mock connectSearchBox
+}));
 
 describe('SearchBox', () => {
   it('renders correctly', () => {
@@ -20,4 +27,3 @@ describe('SearchBox', () => {
     expect(refineMock).toHaveBeenCalledWith('test');
   });
 });
-

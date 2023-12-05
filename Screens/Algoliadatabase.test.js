@@ -2,9 +2,12 @@ import initializeAlgolia from './Algoliadatbase';
 
 // Mocking algoliasearch to avoid actual API calls during testing
 
+
+
+
 jest.mock('algoliasearch', () => {
   return () => ({
-    initIndex: jest.fn(() => ({
+    initIndex: jest.fn(indexName => ({
       search: jest.fn(() => Promise.resolve({ hits: [{ objectID: '1', name: 'Test Item' }] })),
     })),
   });
@@ -32,7 +35,9 @@ console.log('indexName:', indexName);
     
     
     // Add assertions to check if the data is as expected
-    expect(hits.length).toBe(1);
-    expect(hits[0].name).toBe('Test Item');
+   // Add assertions to check if the data is as expected
+expect(hits.hits.length).toBe(1);
+expect(hits.hits[0].name).toBe('Test Item');
+
   });
 });

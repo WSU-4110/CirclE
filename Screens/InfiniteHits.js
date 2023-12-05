@@ -3,11 +3,13 @@ import { StyleSheet, Text, View, FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 import { connectInfiniteHits } from 'react-instantsearch-native';
 import Highlight from './Highlight';
-import { ListItem, Avatar } from 'react-native-elements'; // Import ListItem and Avatar components
+
+//import {  Avatar } from 'react-native-elements'; // Import ListItem and Avatar components
 import { useInfiniteHits } from 'react-instantsearch-core';
 
 const InfiniteHits = ({ hits, hasMore, refineNext }) => (
   <FlatList
+  testID="FlatList"
     data={hits}
     keyExtractor={(item) => item.objectID}
     ItemSeparatorComponent={() => <View style={styles.separator} />}
@@ -15,12 +17,7 @@ const InfiniteHits = ({ hits, hasMore, refineNext }) => (
     onEndReachedThreshold={3}
     renderItem={({ item }) => (
       <View style={styles.item}>
-        <Avatar
-          rounded
-          source={{ uri: item.backdrop_path }} // Use the URI for the image
-          size="medium" // Adjust the size as needed
-          containerStyle={styles.avatarContainer}
-        />
+       
         <Text style={styles.titleText}>
           <Highlight attribute="name" hit={item} />
           <Text style={{ textAlign: 'left' }}> {item.title} </Text>

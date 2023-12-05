@@ -28,9 +28,9 @@ import SavedItems from './Screens/SavedItems';  // new import
 
 
 import Settings from './Screens/Settings';
-import chatroom from './Screens/Chatroom';
+import chatroom from './Screens/chatroom';
 import Location from './Screens/Location';
-import orgPage from './Screens/OrgPage';
+import orgPage from './Screens/orgPage';
 
 
 

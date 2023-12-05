@@ -4,6 +4,8 @@ import { collection, getDocs } from 'firebase/firestore';
 import { View, StatusBar, Text, Button, StyleSheet, FlatList, Pressable } from 'react-native';
 import { getFirestore, onSnapshot } from 'firebase/firestore';
 
+
+
 const Category1 = () => {
   const [documentData, setDocumentData] = useState([]);
   const collectionPath = 'ElectronicItems'; // Replace with your collection name
@@ -13,18 +15,19 @@ const Category1 = () => {
     const categoryCollection = collection(db, collectionPath);
 
     // Listen for changes in the collection
-    const unsubscribe = onSnapshot(categoryCollection, (querySnapshot) => {
-      const documentData = [];
-      querySnapshot.forEach((doc) => {
-        const { name, text } = doc.data();
-        documentData.push({
-          id: doc.id,
-          name,
-          
-        });
-      });
-      setDocumentData(documentData);
+ // Listen for changes in the collection
+const unsubscribe = onSnapshot(categoryCollection, (querySnapshot) => {
+  const documentData = [];
+  querySnapshot.forEach((doc) => {
+    const { name, text } = doc.data();
+    documentData.push({
+      id: doc.id,
+      name,
+      text, // Add this line to include the 'text' property
     });
+  });
+  setDocumentData(documentData);
+});
 
     // Clean up the listener when the component unmounts
     return () => unsubscribe();
