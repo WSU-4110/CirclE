@@ -8,6 +8,7 @@
                     <Image
                         source={require('../assets/images.png')} //Image Path
                         style={styles.userPhoto}
+                        testID="user-photo"
                     />
                     <TouchableOpacity style={styles.editButton} onPress={() => alert('Edit Photo')}>
                         <Text style={styles.editButtonText}>Edit</Text>
