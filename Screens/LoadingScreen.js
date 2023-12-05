@@ -43,6 +43,7 @@ const LoadingScreen = ({ navigation }) => {
           style={[styles.logo, { transform: [{ translateX: logoTranslateX }] }]}
           source={require('../assets/Logo1.png')}
         />
+      //testingID alongside with button
         <Text style={styles.title}>CircleE is Loading...</Text>
         <Button
           title="Welcome"
