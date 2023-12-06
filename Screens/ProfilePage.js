@@ -31,9 +31,13 @@
                     <Text style={styles.buttonText}>Sign Out</Text>
                 </TouchableOpacity>
                 <View style={styles.buttonSpacing} />
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SavedItems')}>
-                <Text style={styles.buttonText}>Saved Items</Text>
-            </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SavedItems')}>
+                    <Text style={styles.buttonText}>Saved Items</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Ratings')}>
+                    <Text style={styles.buttonText}>Ratings</Text>
+                </TouchableOpacity>
+            
             </View>
         );
     };
@@ -79,7 +83,7 @@
         },
         userName: {
             fontSize: 28,
-            marginBottom: 12,
+            marginBottom: 5,
             fontWeight: 'bold',
         },
         button: {
@@ -88,6 +92,7 @@
             borderRadius: 16,
             width: 200,
             alignItems: 'center',
+            marginBottom: 10,
         },
 
         buttonText: {
@@ -96,7 +101,8 @@
             fontWeight: 'bold',
         },
         buttonSpacing: {
-            marginVertical: 10,
+            marginVertical: 5,
+
         },
         card: {
             backgroundColor: '#FFFFFF',
