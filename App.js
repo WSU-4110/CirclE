@@ -19,6 +19,7 @@ import Category2 from './Screens/Category2';
 import Category3 from './Screens/Category3'; 
 import LoadingScreen from './Screens/LoadingScreen';
 import ProfilePage from './Screens/ProfilePage';
+import NewCategory from './Screens/NewCategory';
 
 import OrganizationHome from './Screens/OrganizationHome';  // new import
 import userdefineditems from './Screens/userdefineditems';  // new import
@@ -30,6 +31,7 @@ import Settings from './Screens/Settings';
 import chatroom from './Screens/chatroom';
 import Location from './Screens/Location';
 import orgPage from './Screens/orgPage';
+
 
 
 import firebase from 'firebase/compat/app'
@@ -82,6 +84,9 @@ const BottomTabNavigator = () => (
         else if (route.name === 'orgPage') {
           iconName = focused ? 'chatbox' : 'chatbox-sharp';
         }
+        else if (route.name === 'NewCategory') {
+          iconName = focused ? 'NewCategory' : 'NewCategory-sharp';
+        }
         return <Ionicons name={iconName} size={size} color={color} />;
       },
       tabBarActiveTintColor: "tomato",  // Moved this from tabBarOptions
@@ -100,6 +105,8 @@ const BottomTabNavigator = () => (
     <Tab.Screen name="chatroom" component={chatroom} />
     <Tab.Screen name="User Items" component={userdefineditems} />
     <Tab.Screen name="orgPage" component={orgPage} />
+    <Tab.Screen name="NewCategory" component={NewCategory} />
+
   </Tab.Navigator>
 );
 
@@ -120,6 +127,7 @@ export default function App() {
         <Stack.Screen name="Category1" component={Category1} options={{ title: 'Category 1' }} />
         <Stack.Screen name="Category2" component={Category2} options={{ title: 'Category 2' }} />
         <Stack.Screen name="Category3" component={Category3} options={{ title: 'Category 3' }} />
+        <Stack.Screen name="NewCategory" component={NewCategory} options={{ title: 'NewCategory' }} />
         <Stack.Screen name="userdefineditems" component={userdefineditems} options={{ title: 'user defined items' }} />
         <Stack.Screen name="SavedItems" component={SavedItems} options={{ title: 'Saved Items' }} />
 
