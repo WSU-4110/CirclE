@@ -12,7 +12,10 @@ const handleSignOut = (navigation) => {
       console.error(error);
     });
 };
-
+const handleIconPress = (navigation) => {
+  // Navigate to the specified page when an icon is pressed
+  navigation.navigate('Category3');
+};
 // Custom button component
 const ActionButton = ({ title, onPress }) => (
   <TouchableOpacity style={styles.actionButton} onPress={onPress}>
@@ -79,10 +82,12 @@ const OrganizationHome = ({ navigation }) => {
       <Text style={styles.title}>Welcome to CircleE!</Text>
       <Text style={styles.subtitle}>Promoting Reuse, Recycle, and Reduce</Text>
       <View style={styles.actionContainer}>
+        <ActionButton title="Sell on Circle" onPress={() => handleIconPress(navigation)} />
         <ActionButton title="Create Listing" onPress={() => setCreateModalVisible(true)} />
         <ActionButton title="Edit Listing" onPress={() => setEditModalVisible(true)} />
         <ActionButton title="Create Newsletter" onPress={() => setNewsletterModalVisible(true)} />
         <ActionButton title="Sign Out" onPress={() => handleSignOut(navigation)} />
+        
       </View>
       <CreateListingModal visible={createModalVisible} setVisible={setCreateModalVisible} />
       <EditListingModal visible={editModalVisible} setVisible={setEditModalVisible} />
