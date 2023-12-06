@@ -26,7 +26,7 @@ import SavedItems from './Screens/SavedItems';  // new import
 
 
 import Settings from './Screens/Settings';
-import chatroom from './Screens/chatroom';
+import Chatroom from './Screens/Chatroom';
 import Location from './Screens/Location';
 import orgPage from './Screens/orgPage';
 
@@ -96,7 +96,7 @@ const BottomTabNavigator = () => (
     <Tab.Screen name="Home" component={HomeScreen} />
     <Tab.Screen name="Settings" component={Settings} />
     <Tab.Screen name="Location" component={Location} />
-    <Tab.Screen name="chatroom" component={chatroom} />
+    <Tab.Screen name="chatroom" component={Chatroom} />
     <Tab.Screen name="User Items" component={userdefineditems} />
     <Tab.Screen name="orgPage" component={orgPage} />
   </Tab.Navigator>
