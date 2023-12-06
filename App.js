@@ -25,9 +25,9 @@ import userdefineditems from './Screens/userdefineditems';  // new import
 import SavedItems from './Screens/SavedItems';  // new import
 
 
+import Newsletter from './Screens/Newsletter';
 import Settings from './Screens/Settings';
-
-import chatroom from './Screens/chatroom';
+import Chatroom from './Screens/chatroom';
 import Location from './Screens/Location';
 import orgPage from './Screens/orgPage';
 
@@ -82,6 +82,9 @@ const BottomTabNavigator = () => (
         else if (route.name === 'orgPage') {
           iconName = focused ? 'chatbox' : 'chatbox-sharp';
         }
+        else if (route.name === 'Newsletter') {
+          iconName = focused ? 'newsletter' : 'newsletter-outline';
+        }
         return <Ionicons name={iconName} size={size} color={color} />;
       },
       tabBarActiveTintColor: "tomato",  // Moved this from tabBarOptions
@@ -97,7 +100,8 @@ const BottomTabNavigator = () => (
     <Tab.Screen name="Home" component={HomeScreen} />
     <Tab.Screen name="Settings" component={Settings} />
     <Tab.Screen name="Location" component={Location} />
-    <Tab.Screen name="chatroom" component={chatroom} />
+    <Tab.Screen name="Chatroom" component={Chatroom} />
+    <Tab.Screen name="Newsletter" component={Newsletter} />
     <Tab.Screen name="User Items" component={userdefineditems} />
     <Tab.Screen name="orgPage" component={orgPage} />
   </Tab.Navigator>
