@@ -16,6 +16,7 @@ const images = [
   { uri: require('../assets/Electronic.png'), name: 'Electronic' },
   { uri: require('../assets/Emergency_and_Safety.png'), name: 'Emergency and Safety' },
   { uri: require('../assets/Entertainment.png'), name: 'Entertainment' },
+  
 ];
 
 const getItem = (_data, index) => ({
@@ -24,7 +25,7 @@ const getItem = (_data, index) => ({
   imageIndex: index % images.length,
 });
 
-const getItemCount = _data => 4;
+const getItemCount = _data => images.length;
 
 const Item = ({ title, imageIndex, navigation }) => (
   <TouchableOpacity 
