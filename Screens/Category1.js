@@ -1,20 +1,29 @@
-
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/database';
-import { View, Text, FlatList, StyleSheet, Pressable, StatusBar } from 'react-native';
-import { getDatabase, ref, onValue, off } from 'firebase/compat/database';
 import React, { useState, useEffect } from 'react';
+import { View, Text, FlatList, StyleSheet, Pressable, StatusBar } from 'react-native';
+import { getDatabase, ref, onValue, off } from 'firebase/database';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/database';
+import { initializeApp } from 'firebase/app'; // Import initializeApp from firebase/app
 
+// Initialize Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyA-1_M8ZRIe6N-AgWKZwWsgtLOmVnLApjQ",
+  authDomain: "circlee-a4b5d.firebaseapp.com",
+  databaseURL: "https://circlee-a4b5d-default-rtdb.firebaseio.com/",
+  projectId: "circlee-a4b5d",
+  storageBucket: "circlee-a4b5d.appspot.com",
+  messagingSenderId: "361381373341",
+  appId: "1:361381373341:web:0838b1f671b92f56d2bb74",
+  measurementId: "G-NGWS4NW9QB"
+};
 
+const app = initializeApp(firebaseConfig); // Initialize the Firebase app
 
-
-
-const Category1 = ({ firebaseApp }) => {
+const Category1 = () => {
   const [electronicItems, setElectronicItems] = useState([]);
-  const db = getDatabase(firebaseApp);
 
   useEffect(() => {
+    const db = getDatabase(app);
     const electronicItemsRef = ref(db, 'ElectronicItems');
 
     const onSnapshot = onValue(electronicItemsRef, (snapshot) => {
@@ -29,8 +38,7 @@ const Category1 = ({ firebaseApp }) => {
     });
 
     return () => off(electronicItemsRef, onSnapshot);
-  }, [db]);
-
+  }, []);
 
   return (
     <View style={{ flex: 1, marginTop: StatusBar.currentHeight }}>
@@ -70,7 +78,7 @@ const styles = StyleSheet.create({
   },
   itemText: {
     fontSize: 32,
-    color: 'black', // Fix the color name here
+    color: 'black',
   },
 });
 
