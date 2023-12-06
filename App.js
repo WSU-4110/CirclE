@@ -19,7 +19,7 @@ import Category2 from './Screens/Category2';
 import Category3 from './Screens/Category3'; 
 import LoadingScreen from './Screens/LoadingScreen';
 import ProfilePage from './Screens/ProfilePage';
-
+import Ratings from './Screens/Ratings';
 import OrganizationHome from './Screens/OrganizationHome';  // new import
 import userdefineditems from './Screens/userdefineditems';  // new import
 import SavedItems from './Screens/SavedItems';  // new import
@@ -122,6 +122,7 @@ export default function App() {
         <Stack.Screen name="Category3" component={Category3} options={{ title: 'Category 3' }} />
         <Stack.Screen name="userdefineditems" component={userdefineditems} options={{ title: 'user defined items' }} />
         <Stack.Screen name="SavedItems" component={SavedItems} options={{ title: 'Saved Items' }} />
+        <Stack.Screen name="Ratings" component={Ratings} options={{ title: 'Ratings' }} />
 
         {/* Add more category screens here */}
       </Stack.Navigator>
