@@ -35,6 +35,20 @@ const Login = () => {
     });
   };
 
+  const handlePasswordReset = () => {
+    if (email) {
+      firebase.auth().sendPasswordResetEmail(email)
+        .then(() => {
+          Alert.alert('Password Reset Email Sent', 'Please check your email to reset your password.');
+        })
+        .catch((error) => {
+          console.error('Error sending password reset email:', error);
+        });
+    } else {
+      Alert.alert('Enter Email', 'Please enter your email address to reset your password.');
+    }
+  };
+
   const handleLogin = () => {
     firebase.auth()
       .signInWithEmailAndPassword(email, password)
@@ -76,11 +90,14 @@ const Login = () => {
             <Text style={styles.buttonText}>Login</Text>
           </View>
         </TouchableOpacity>
+
+        {/* Reset Password link */}
+      <TouchableOpacity onPress={handlePasswordReset}>
+        <Text style={styles.forgotPassword}>Reset Password</Text>
+      </TouchableOpacity>
         
         {/* Navigation to Forgot Password and Create Account */}
-        <TouchableOpacity onPress={() => Alert.alert('Forgot Password', 'Redirecting to forgot password screen.')}>
-          <Text style={styles.forgotPassword}>Forgot Password?</Text>
-        </TouchableOpacity>
+        
         <TouchableOpacity onPress={navigateToCreateAccount}>
           <Text style={styles.signUp}>Don't have an account? Sign Up</Text>
         </TouchableOpacity>

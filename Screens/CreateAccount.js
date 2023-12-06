@@ -14,14 +14,27 @@ const CreateAccount = () => {
   const [password, setPassword] = useState('');
   const [isOrganization, setIsOrganization] = useState(false);
 
-  // Function to handle account creation
-  const handleCreateAccount = () => {
-      // Create a new user using Firebase Auth
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        // Add the user to the database
-        const uid = userCredential.user.uid;
-        firebase.database().ref('users/' + uid).set({
+  // Function to send verification email
+  const sendVerificationEmail = (user) => {
+    user.sendEmailVerification()
+      .then(() => {
+        Alert.alert('Verification Email Sent', 'Please check your email to verify your account.');
+      })
+      .catch((error) => {
+        console.error('Error sending verification email:', error);
+      });
+  };
+// Function to handle account creation
+const handleCreateAccount = () => {
+  // Create a new user using Firebase Auth
+  firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      const { user } = userCredential; // Destructuring to get user object
+      
+      if (user) {
+        sendVerificationEmail(user); // Send verification email only if user object exists
+
+        firebase.database().ref('users/' + user.uid).set({
           username,
           email,
           isOrganization,
@@ -33,12 +46,15 @@ const CreateAccount = () => {
         } else {
           navigation.navigate('HomeScreen');
         }
-      })
-      .catch((error) => {
-        // Display error message if account creation fails
-        console.error(error.message);
-      });
-  };
+      }
+    })
+    .catch((error) => {
+      // Display error message if account creation fails
+      console.error(error.message);
+    });
+};
+
+  
   // Function to explain the switch
   const explainSwitch = () => {
     Alert.alert("Is this an organization account?", "Toggle this switch on if you're registering as an organization. This will tailor the app's features to better suit organizational needs.");
