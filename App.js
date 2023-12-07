@@ -26,7 +26,6 @@ import OrganizationHome from './Screens/OrganizationHome';  // new import
 import userdefineditems from './Screens/userdefineditems';  // new import
 import SavedItems from './Screens/SavedItems';  // new import
 
-
 import Settings from './Screens/Settings';
 import Chatroom from './Screens/Chatroom';
 import Location from './Screens/Location';
@@ -37,6 +36,8 @@ import firebase from 'firebase/compat/app'
 import 'firebase/firestore';
 import 'firebase/compat/auth'
 import 'firebase/compat/database';
+import orgevents from './Screens/orgevents';
+import orgNew from './Screens/orgNew';
 
 //const searchClient = algoliasearch('ZGVYKOZVLW', '15dea6a36dbc2457f06dcc473813946c');
 
@@ -134,7 +135,8 @@ export default function App() {
         <Stack.Screen name="Category2" component={Category2} options={{ title: 'Category 2' }} />
         <Stack.Screen name="Category3" component={Category3} options={{ title: 'Category 3' }} />
         <Stack.Screen name="Category4" component={Category4} options={{ title: 'Category 4' }} />
-        <Stack.Screen name="Category5" component={Category4} options={{ title: 'Category 4' }} />
+        <Stack.Screen name="orgevents" component={orgevents} options={{ title: 'Organization Events' }} />
+        <Stack.Screen name="orgNew" component={orgNew} options={{ title: 'Organization News' }} />
         <Stack.Screen name="userdefineditems" component={userdefineditems} options={{ title: 'user defined items' }} />
         <Stack.Screen name="SavedItems" component={SavedItems} options={{ title: 'Saved Items' }} />
 

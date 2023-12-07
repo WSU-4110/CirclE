@@ -20,17 +20,25 @@ const OrgPage = () => {
         <Button title="Search" onPress={handleModal} />
       </View>
       <View style={styles.sectionsContainer}>
-        <Section title="Org Products" />
-        
-    
-        <Section title="Org News" />
-        
+        <Section title="Org Products" >
+        <ScrollView contentContainerStyle={styles.scrollContent}>
+            <InstantSearch searchClient={searchClient1} indexName="Sell_items">
+              <InfiniteHits hitComponent={Hit} />
+            </InstantSearch>
+          </ScrollView>
+        </Section>
+        <Section title="Org News">
+        <ScrollView contentContainerStyle={styles.scrollContent}>
+            <InstantSearch searchClient={searchClient1} indexName="Blender">
+              <InfiniteHits hitComponent={Hit} />
+            </InstantSearch>
+          </ScrollView>
+        </Section>
         <Section title="Org Events">
           <ScrollView contentContainerStyle={styles.scrollContent}>
-          <InstantSearch searchClient={searchClient1} indexName="Sell_items">
-        
-            <InfiniteHits hitComponent={Hit} />
-          </InstantSearch>
+            <InstantSearch searchClient={searchClient1} indexName="Circle_events">
+              <InfiniteHits hitComponent={Hit} />
+            </InstantSearch>
           </ScrollView>
         </Section>
       </View>
@@ -81,6 +89,7 @@ const styles = StyleSheet.create({
     padding: 16,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
+    maxHeight: 300, // Adjust the maximum height as needed
   },
   sectionContainer: {
     flex: 1,
@@ -101,4 +110,4 @@ function Hit({ hit }) {
   return <Text>{hit.name}</Text>;
 }
 
-export default OrgPage;
+export default OrgPage

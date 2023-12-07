@@ -64,7 +64,7 @@ const HomeScreen = ({ navigation }) => {
       
     </View>
     <SafeAreaView style={styles.searchContainer}>
-      <InstantSearch searchClient={searchClient1} indexName="Circle_data">
+      <InstantSearch searchClient={searchClient1} indexName="Cirle_items">
         <SearchBox />
         <InfiniteHits hitComponent = {Hit} />
       </InstantSearch>
