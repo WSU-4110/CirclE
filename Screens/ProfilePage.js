@@ -31,9 +31,14 @@
                     <Text style={styles.buttonText}>Sign Out</Text>
                 </TouchableOpacity>
                 <View style={styles.buttonSpacing} />
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SavedItems')}>
-                <Text style={styles.buttonText}>Saved Items</Text>
-            </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SavedItems')}>
+                    <Text style={styles.buttonText}>Saved Items</Text>
+                </TouchableOpacity>
+                <View style={styles.buttonSpacing} />
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Ratings')}>
+                    <Text style={styles.buttonText}>Ratings</Text>
+                </TouchableOpacity>
+            
             </View>
         );
     };
@@ -44,13 +49,13 @@
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: '#E8F5E9',
-            padding: 20,
+            padding: 30,
             borderRadius: 10,
             width: '100%',
         },
         userPhotoContainer: {
             alignItems: 'center',
-            marginBottom: 20,
+            marginBottom: 10,
         },
         userPhoto: {
             width: 100,
@@ -74,20 +79,21 @@
         },
         userId: {
             fontSize: 15,
-            marginBottom: 140,
+            marginBottom: 30,
             fontWeight: 'bold',
         },
         userName: {
             fontSize: 28,
-            marginBottom: 12,
+            marginBottom: 5,
             fontWeight: 'bold',
         },
         button: {
             backgroundColor: '#4CAF50',
-            padding: 13,
+            padding: 15,
             borderRadius: 16,
             width: 200,
             alignItems: 'center',
+            marginBottom: 15,
         },
 
         buttonText: {
@@ -96,7 +102,8 @@
             fontWeight: 'bold',
         },
         buttonSpacing: {
-            marginVertical: 10,
+            marginVertical: 5,
+
         },
         card: {
             backgroundColor: '#FFFFFF',

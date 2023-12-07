@@ -3,20 +3,14 @@ import { View, Text, TextInput, StyleSheet, FlatList, Alert, ScrollView, Touchab
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 
-
-
-
-
-const UserDefinedItems = () => {
+const UserDefinedItems = ({ navigation }) => {
   const [newItem, setNewItem] = useState('');
   const [recyclingLocation, setRecyclingLocation] = useState('');
-
   const [selectedCategory, setSelectedCategory] = useState('General');
   const [items, setItems] = useState([]);
   const itemsRef = firebase.database().ref('userDefinedItems');
 
   const handleAddItem = () => {
-    
     const userId = firebase.auth().currentUser.uid;
     const itemsRef = firebase.database().ref(`userDefinedItems/${userId}`);
     
@@ -26,8 +20,7 @@ const UserDefinedItems = () => {
         id: newItemRef.key,
         name: newItem,
         category: selectedCategory,
-        recyclingLocation: recyclingLocation ,
-
+        recyclingLocation: recyclingLocation,
       });
       setNewItem('');
       setRecyclingLocation('');
@@ -59,44 +52,38 @@ const UserDefinedItems = () => {
     );
   };
   
-
-  // Fetch items from Firebase when the component mounts
   useEffect(() => {
-    // Handle authentication state changes
     const unsubscribeAuth = firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        // User is signed in.
-        // Your existing code here
-      } else {
-        // User is signed out.
-        navigation.navigate('Login'); // Navigate to Login screen
+      if (user) { // User is logged in
+        const userId = firebase.auth().currentUser.uid;
+        const userItemsRef = firebase.database().ref(`userDefinedItems/${userId}`);
+        
+        const unsubscribeItems = userItemsRef.on('value', (snapshot) => {
+          const data = snapshot.val();
+          const firebaseItems = data ? Object.values(data) : [];
+          setItems(firebaseItems);
+        });
+
+        return () => {
+          unsubscribeAuth();
+          unsubscribeItems();
+        };
+      } else { // User is not logged in
+        Alert.alert(
+          'Not Logged In',
+          'You must be logged in to access this page.',
+          [
+            { text: 'OK', onPress: () => navigation.navigate('Login') }
+          ]
+        );
       }
     });
-
-    // Fetch user-defined items
-    const userId = firebase.auth().currentUser.uid;
-    const userItemsRef = firebase.database().ref(`userDefinedItems/${userId}`);
-    
-    const unsubscribeItems = userItemsRef.on('value', (snapshot) => {
-      const data = snapshot.val();
-      const firebaseItems = data ? Object.values(data) : [];
-      setItems(firebaseItems);
-    });
-
-    // Cleanup subscriptions on unmount
-    return () => {
-      unsubscribeAuth();
-      unsubscribeItems();
-    };
   }, []);
   
-  
-  
-
   return (
     <View style={styles.container}>
       <View style={styles.card}>
-        <Text style={styles.title}>User Defined Items</Text>
+        <Text style={styles.title}>Your Items</Text>
 
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {['General', 'Electronics', 'Clothing', 'Food'].map((category) => (
@@ -117,31 +104,29 @@ const UserDefinedItems = () => {
           onChangeText={(text) => setNewItem(text)}
         />
         <TextInput
-  style={styles.input}
-  placeholder="Enter recycling location..."
-  value={recyclingLocation}
-  onChangeText={(text) => setRecyclingLocation(text)}
-/>
+          style={styles.input}
+          placeholder="Enter recycling location..."
+          value={recyclingLocation}
+          onChangeText={(text) => setRecyclingLocation(text)}
+        />
 
-<TouchableOpacity style={styles.addButton} onPress={handleAddItem}>
-  <Text style={styles.addButtonText}>Add Item</Text>
-</TouchableOpacity>
+        <TouchableOpacity style={styles.addButton} onPress={handleAddItem}>
+          <Text style={styles.addButtonText}>Add Item</Text>
+        </TouchableOpacity>
+        
         <FlatList
-  data={items}
-  keyExtractor={(item) => item.id ? item.id.toString() : ''}
-  renderItem={({ item }) => (
-    <View style={styles.listItem}>
-      <Text>{item.name}</Text>
-      
-      <Text style={styles.recyclingText}>Recycle at: {item.recyclingLocation}</Text>
-
-      <TouchableOpacity style={styles.deleteButton} onPress={() => handleDeleteItem(item.id)}>
-        <Text style={styles.deleteButtonText}>Delete</Text>
-      </TouchableOpacity>
-    </View>
-  )}
-/>
-
+          data={items}
+          keyExtractor={(item) => item.id ? item.id.toString() : ''}
+          renderItem={({ item }) => (
+            <View style={styles.listItem}>
+              <Text>{item.name}</Text>
+              <Text style={styles.recyclingText}>Recycle at: {item.recyclingLocation}</Text>
+              <TouchableOpacity style={styles.deleteButton} onPress={() => handleDeleteItem(item.id)}>
+                <Text style={styles.deleteButtonText}>Delete</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+        />
       </View>
     </View>
   );
@@ -210,7 +195,6 @@ const styles = StyleSheet.create({
   deleteButtonText: {
     color: '#FFF',  // White
   },
-    // Add Item Button
   addButton: {
     paddingVertical: 10,
     paddingHorizontal: 20,
@@ -226,7 +210,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#FFF',  // White
   },
-    // Delete Button
   deleteButton: {
     padding: 10,
     borderRadius: 50,
@@ -239,8 +222,7 @@ const styles = StyleSheet.create({
   },
   deleteButtonText: {
     color: '#FFF',  
-    },
-    // Category Buttons
+  },
   categoryButton: {
     paddingVertical: 10,
     paddingHorizontal: 20,
@@ -263,7 +245,6 @@ const styles = StyleSheet.create({
   selectedCategoryText: {
     color: '#FFF', 
   },
-    });
-    
+});
 
 export default UserDefinedItems;

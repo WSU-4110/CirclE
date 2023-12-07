@@ -19,18 +19,19 @@ import Category2 from './Screens/Category2';
 import Category3 from './Screens/Category3'; 
 import LoadingScreen from './Screens/LoadingScreen';
 import ProfilePage from './Screens/ProfilePage';
+
 import NewCategory from './Screens/NewCategory';
+
+import Ratings from './Screens/Ratings';
 
 import OrganizationHome from './Screens/OrganizationHome';  // new import
 import userdefineditems from './Screens/userdefineditems';  // new import
 import SavedItems from './Screens/SavedItems';  // new import
-
-
-import Settings from './Screens/Settings';
-
-import chatroom from './Screens/chatroom';
+import Newsletter from './Screens/Newsletter';
+import Chatroom from './Screens/chatroom';
 import Location from './Screens/Location';
 import orgPage from './Screens/orgPage';
+import SimpleChat from './Screens/simplechat';
 
 
 
@@ -41,9 +42,7 @@ import 'firebase/compat/database';
 
 //const searchClient = algoliasearch('ZGVYKOZVLW', '15dea6a36dbc2457f06dcc473813946c');
 
-// Initialize Firebase
-// Make sure to replace the configuration with your Firebase project's details
-
+// Initializing Firebase///////////////////////////
 const firebaseConfig = {
   apiKey: "AIzaSyA-1_M8ZRIe6N-AgWKZwWsgtLOmVnLApjQ",
   authDomain: "circlee-a4b5d.firebaseapp.com",
@@ -59,10 +58,13 @@ const firebaseConfig = {
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
+// Initializing Firebase///////////////////////////
+
+
+
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-
 const BottomTabNavigator = () => (
   <Tab.Navigator
     screenOptions={({ route }) => ({
@@ -84,8 +86,16 @@ const BottomTabNavigator = () => (
         else if (route.name === 'orgPage') {
           iconName = focused ? 'chatbox' : 'chatbox-sharp';
         }
+
         else if (route.name === 'NewCategory') {
           iconName = focused ? 'NewCategory' : 'NewCategory-sharp';
+
+        else if (route.name === 'Newsletter') {
+          iconName = focused ? 'newspaper' : 'newspaper-outline';
+        }
+        else if (route.name === 'Add Item') {
+          iconName = focused ? 'add-circle' : 'add-circle-outline';
+
         }
         return <Ionicons name={iconName} size={size} color={color} />;
       },
@@ -100,10 +110,11 @@ const BottomTabNavigator = () => (
     })}
   >
     <Tab.Screen name="Home" component={HomeScreen} />
-    <Tab.Screen name="Settings" component={Settings} />
+    <Tab.Screen name="Settings" component={ProfilePage} />
     <Tab.Screen name="Location" component={Location} />
-    <Tab.Screen name="chatroom" component={chatroom} />
-    <Tab.Screen name="User Items" component={userdefineditems} />
+    <Tab.Screen name="Chatroom" component={Chatroom} />
+    <Tab.Screen name="Newsletter" component={Newsletter} />
+    <Tab.Screen name="Add Item" component={userdefineditems} />
     <Tab.Screen name="orgPage" component={orgPage} />
     <Tab.Screen name="NewCategory" component={NewCategory} />
 
@@ -130,6 +141,10 @@ export default function App() {
         <Stack.Screen name="NewCategory" component={NewCategory} options={{ title: 'NewCategory' }} />
         <Stack.Screen name="userdefineditems" component={userdefineditems} options={{ title: 'user defined items' }} />
         <Stack.Screen name="SavedItems" component={SavedItems} options={{ title: 'Saved Items' }} />
+        <Stack.Screen name="Ratings" component={Ratings} options={{ title: 'Ratings' }} />
+        <Stack.Screen name="Newsletter" component={Newsletter} options={{ title: 'Newsletter' }} />
+        <Stack.Screen name="Chatroom" component={Chatroom} options={{ title: 'Chatroom' }} />
+        <Stack.Screen name="SimpleChat" component={SimpleChat} options={{ title: 'SimpleChat' }} />
 
         {/* Add more category screens here */}
       </Stack.Navigator>
