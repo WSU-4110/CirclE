@@ -19,7 +19,11 @@ import Category2 from './Screens/Category2';
 import Category3 from './Screens/Category3'; 
 import LoadingScreen from './Screens/LoadingScreen';
 import ProfilePage from './Screens/ProfilePage';
+
+import NewCategory from './Screens/NewCategory';
+
 import Ratings from './Screens/Ratings';
+
 import OrganizationHome from './Screens/OrganizationHome';  // new import
 import userdefineditems from './Screens/userdefineditems';  // new import
 import SavedItems from './Screens/SavedItems';  // new import
@@ -28,6 +32,7 @@ import Chatroom from './Screens/chatroom';
 import Location from './Screens/Location';
 import orgPage from './Screens/orgPage';
 import SimpleChat from './Screens/simplechat';
+
 
 
 import firebase from 'firebase/compat/app'
@@ -81,11 +86,16 @@ const BottomTabNavigator = () => (
         else if (route.name === 'orgPage') {
           iconName = focused ? 'chatbox' : 'chatbox-sharp';
         }
+
+        else if (route.name === 'NewCategory') {
+          iconName = focused ? 'NewCategory' : 'NewCategory-sharp';
+
         else if (route.name === 'Newsletter') {
           iconName = focused ? 'newspaper' : 'newspaper-outline';
         }
         else if (route.name === 'Add Item') {
           iconName = focused ? 'add-circle' : 'add-circle-outline';
+
         }
         return <Ionicons name={iconName} size={size} color={color} />;
       },
@@ -106,6 +116,8 @@ const BottomTabNavigator = () => (
     <Tab.Screen name="Newsletter" component={Newsletter} />
     <Tab.Screen name="Add Item" component={userdefineditems} />
     <Tab.Screen name="orgPage" component={orgPage} />
+    <Tab.Screen name="NewCategory" component={NewCategory} />
+
   </Tab.Navigator>
 );
 
@@ -126,6 +138,7 @@ export default function App() {
         <Stack.Screen name="Category1" component={Category1} options={{ title: 'Category 1' }} />
         <Stack.Screen name="Category2" component={Category2} options={{ title: 'Category 2' }} />
         <Stack.Screen name="Category3" component={Category3} options={{ title: 'Category 3' }} />
+        <Stack.Screen name="NewCategory" component={NewCategory} options={{ title: 'NewCategory' }} />
         <Stack.Screen name="userdefineditems" component={userdefineditems} options={{ title: 'user defined items' }} />
         <Stack.Screen name="SavedItems" component={SavedItems} options={{ title: 'Saved Items' }} />
         <Stack.Screen name="Ratings" component={Ratings} options={{ title: 'Ratings' }} />
