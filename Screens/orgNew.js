@@ -5,9 +5,9 @@ import * as Permissions from 'expo-permissions';
 import algoliasearch from 'algoliasearch';
 
 const searchClient = algoliasearch('ZGVYKOZVLW', 'c766c1f14843c6346b506053b96c6c56');
-const algoliaIndex = searchClient.initIndex('Sell_items');
+const algoliaIndex = searchClient.initIndex('Blender');
 
-const Category3 = () => {
+const orgNew = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
@@ -119,4 +119,4 @@ const Category3 = () => {
   );
 };
 
-export default Category3;
+export default orgNew;
