@@ -32,7 +32,7 @@ import SavedItems from './Screens/SavedItems';  // new import
 import Newsletter from './Screens/Newsletter';
 import Chatroom from './Screens/chatroom';
 import Location from './Screens/Location';
-import orgPage from './Screens/OrgPage';
+import orgPage from './Screens/orgPage';
 import SimpleChat from './Screens/simplechat';
 
 
