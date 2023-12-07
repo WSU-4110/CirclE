@@ -83,7 +83,10 @@ const BottomTabNavigator = () => (
           iconName = focused ? 'chatbox' : 'chatbox-sharp';
         }
         else if (route.name === 'Newsletter') {
-          iconName = focused ? 'newsletter' : 'newsletter-outline';
+          iconName = focused ? 'newspaper' : 'newspaper-outline';
+        }
+        else if (route.name === 'Add Item') {
+          iconName = focused ? 'add-circle' : 'add-circle-outline';
         }
         return <Ionicons name={iconName} size={size} color={color} />;
       },
@@ -98,11 +101,11 @@ const BottomTabNavigator = () => (
     })}
   >
     <Tab.Screen name="Home" component={HomeScreen} />
-    <Tab.Screen name="Settings" component={Settings} />
+    <Tab.Screen name="Settings" component={ProfilePage} />
     <Tab.Screen name="Location" component={Location} />
     <Tab.Screen name="Chatroom" component={Chatroom} />
     <Tab.Screen name="Newsletter" component={Newsletter} />
-    <Tab.Screen name="User Items" component={userdefineditems} />
+    <Tab.Screen name="Add Item" component={userdefineditems} />
     <Tab.Screen name="orgPage" component={orgPage} />
   </Tab.Navigator>
 );
