@@ -101,7 +101,7 @@ const Item = ({ title, imageIndex }) => {
   );
 };
 
-const Category1 = ({ navigation }) => {
+const NewCategory = ({ navigation }) => {
   const showFirstPageAlert = () => {
     Alert.alert("Attention", "This is the first page!");
   };
