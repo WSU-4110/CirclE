@@ -23,13 +23,11 @@ import Ratings from './Screens/Ratings';
 import OrganizationHome from './Screens/OrganizationHome';  // new import
 import userdefineditems from './Screens/userdefineditems';  // new import
 import SavedItems from './Screens/SavedItems';  // new import
-
-
 import Newsletter from './Screens/Newsletter';
-import Settings from './Screens/Settings';
 import Chatroom from './Screens/chatroom';
 import Location from './Screens/Location';
 import orgPage from './Screens/orgPage';
+import SimpleChat from './Screens/simplechat';
 
 
 import firebase from 'firebase/compat/app'
@@ -39,9 +37,7 @@ import 'firebase/compat/database';
 
 //const searchClient = algoliasearch('ZGVYKOZVLW', '15dea6a36dbc2457f06dcc473813946c');
 
-// Initialize Firebase
-// Make sure to replace the configuration with your Firebase project's details
-
+// Initializing Firebase///////////////////////////
 const firebaseConfig = {
   apiKey: "AIzaSyA-1_M8ZRIe6N-AgWKZwWsgtLOmVnLApjQ",
   authDomain: "circlee-a4b5d.firebaseapp.com",
@@ -57,10 +53,13 @@ const firebaseConfig = {
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
+// Initializing Firebase///////////////////////////
+
+
+
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-
 const BottomTabNavigator = () => (
   <Tab.Navigator
     screenOptions={({ route }) => ({
@@ -130,6 +129,9 @@ export default function App() {
         <Stack.Screen name="userdefineditems" component={userdefineditems} options={{ title: 'user defined items' }} />
         <Stack.Screen name="SavedItems" component={SavedItems} options={{ title: 'Saved Items' }} />
         <Stack.Screen name="Ratings" component={Ratings} options={{ title: 'Ratings' }} />
+        <Stack.Screen name="Newsletter" component={Newsletter} options={{ title: 'Newsletter' }} />
+        <Stack.Screen name="Chatroom" component={Chatroom} options={{ title: 'Chatroom' }} />
+        <Stack.Screen name="SimpleChat" component={SimpleChat} options={{ title: 'SimpleChat' }} />
 
         {/* Add more category screens here */}
       </Stack.Navigator>
