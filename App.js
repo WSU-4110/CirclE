@@ -21,17 +21,20 @@ import Category4 from './Screens/Category4';
 import Category5 from './Screens/Category5';
 import LoadingScreen from './Screens/LoadingScreen';
 import ProfilePage from './Screens/ProfilePage';
+
+import NewCategory from './Screens/NewCategory';
+
 import Ratings from './Screens/Ratings';
+
 import OrganizationHome from './Screens/OrganizationHome';  // new import
 import userdefineditems from './Screens/userdefineditems';  // new import
 import SavedItems from './Screens/SavedItems';  // new import
-
-
 import Newsletter from './Screens/Newsletter';
-import Settings from './Screens/Settings';
 import Chatroom from './Screens/chatroom';
 import Location from './Screens/Location';
 import orgPage from './Screens/OrgPage';
+import SimpleChat from './Screens/simplechat';
+
 
 
 import firebase from 'firebase/compat/app'
@@ -43,9 +46,7 @@ import orgNew from './Screens/orgNew';
 
 //const searchClient = algoliasearch('ZGVYKOZVLW', '15dea6a36dbc2457f06dcc473813946c');
 
-// Initialize Firebase
-// Make sure to replace the configuration with your Firebase project's details
-
+// Initializing Firebase///////////////////////////
 const firebaseConfig = {
   apiKey: "AIzaSyA-1_M8ZRIe6N-AgWKZwWsgtLOmVnLApjQ",
   authDomain: "circlee-a4b5d.firebaseapp.com",
@@ -76,7 +77,6 @@ export const d = firebase.initializeApp(firebaseConfig);
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-
 const BottomTabNavigator = () => (
   <Tab.Navigator
     screenOptions={({ route }) => ({
@@ -98,11 +98,16 @@ const BottomTabNavigator = () => (
         else if (route.name === 'OrgPage') {
           iconName = focused ? 'chatbox' : 'chatbox-sharp';
         }
+
+        else if (route.name === 'NewCategory') {
+          iconName = focused ? 'apps-outline' : 'apps-outline';
+        }
         else if (route.name === 'Newsletter') {
           iconName = focused ? 'newspaper' : 'newspaper-outline';
         }
         else if (route.name === 'Add Item') {
           iconName = focused ? 'add-circle' : 'add-circle-outline';
+
         }
         return <Ionicons name={iconName} size={size} color={color} />;
       },
@@ -123,6 +128,8 @@ const BottomTabNavigator = () => (
     <Tab.Screen name="Newsletter" component={Newsletter} />
     <Tab.Screen name="Add Item" component={userdefineditems} />
     <Tab.Screen name="orgPage" component={orgPage} />
+    <Tab.Screen name="NewCategory" component={NewCategory} />
+
   </Tab.Navigator>
 );
 
@@ -143,12 +150,16 @@ export default function App() {
         <Stack.Screen name="Category1" component={Category1} options={{ title: 'Category 1' }} />
         <Stack.Screen name="Category2" component={Category2} options={{ title: 'Category 2' }} />
         <Stack.Screen name="Category3" component={Category3} options={{ title: 'Category 3' }} />
+        <Stack.Screen name="NewCategory" component={NewCategory} options={{ title: 'NewCategory' }} />
         <Stack.Screen name="Category4" component={Category4} options={{ title: 'Category 4' }} />
         <Stack.Screen name="orgevents" component={orgevents} options={{ title: 'Organization Events' }} />
         <Stack.Screen name="orgNew" component={orgNew} options={{ title: 'Organization News' }} />
         <Stack.Screen name="userdefineditems" component={userdefineditems} options={{ title: 'user defined items' }} />
         <Stack.Screen name="SavedItems" component={SavedItems} options={{ title: 'Saved Items' }} />
         <Stack.Screen name="Ratings" component={Ratings} options={{ title: 'Ratings' }} />
+        <Stack.Screen name="Newsletter" component={Newsletter} options={{ title: 'Newsletter' }} />
+        <Stack.Screen name="Chatroom" component={Chatroom} options={{ title: 'Chatroom' }} />
+        <Stack.Screen name="SimpleChat" component={SimpleChat} options={{ title: 'SimpleChat' }} />
 
         {/* Add more category screens here */}
       </Stack.Navigator>
