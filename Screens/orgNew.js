@@ -7,7 +7,7 @@ import algoliasearch from 'algoliasearch';
 const searchClient = algoliasearch('ZGVYKOZVLW', 'c766c1f14843c6346b506053b96c6c56');
 const algoliaIndex = searchClient.initIndex('Blender');
 
-const orgNew = () => {
+const OrgNew = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
@@ -119,4 +119,4 @@ const orgNew = () => {
   );
 };
 
-export default orgNew;
+export default OrgNew;

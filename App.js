@@ -32,7 +32,7 @@ import SavedItems from './Screens/SavedItems';  // new import
 import Newsletter from './Screens/Newsletter';
 import Chatroom from './Screens/chatroom';
 import Location from './Screens/Location';
-import orgPage from './Screens/OrgPage';
+import orgPage from './Screens/orgPage';
 import SimpleChat from './Screens/simplechat';
 
 
@@ -41,8 +41,8 @@ import firebase from 'firebase/compat/app'
 import 'firebase/firestore';
 import 'firebase/compat/auth'
 import 'firebase/compat/database';
-import orgevents from './Screens/orgevents';
-import orgNew from './Screens/orgNew';
+import Orgevents from './Screens/Orgevents';
+import OrgNew from './Screens/OrgNew';
 
 //const searchClient = algoliasearch('ZGVYKOZVLW', '15dea6a36dbc2457f06dcc473813946c');
 
@@ -152,8 +152,8 @@ export default function App() {
         <Stack.Screen name="Category3" component={Category3} options={{ title: 'Category 3' }} />
         <Stack.Screen name="NewCategory" component={NewCategory} options={{ title: 'NewCategory' }} />
         <Stack.Screen name="Category4" component={Category4} options={{ title: 'Category 4' }} />
-        <Stack.Screen name="orgevents" component={orgevents} options={{ title: 'Organization Events' }} />
-        <Stack.Screen name="orgNew" component={orgNew} options={{ title: 'Organization News' }} />
+        <Stack.Screen name="Orgevents" component={Orgevents} options={{ title: 'Organization Events' }} />
+        <Stack.Screen name="OrgNew" component={OrgNew} options={{ title: 'Organization News' }} />
         <Stack.Screen name="userdefineditems" component={userdefineditems} options={{ title: 'user defined items' }} />
         <Stack.Screen name="SavedItems" component={SavedItems} options={{ title: 'Saved Items' }} />
         <Stack.Screen name="Ratings" component={Ratings} options={{ title: 'Ratings' }} />
