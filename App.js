@@ -27,6 +27,7 @@ import Newsletter from './Screens/Newsletter';
 import Chatroom from './Screens/chatroom';
 import Location from './Screens/Location';
 import orgPage from './Screens/orgPage';
+import SimpleChat from './Screens/simplechat';
 
 
 import firebase from 'firebase/compat/app'
@@ -128,6 +129,9 @@ export default function App() {
         <Stack.Screen name="userdefineditems" component={userdefineditems} options={{ title: 'user defined items' }} />
         <Stack.Screen name="SavedItems" component={SavedItems} options={{ title: 'Saved Items' }} />
         <Stack.Screen name="Ratings" component={Ratings} options={{ title: 'Ratings' }} />
+        <Stack.Screen name="Newsletter" component={Newsletter} options={{ title: 'Newsletter' }} />
+        <Stack.Screen name="Chatroom" component={Chatroom} options={{ title: 'Chatroom' }} />
+        <Stack.Screen name="SimpleChat" component={SimpleChat} options={{ title: 'SimpleChat' }} />
 
         {/* Add more category screens here */}
       </Stack.Navigator>

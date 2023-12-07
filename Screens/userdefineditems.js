@@ -83,7 +83,7 @@ const UserDefinedItems = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.card}>
-        <Text style={styles.title}>User Defined Items</Text>
+        <Text style={styles.title}>Your Items</Text>
 
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {['General', 'Electronics', 'Clothing', 'Food'].map((category) => (
