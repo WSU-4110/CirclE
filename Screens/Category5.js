@@ -93,8 +93,8 @@ const Category1 = () => {
             <View style={styles.innerContainer}>
               <Text style={styles.itemHeading}>{item.key}</Text>
               <Text style={styles.itemText}>{item.text}</Text>
-              {/* Add your image logic here */}
-              
+              {/* Add your image logic here  */}
+             
             </View>
           </Pressable>
         )}
@@ -108,12 +108,19 @@ const Category1 = () => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: StatusBar.currentHeight,
-    backgroundColor: '#E8F5E9',
-    padding: 15,
-    borderRadius: 15,
-    margin: 5,
-    marginHorizontal: 10,
+      backgroundColor: '#FFF9C4',
+      height: 200,
+      justifyContent: 'center',
+      marginVertical: 12,
+      marginHorizontal: 16,
+      padding: 25,
+      borderRadius: 10,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      }
+      
   },
   innerContainer: {
     alignItems: 'center',
@@ -135,48 +142,6 @@ const styles = StyleSheet.create({
     borderColor: '#ddd',
   },
   // Styles for the modal (copied from the previous code)
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-elevation: 2,
-    marginTop: 10,
-  },
-  buttonClose: {
-    backgroundColor: '#E8F5E1',
-  },
-  textStyle: {
-    color: 'black',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  // New styles for the modal
   centeredView: {
     flex: 1,
     justifyContent: 'center',
