@@ -57,7 +57,7 @@ const Category1 = () => {
 
   useEffect(() => {
     const db = getDatabase(app);
-    const electronicItemsRef = ref(db, 'ElectronicItems');
+    const electronicItemsRef = ref(db, 'KitchenItems');
 
     const onSnapshot = onValue(electronicItemsRef, (snapshot) => {
       const items = snapshot.val();

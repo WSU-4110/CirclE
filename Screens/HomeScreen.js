@@ -72,28 +72,28 @@ const HomeScreen = ({ navigation }) => {
     </SafeAreaView>
 
         {/* Container for horizontal scroll view and category buttons */}
-        <Text style={styles.boldText3}>Popular on CircleE</Text>
+        <Text style={styles.boldText3}>Popular on CirclE</Text>
         <View style={styles.horizontalScrollContainer}>
           
         <ScrollView horizontal={true} contentContainerStyle={styles.horizontalScroll}>
       <View style={styles.section}>
-        <TouchableOpacity style={styles.containerButton} onPress={() => handleCategoryPress('Category1')}>
-          <Image source={require('../assets/clothiing__ce.jpg')} style={styles.image} />
-          <Text>Section 1 Title</Text>
+        <TouchableOpacity style={styles.containerButton} onPress={() => handleIconPress('Newsletter')}>
+          <Image source={require('../assets/ddowj.jpg')} style={styles.image} />
+          <Text>Learn about Pepsico pollution</Text>
         </TouchableOpacity>
-        <Button title="Button 1" onPress={() => handleCategoryPress('Category1')} />
+        <Button title="Button 1" onPress={() => handleIconPress('Newsletter')} />
       </View>
       <View style={styles.section}>
-        <TouchableOpacity style={styles.containerButton} onPress={() => handleCategoryPress('Category2')}>
-          <Image source={require('../assets/clothiing__ce.jpg')} style={styles.image} />
-          <Text>Section 2 Title</Text>
+        <TouchableOpacity style={styles.containerButton} onPress={() => handleIconPress('Newsletter')}>
+          <Image source={require('../assets/download.jpg')} style={styles.image} />
+          <Text>Warning Against Acid Rain"</Text>
         </TouchableOpacity>
-        <Button title="Button 2" onPress={() => handleCategoryPress('Category2')} />
+        <Button title="Button 2" onPress={() => handleIconPress('Category2')} />
       </View>
       <View style={styles.section}>
-        <TouchableOpacity style={styles.containerButton} onPress={() => handleCategoryPress('Category1')}>
+        <TouchableOpacity style={styles.containerButton} onPress={() => handleCategoryPress('Newslette')}>
           <Image source={require('../assets/clothiing__ce.jpg')} style={styles.image} />
-          <Text>Section 3 Title</Text>
+          <Text>WHY You should thrift</Text>
         </TouchableOpacity>
         <Button title="Button 3" onPress={() => handleCategoryPress('Category3')} />
       </View>
@@ -258,14 +258,14 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     flex: 0.4, // Adjust this value to control the proportion
-    width: '98%', // 100% of the parent width
+    width: '95%', // 100% of the parent width
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'white', // Background color for the search bar
     // borderTopWidth: 1, // Add a top border if needed
     borderBottomWidth: 1, // Add a bottom border if needed
     //borderColor: 'gray', // Border color
-    height: 200,
+    height: 300,
     marginTop: 10, // Adjust the top margin to lower the container
   },
 

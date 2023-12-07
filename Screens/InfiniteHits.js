@@ -6,41 +6,94 @@ import Highlight from './Highlight';
 import { AdvancedImage } from 'cloudinary-react-native';
 import { Cloudinary } from "@cloudinary/url-gen";
 import { SafeAreaView } from 'react-native';
+import algoliasearch from 'algoliasearch';
 import Modal from 'react-native-modal';
-
+const searchClient = algoliasearch('ZGVYKOZVLW', 'c766c1f14843c6346b506053b96c6c56');
+const algoliaIndex = searchClient.initIndex('Cirle_items');
 const cld = new Cloudinary({
   cloud: {
     cloudName: 'dn4olwzqx'
   },
 });
-const ActionModal = ({ visible, onClose, title }) => (
-  <Modal animationType="slide" transparent={true} visible={visible} onRequestClose={onClose}>
+const ActionModal = ({ visible, onClose, title, item }) => {
+  const [selectedAction, setSelectedAction] = useState(null);
+
+  const handleAction = (action) => {
+    // Handle the selected action here
+    console.log(`Performing action: ${action}`);
+  
+    // Access the relevant information from the item
+    if (item) {
+      if (action === 'Reuse' && item.reuse !== undefined) {
+        console.log(`Item Reuse: ${item.reuse}`);
+      }
+      if (action === 'Reduce' && item.reduce !== undefined) {
+        console.log(`Item Reduce: ${item.reduce}`);
+      }
+      if (action === 'Recycle' && item.recycle !== undefined) {
+        console.log(`Item Recycle: ${item.recycle}`);
+      }
+    }
+  
+    // Update the state to track the selected action
+    setSelectedAction(action);
+  };
+  
+
+
+
+
+  return (
+    <Modal animationType="slide" transparent={true} visible={visible} onRequestClose={onClose}>
+      <View style={styles.centeredView}>
+        <View style={styles.modalView}>
+          <Text style={styles.modalText}>{title} Actions</Text>
+          <TouchableOpacity
+            style={[styles.button, styles.buttonClose]}
+            onPress={() => handleAction('Reuse')}
+          >
+            <Text style={styles.textStyle}>Reuse</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.button, styles.buttonClose]}
+            onPress={() => handleAction('Reduce')}
+          >
+            <Text style={styles.textStyle}>Reduce</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.button, styles.buttonClose]}
+            onPress={() => handleAction('Recycle')}
+          >
+            <Text style={styles.textStyle}>Recycle</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.button, styles.buttonClose]} onPress={onClose}>
+            <Text style={styles.textStyle}>Cancel</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      {/* Conditionally render another modal based on the selected action */}
+      {selectedAction && (
+        <NestedModal action={selectedAction} onClose={() => setSelectedAction(null)} />
+      )}
+    </Modal>
+  );
+};
+
+const NestedModal = ({ action, title, onClose }) => (
+  <Modal animationType="slide" transparent={true} visible={true} onRequestClose={onClose}>
     <View style={styles.centeredView}>
       <View style={styles.modalView}>
-        <Text style={styles.modalText}>{title} Actions</Text>
+        <Text style={styles.modalText}>Nested Modal for {action}</Text>
+        {/* Display additional content based on the selected action */}
+        <Text style={styles.textStyle}>Item: {title}</Text>
         <TouchableOpacity style={[styles.button, styles.buttonClose]} onPress={onClose}>
-          <Text style={styles.textStyle}>Reuse</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.buttonClose]} onPress={onClose}>
-          <Text style={styles.textStyle}>Reduce</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.buttonClose]} onPress={onClose}>
-          <Text style={styles.textStyle}>Recycle</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.buttonClose]} onPress={onClose}>
-          <Text style={styles.textStyle}>Cancel</Text>
+          <Text style={styles.textStyle}>Close Nested Modal</Text>
         </TouchableOpacity>
       </View>
     </View>
   </Modal>
 );
 
-const handleAction = (action, onClose) => {
-  // Handle the selected action here
-  console.log(`Performing action: ${action}`);
-  // Close the modal
-  onClose();
-};
 
 
 const InfiniteHits = ({ hits, hasMore, refineNext }) => {
@@ -68,8 +121,8 @@ const InfiniteHits = ({ hits, hasMore, refineNext }) => {
           </SafeAreaView>
           <Text style={styles.titleText}>
             <Highlight attribute="name" hit={item} />
-            <Text style={{ textAlign: 'left' }}> {item.name} </Text>
-            <Text style={{ textAlign: 'left' }}>{item.Materials}</Text>
+            <Text style={{ textAlign: 'left' }}> {item.Material} </Text>
+            
           </Text>
         </View>
       </TouchableOpacity>

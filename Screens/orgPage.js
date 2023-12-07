@@ -48,7 +48,7 @@ const OrgPage = () => {
         onBackdropPress={handleModal}
       >
         <View style={styles.modalContent}>
-          <InstantSearch searchClient={searchClient1} indexName="Circle_data">
+          <InstantSearch searchClient={searchClient1} indexName="Sell_items">
             <SearchBox />
             <InfiniteHits hitComponent={Hit} />
           </InstantSearch>
