@@ -34,6 +34,7 @@
                 <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SavedItems')}>
                     <Text style={styles.buttonText}>Saved Items</Text>
                 </TouchableOpacity>
+                <View style={styles.buttonSpacing} />
                 <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Ratings')}>
                     <Text style={styles.buttonText}>Ratings</Text>
                 </TouchableOpacity>
@@ -48,13 +49,13 @@
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: '#E8F5E9',
-            padding: 20,
+            padding: 30,
             borderRadius: 10,
             width: '100%',
         },
         userPhotoContainer: {
             alignItems: 'center',
-            marginBottom: 20,
+            marginBottom: 10,
         },
         userPhoto: {
             width: 100,
@@ -78,7 +79,7 @@
         },
         userId: {
             fontSize: 15,
-            marginBottom: 140,
+            marginBottom: 30,
             fontWeight: 'bold',
         },
         userName: {
@@ -88,11 +89,11 @@
         },
         button: {
             backgroundColor: '#4CAF50',
-            padding: 13,
+            padding: 15,
             borderRadius: 16,
             width: 200,
             alignItems: 'center',
-            marginBottom: 10,
+            marginBottom: 15,
         },
 
         buttonText: {
