@@ -23,6 +23,8 @@ import LoadingScreen from './Screens/LoadingScreen';
 import ProfilePage from './Screens/ProfilePage';
 
 import NewCategory from './Screens/NewCategory';
+import Settings from './Screens/Settings';
+
 
 import Ratings from './Screens/Ratings';
 
@@ -122,7 +124,7 @@ const BottomTabNavigator = () => (
     })}
   >
     <Tab.Screen name="Home" component={HomeScreen} />
-    <Tab.Screen name="Settings" component={ProfilePage} />
+    <Tab.Screen name="Settings" component={Settings} />
     <Tab.Screen name="Location" component={Location} />
     <Tab.Screen name="Chatroom" component={Chatroom} />
     <Tab.Screen name="Newsletter" component={Newsletter} />
