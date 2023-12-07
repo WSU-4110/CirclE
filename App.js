@@ -88,7 +88,7 @@ const BottomTabNavigator = () => (
         }
 
         else if (route.name === 'NewCategory') {
-          iconName = focused ? 'NewCategory' : 'NewCategory-sharp';
+          iconName = focused ? 'apps-outline' : 'apps-outline';
         }
         else if (route.name === 'Newsletter') {
           iconName = focused ? 'newspaper' : 'newspaper-outline';
