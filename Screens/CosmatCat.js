@@ -7,12 +7,9 @@ import {
   Pressable,
   Modal,
   TouchableOpacity,
-  Image,
   StatusBar,
 } from 'react-native';
 import { getDatabase, ref, onValue, off } from 'firebase/database';
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/database';
 import { initializeApp } from 'firebase/app';
 
 // Initialize Firebase
@@ -27,7 +24,7 @@ const firebaseConfig = {
   measurementId: "G-NGWS4NW9QB"
 };
 
-const app = initializeApp(firebaseConfig); // Initialize the Firebase app
+const app = initializeApp(firebaseConfig);
 
 const ActionModal = ({ visible, onClose, title }) => (
   <Modal animationType="slide" transparent={true} visible={visible} onRequestClose={onClose}>
@@ -52,25 +49,25 @@ const ActionModal = ({ visible, onClose, title }) => (
 );
 
 const CosmatCat = () => {
-  const [electronicItems, setElectronicItems] = useState([]);
+  const [cosmeticItems, setCosmeticItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
     const db = getDatabase(app);
-    const electronicItemsRef = ref(db, 'CosmeticItems');
+    const cosmeticItemsRef = ref(db, 'CosmeticItems');
 
-    const onSnapshot = onValue(electronicItemsRef, (snapshot) => {
+    const onSnapshot = onValue(cosmeticItemsRef, (snapshot) => {
       const items = snapshot.val();
       if (items) {
         const itemList = Object.keys(items).map((key) => ({
           key,
           ...items[key],
         }));
-        setElectronicItems(itemList);
+        setCosmeticItems(itemList);
       }
     });
 
-    return () => off(electronicItemsRef, onSnapshot);
+    return () => off(cosmeticItemsRef, onSnapshot);
   }, []);
 
   const openModal = (item) => {
@@ -83,10 +80,10 @@ const CosmatCat = () => {
 
   return (
     <View style={{ flex: 1, marginTop: StatusBar.currentHeight }}>
-      <Text>Electronic Items</Text>
+      <Text>Cosmetic Items</Text>
       <FlatList
         style={{ height: '100%' }}
-        data={electronicItems}
+        data={cosmeticItems}
         keyExtractor={(item) => item.key}
         renderItem={({ item }) => (
           <Pressable style={styles.container} onPress={() => openModal(item)}>
@@ -94,9 +91,10 @@ const CosmatCat = () => {
               <Text style={styles.itemHeading}>{item.key}</Text>
               <Text style={styles.itemText}>{item.text}</Text>
               <Text style={styles.ecoRatingText}>Eco Rating: {item.ecoRating}/5</Text>
-
-              {/* Add your image logic here  */}
-             
+              {item.isProfitable && (
+                <Text style={styles.profitIndicator}>💲 isProfitable</Text>
+              )}
+              {/* Additional item details can be added here */}
             </View>
           </Pressable>
         )}
@@ -110,19 +108,18 @@ const CosmatCat = () => {
 
 const styles = StyleSheet.create({
   container: {
-      backgroundColor: '#FFF9C4',
-      height: 200,
-      justifyContent: 'center',
-      marginVertical: 12,
-      marginHorizontal: 16,
-      padding: 25,
-      borderRadius: 10,
-      shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      }
-      
+    backgroundColor: '#FFF9C4',
+    height: 200,
+    justifyContent: 'center',
+    marginVertical: 12,
+    marginHorizontal: 16,
+    padding: 25,
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
   },
   innerContainer: {
     alignItems: 'center',
@@ -135,17 +132,13 @@ const styles = StyleSheet.create({
     fontSize: 32,
     color: 'black',
   },
-  itemImage: {
-    width: 100,
-    height: 100,
-    borderRadius: 8,
-    marginTop: 15,
-    borderWidth: 1,
-    borderColor: '#ddd',
-  },
-
   ecoRatingText: {
     fontSize: 18,
+    color: 'green',
+    marginTop: 10,
+  },
+  profitIndicator: {
+    fontSize: 20,
     color: 'green',
     marginTop: 10,
   },
