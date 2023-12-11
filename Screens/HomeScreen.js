@@ -155,7 +155,7 @@ const HomeScreen = ({ navigation }) => {
 
             <TouchableOpacity
               style={styles.iconContainer}
-              onPress={() => handleIconPress('Category2')}
+              onPress={() => handleIconPress('FurnitureCat')}
             >
             
                     <View style={styles.iconGreyUnderlay} />

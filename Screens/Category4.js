@@ -93,6 +93,8 @@ const Category1 = () => {
             <View style={styles.innerContainer}>
               <Text style={styles.itemHeading}>{item.key}</Text>
               <Text style={styles.itemText}>{item.text}</Text>
+              <Text style={styles.ecoRatingText}>Eco Rating: {item.ecoRating}/5</Text>
+
               {/* Add your image logic here  */}
              
             </View>
@@ -141,7 +143,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ddd',
   },
-  // Styles for the modal (copied from the previous code)
+
+  ecoRatingText: {
+    fontSize: 18,
+    color: 'green',
+    marginTop: 10,
+  },
   centeredView: {
     flex: 1,
     justifyContent: 'center',
