@@ -51,13 +51,13 @@ const ActionModal = ({ visible, onClose, title }) => (
   </Modal>
 );
 
-const Category1 = () => {
+const Category5 = () => {
   const [electronicItems, setElectronicItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
     const db = getDatabase(app);
-    const electronicItemsRef = ref(db, 'ElectronicItems');
+    const electronicItemsRef = ref(db, 'CarItems');
 
     const onSnapshot = onValue(electronicItemsRef, (snapshot) => {
       const items = snapshot.val();
@@ -93,6 +93,8 @@ const Category1 = () => {
             <View style={styles.innerContainer}>
               <Text style={styles.itemHeading}>{item.key}</Text>
               <Text style={styles.itemText}>{item.text}</Text>
+              <Text style={styles.ecoRatingText}>Eco Rating: {item.ecoRating}/5</Text>
+
               {/* Add your image logic here  */}
              
             </View>
@@ -185,4 +187,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Category1;
+export default Category5;

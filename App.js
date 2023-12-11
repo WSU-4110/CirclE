@@ -45,8 +45,8 @@ import firebase from 'firebase/compat/app'
 import 'firebase/firestore';
 import 'firebase/compat/auth'
 import 'firebase/compat/database';
-import Orgevents from './Screens/orgevents';
-import OrgNew from './Screens/orgNew';
+import Orgevents from './Screens/Orgevents';
+import OrgNew from './Screens/OrgNew';
 
 //const searchClient = algoliasearch('ZGVYKOZVLW', '15dea6a36dbc2457f06dcc473813946c');
 
@@ -156,8 +156,9 @@ export default function App() {
         <Stack.Screen name="Category3" component={Category3} options={{ title: 'Category 3' }} />
         <Stack.Screen name="DiyProjects" component={DiyProjects} options={{ title: 'DiyProjects' }} />
         <Stack.Screen name="Category4" component={Category4} options={{ title: 'Category 4' }} />
-        <Stack.Screen name="orgevents" component={Orgevents} options={{ title: 'Organization Events' }} />
-        <Stack.Screen name="orgNew" component={OrgNew} options={{ title: 'Organization News' }} />
+        <Stack.Screen name="Orgevents" component={Orgevents} options={{ title: 'Organization Events' }} />
+        <Stack.Screen name="Category5" component={Category5} options={{ title: 'Category 5' }} />
+        <Stack.Screen name="OrgNew" component={OrgNew} options={{ title: 'Organization News' }} />
         <Stack.Screen name="userdefineditems" component={userdefineditems} options={{ title: 'user defined items' }} />
         <Stack.Screen name="SavedItems" component={SavedItems} options={{ title: 'Saved Items' }} />
         <Stack.Screen name="Ratings" component={Ratings} options={{ title: 'Ratings' }} />
