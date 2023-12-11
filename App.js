@@ -36,6 +36,8 @@ import Chatroom from './Screens/chatroom';
 import Location from './Screens/Location';
 import orgPage from './Screens/orgPage';
 import SimpleChat from './Screens/simplechat';
+import FurnitureCat from './Screens/FurnitureCat';
+import CosmatCat from './Screens/CosmatCat';
 
 
 
@@ -162,6 +164,10 @@ export default function App() {
         <Stack.Screen name="Newsletter" component={Newsletter} options={{ title: 'Newsletter' }} />
         <Stack.Screen name="Chatroom" component={Chatroom} options={{ title: 'Chatroom' }} />
         <Stack.Screen name="SimpleChat" component={SimpleChat} options={{ title: 'SimpleChat' }} />
+        <Stack.Screen name="Location" component={Location} options={{ title: 'Location' }} />
+        <Stack.Screen name="orgPage" component={orgPage} options={{ title: 'orgPage' }} />
+        <Stack.Screen name="FurnitureCat" component={FurnitureCat} options={{ title: 'FurnitureCat' }} />
+        <Stack.Screen name="CosmatCat" component={CosmatCat} options={{ title: 'CosmatCat' }} />
 
         {/* Add more category screens here */}
       </Stack.Navigator>
