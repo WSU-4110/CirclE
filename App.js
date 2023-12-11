@@ -35,6 +35,7 @@ import Newsletter from './Screens/Newsletter';
 import Chatroom from './Screens/chatroom';
 import Location from './Screens/Location';
 import orgPage from './Screens/orgPage';
+import ChangePassword from './Screens/ChangePassword';
 import SimpleChat from './Screens/simplechat';
 import FurnitureCat from './Screens/FurnitureCat';
 import CosmatCat from './Screens/CosmatCat';
@@ -169,7 +170,7 @@ export default function App() {
         <Stack.Screen name="orgPage" component={orgPage} options={{ title: 'orgPage' }} />
         <Stack.Screen name="FurnitureCat" component={FurnitureCat} options={{ title: 'FurnitureCat' }} />
         <Stack.Screen name="CosmatCat" component={CosmatCat} options={{ title: 'CosmatCat' }} />
-
+        <Stack.Screen name="ChangePassword" component={ChangePassword} />
         {/* Add more category screens here */}
       </Stack.Navigator>
     </NavigationContainer>
