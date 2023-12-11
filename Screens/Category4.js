@@ -91,6 +91,8 @@ const Category1 = () => {
             <View style={styles.innerContainer}>
               <Text style={styles.itemHeading}>{item.key}</Text>
               <Text style={styles.itemText}>{item.text}</Text>
+              <Text style={styles.ecoRatingText}>Eco Rating: {item.ecoRating}/5</Text>
+
               {/* Profit indication */}
               {item.isProfitable && (
                 <Text style={styles.profitIndicator}>💲 isProfitable</Text>
@@ -135,6 +137,12 @@ const styles = StyleSheet.create({
   },
   profitIndicator: {
     fontSize: 24,
+    color: 'green',
+    marginTop: 10,
+  },
+
+  ecoRatingText: {
+    fontSize: 18,
     color: 'green',
     marginTop: 10,
   },

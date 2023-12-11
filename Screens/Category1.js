@@ -91,6 +91,8 @@ const Category1 = () => {
             <View style={styles.innerContainer}>
               <Text style={styles.itemHeading}>{item.key}</Text>
               <Text style={styles.itemText}>{item.text}</Text>
+              <Text style={styles.ecoRatingText}>Eco Rating: {item.ecoRating}/5</Text>
+
               {/* Profit indication */}
               {item.isProfitable && (
                 <View style={styles.profitIndicatorContainer}>

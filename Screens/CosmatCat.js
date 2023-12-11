@@ -51,13 +51,13 @@ const ActionModal = ({ visible, onClose, title }) => (
   </Modal>
 );
 
-const Category1 = () => {
+const CosmatCat = () => {
   const [electronicItems, setElectronicItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
     const db = getDatabase(app);
-    const electronicItemsRef = ref(db, 'ElectronicItems');
+    const electronicItemsRef = ref(db, 'CosmeticItems');
 
     const onSnapshot = onValue(electronicItemsRef, (snapshot) => {
       const items = snapshot.val();
@@ -143,7 +143,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ddd',
   },
-  // Styles for the modal (copied from the previous code)
+
+  ecoRatingText: {
+    fontSize: 18,
+    color: 'green',
+    marginTop: 10,
+  },
   centeredView: {
     flex: 1,
     justifyContent: 'center',
@@ -187,4 +192,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Category1;
+export default CosmatCat;
