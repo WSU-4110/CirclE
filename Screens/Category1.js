@@ -1,3 +1,4 @@
+//Electronic items
 import React, { useState, useEffect } from 'react';
 import {
   View,
@@ -7,12 +8,9 @@ import {
   Pressable,
   Modal,
   TouchableOpacity,
-  Image,
   StatusBar,
 } from 'react-native';
 import { getDatabase, ref, onValue, off } from 'firebase/database';
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/database';
 import { initializeApp } from 'firebase/app';
 
 // Initialize Firebase
@@ -27,7 +25,7 @@ const firebaseConfig = {
   measurementId: "G-NGWS4NW9QB"
 };
 
-const app = initializeApp(firebaseConfig); // Initialize the Firebase app
+const app = initializeApp(firebaseConfig);
 
 const ActionModal = ({ visible, onClose, title }) => (
   <Modal animationType="slide" transparent={true} visible={visible} onRequestClose={onClose}>
@@ -93,8 +91,13 @@ const Category1 = () => {
             <View style={styles.innerContainer}>
               <Text style={styles.itemHeading}>{item.key}</Text>
               <Text style={styles.itemText}>{item.text}</Text>
-              {/* Add your image logic here  */}
-             
+              {/* Profit indication */}
+              {item.isProfitable && (
+                <View style={styles.profitIndicatorContainer}>
+                  <Text style={styles.profitIndicator}>💲 isProfitable</Text>
+                </View>
+              )}
+              {/* Add your image logic here */}
             </View>
           </Pressable>
         )}
@@ -106,21 +109,21 @@ const Category1 = () => {
   );
 };
 
+
 const styles = StyleSheet.create({
   container: {
-      backgroundColor: '#FFF9C4',
-      height: 200,
-      justifyContent: 'center',
-      marginVertical: 12,
-      marginHorizontal: 16,
-      padding: 25,
-      borderRadius: 10,
-      shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      }
-      
+    backgroundColor: '#FFF9C4',
+    height: 200,
+    justifyContent: 'center',
+    marginVertical: 12,
+    marginHorizontal: 16,
+    padding: 25,
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
   },
   innerContainer: {
     alignItems: 'center',
@@ -133,15 +136,19 @@ const styles = StyleSheet.create({
     fontSize: 32,
     color: 'black',
   },
-  itemImage: {
-    width: 100,
-    height: 100,
-    borderRadius: 8,
-    marginTop: 15,
-    borderWidth: 1,
-    borderColor: '#ddd',
+
+  profitIndicatorContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 10,
   },
-  // Styles for the modal (copied from the previous code)
+  profitIndicator: {
+    fontSize: 20,
+    color: 'green',
+  },
+
+  
+  
   centeredView: {
     flex: 1,
     justifyContent: 'center',
