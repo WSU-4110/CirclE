@@ -4,7 +4,7 @@ import { View, Text, TextInput, Button, StyleSheet, StatusBar } from 'react-nati
 import ImagePicker from 'react-native-image-picker';
 import algoliasearch from 'algoliasearch';
 
-
+// the page 3 comments will be same compare to the page one
 const searchClient = algoliasearch('ZGVYKOZVLW', '15dea6a36dbc2457f06dcc473813946c')
 
 const algoliaIndex = searchClient.initIndex('Sell_items');
