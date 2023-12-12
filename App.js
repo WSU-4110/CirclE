@@ -32,7 +32,7 @@ import SavedItems from './Screens/SavedItems';  // new import
 import Newsletter from './Screens/Newsletter';
 import Chatroom from './Screens/chatroom';
 import Location from './Screens/Location';
-import orgPage from './Screens/orgPage';
+import OrgPage from './Screens/OrgPage';
 import ChangePassword from './Screens/ChangePassword';
 import SimpleChat from './Screens/simplechat';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -43,8 +43,8 @@ import firebase from 'firebase/compat/app'
 import 'firebase/firestore';
 import 'firebase/compat/auth'
 import 'firebase/compat/database';
-import Orgevents from './Screens/orgevents';
-import OrgNew from './Screens/orgNew';
+import Orgevents from './Screens/Orgevents';
+import OrgNew from './Screens/OrgNew';
 import Orgdefineditems from './Screens/Orgdefineditems';
 import OrgSellItems from './Screens/OrgSellItems';
 
@@ -98,8 +98,7 @@ const BottomTabNavigator = () => (
           iconName = focused ? 'chatbox' : 'chatbox-sharp';
         }
 
-        else if (route.name === 'orgPage') {
-          iconName = focused ? 'apps-outline' : 'apps-outline';}
+       
         else if (route.name === 'OrgPage') {
           iconName = focused ? 'apps-outline' : 'apps-outline';
           }
@@ -124,8 +123,8 @@ const BottomTabNavigator = () => (
     <Tab.Screen name="Location" component={Location} />
     <Tab.Screen name="Chatroom" component={Chatroom} />
     <Tab.Screen name="Newsletter" component={Newsletter} />
-    <Tab.Screen name="Organizations" component={orgPage} />
-    <Tab.Screen name="DiyProjects" component={DiyProjects} />
+    <Tab.Screen name="Organizations" component={OrgPage} />
+   
     
 
   </Tab.Navigator>
@@ -163,7 +162,7 @@ export default function App() {
         <Stack.Screen name="Chatroom" component={Chatroom} options={{ title: 'Chatroom' }} />
         <Stack.Screen name="SimpleChat" component={SimpleChat} options={{ title: 'SimpleChat' }} />
         <Stack.Screen name="Location" component={Location} options={{ title: 'Location' }} />
-        <Stack.Screen name="orgPage" component={orgPage} options={{ title: 'orgPage' }} />
+        <Stack.Screen name="OrgPage" component={OrgPage} options={{ title: 'orgPage' }} />
         <Stack.Screen name="ChangePassword" component={ChangePassword} options={{ title: 'ChangePassword' }} />
         <Stack.Screen name="Settings" component={Settings} options={{ title: 'Settings' }} />
         

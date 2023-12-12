@@ -76,7 +76,7 @@ const HomeScreen = ({ navigation }) => {
   
     </SafeAreaView>
     <View style={styles.containeradd}>
-  <TouchableOpacity style={styles.iconadd} onPress={() => handleIconPress('userdefineditems')}>
+  <TouchableOpacity style={[styles.logo,{ marginRight: 5 },{marginBottom: 0}]} onPress={() => handleIconPress('userdefineditems')}>
     <Image
       source={require('../assets/plusb.png')}
       style={styles.logoadd}
@@ -84,7 +84,7 @@ const HomeScreen = ({ navigation }) => {
     />
   </TouchableOpacity>
   <TouchableOpacity style={styles.AddI} onPress={() => handleIconPress('userdefineditems')}>
-    <Text style={styles.boldTextadd}>Add Items</Text>
+    <Text style={styles.boldText}>How do you Reuse,Reduce and Recycle  </Text>
   </TouchableOpacity>
  
 </View>

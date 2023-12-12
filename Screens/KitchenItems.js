@@ -51,7 +51,7 @@ const ActionModal = ({ visible, onClose, title }) => (
   </Modal>
 );
 
-const Category1 = () => {
+const KitchenItems = () => {
   const [electronicItems, setElectronicItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -187,4 +187,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Category1;
+export default KitchenItems;
