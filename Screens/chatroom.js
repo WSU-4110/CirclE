@@ -1,3 +1,5 @@
+//Created by Ahmad Khan. Feature only for Android
+
 import React from 'react';
 import { View, StyleSheet, Platform } from 'react-native';
 import { DeadSimpleChat } from 'deadsimplechat-sdk-react-native';

@@ -1,3 +1,5 @@
+//Created by Ahmad Khan
+
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, Modal } from 'react-native';
 import firebase from 'firebase/compat/app';

@@ -1,6 +1,6 @@
 //Created by Ankith Goutham and Ahmed Khan
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator, Linking } from 'react-native';
 
 const Newsletter = () => {
   const [news, setNews] = useState([]);
@@ -38,16 +38,20 @@ const Newsletter = () => {
     setPage((prevPage) => prevPage + 1);
   };
 
+  const openNewsLink = (url) => {
+    Linking.openURL(url);
+  };
+
   return (
     <ScrollView>
       <View style={styles.card}>
         <Text style={styles.title}>Sustainability News</Text>
 
         {news.map((article, index) => (
-          <View key={index} style={styles.articleBox}>
+          <TouchableOpacity key={index} style={styles.articleBox} onPress={() => openNewsLink(article.url)}>
             <Text style={styles.articleTitle}>{article.title}</Text>
             <Text style={styles.articleContent}>{article.description}</Text>
-          </View>
+          </TouchableOpacity>
         ))}
 
         {loading ? (
@@ -106,5 +110,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
 
 export default Newsletter;
