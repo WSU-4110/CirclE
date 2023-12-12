@@ -43,8 +43,8 @@ import firebase from 'firebase/compat/app'
 import 'firebase/firestore';
 import 'firebase/compat/auth'
 import 'firebase/compat/database';
-import Orgevents from './Screens/Orgevents';
-import OrgNew from './Screens/OrgNew';
+import Orgevents from './Screens/orgevents';
+import OrgNew from './Screens/orgNew';
 import Orgdefineditems from './Screens/Orgdefineditems';
 
 //const searchClient = algoliasearch('ZGVYKOZVLW', '15dea6a36dbc2457f06dcc473813946c');
@@ -115,7 +115,7 @@ const BottomTabNavigator = () => (
             />
           );
           }
-        else if (route.name === 'NewCategory') {
+        else if (route.name === 'DiyProjects') {
           iconName = focused ? 'apps-outline' : 'apps-outline';
         }
         else if (route.name === 'Newsletter') {
@@ -135,11 +135,11 @@ const BottomTabNavigator = () => (
     })}
   >
     <Tab.Screen name="Home" component={HomeScreen} />
-
     <Tab.Screen name="Location" component={Location} />
     <Tab.Screen name="Chatroom" component={Chatroom} />
     <Tab.Screen name="Newsletter" component={Newsletter} />
     <Tab.Screen name="Organizations" component={orgPage} />
+    <Tab.Screen name="DiyProjects" component={DiyProjects} />
     
 
   </Tab.Navigator>
