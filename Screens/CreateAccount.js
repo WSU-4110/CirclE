@@ -1,4 +1,6 @@
-//CreateAccount.js            
+//CreateAccount.js          
+// Created CreateAccount.js by Shayan Bhatti and did all the frontend and backend.
+
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Image, TouchableOpacity, Switch, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
