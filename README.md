@@ -23,14 +23,7 @@
     CirclE aims to be a driving force for environmental sustainability by simplifying the process of purchasing eco-friendly products and   
     enhancing the accessibility of recycling options for users.
     <br />
-    <a href="https://github.com/WSU-4110/CirclE.git"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+    <a href="https://github.com/WSU-4110/CirclE/wiki"><strong>Explore the Wiki»</strong></a>
   </p>
 </div>
 
