@@ -34,6 +34,7 @@ import Chatroom from './Screens/chatroom';
 import Location from './Screens/Location';
 import orgPage from './Screens/orgPage';
 import SimpleChat from './Screens/simplechat';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 
 
@@ -43,6 +44,7 @@ import 'firebase/compat/auth'
 import 'firebase/compat/database';
 import Orgevents from './Screens/Orgevents';
 import OrgNew from './Screens/OrgNew';
+import Orgdefineditems from './Screens/Orgdefineditems';
 
 //const searchClient = algoliasearch('ZGVYKOZVLW', '15dea6a36dbc2457f06dcc473813946c');
 
@@ -84,31 +86,38 @@ const BottomTabNavigator = () => (
         let iconName;
         if (route.name === 'Home') {
           iconName = focused ? 'home' : 'home-outline';
-        } else if (route.name === 'Settings') {
-          iconName = focused ? 'settings' : 'settings-outline';
-        } else if (route.name === 'Location') {
+        } 
+        else if (route.name === 'Location') {
           iconName = focused ? 'location' : 'location-sharp';
         } else if (route.name === 'Chatroom') {
           iconName = focused ? 'chatbox' : 'chatbox-sharp';
         }
 
         else if (route.name === 'orgPage') {
-          iconName = focused ? 'chatbox' : 'chatbox-sharp';
+          return (
+            <MaterialIcons
+              name={focused ? 'shopping-cart' : 'shopping-cart-outlined'}
+              size={size}
+              color={color}
+            />
+          );
         }
         else if (route.name === 'OrgPage') {
-          iconName = focused ? 'chatbox' : 'chatbox-sharp';
-        }
-
+          return (
+            <MaterialIcons
+              name={focused ? 'shopping-cart' : 'shopping-cart-outlined'}
+              size={size}
+              color={color}
+            />
+          );
+          }
         else if (route.name === 'NewCategory') {
           iconName = focused ? 'apps-outline' : 'apps-outline';
         }
         else if (route.name === 'Newsletter') {
           iconName = focused ? 'newspaper' : 'newspaper-outline';
         }
-        else if (route.name === 'Add Item') {
-          iconName = focused ? 'add-circle' : 'add-circle-outline';
-
-        }
+        
         return <Ionicons name={iconName} size={size} color={color} />;
       },
       tabBarActiveTintColor: "tomato",  // Moved this from tabBarOptions
@@ -122,13 +131,13 @@ const BottomTabNavigator = () => (
     })}
   >
     <Tab.Screen name="Home" component={HomeScreen} />
-    <Tab.Screen name="Settings" component={ProfilePage} />
+  
     <Tab.Screen name="Location" component={Location} />
     <Tab.Screen name="Chatroom" component={Chatroom} />
     <Tab.Screen name="Newsletter" component={Newsletter} />
-    <Tab.Screen name="Add Item" component={userdefineditems} />
-    <Tab.Screen name="orgPage" component={orgPage} />
-    <Tab.Screen name="NewCategory" component={NewCategory} />
+    
+    <Tab.Screen name="Organizations" component={orgPage} />
+    
 
   </Tab.Navigator>
 );
@@ -147,6 +156,7 @@ export default function App() {
         <Stack.Screen name="Login" component={Login} options={{ title: 'Login' }} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="OrganizationHome" component={OrganizationHome} options={{ title: 'Organization Home' }} />
+        <Stack.Screen name="Orgdefineditems" component={Orgdefineditems} options={{ title: 'Orgdefineditems' }} />
         <Stack.Screen name="Category1" component={Category1} options={{ title: 'Category 1' }} />
         <Stack.Screen name="Category2" component={Category2} options={{ title: 'Category 2' }} />
         <Stack.Screen name="Category3" component={Category3} options={{ title: 'Category 3' }} />
@@ -160,6 +170,7 @@ export default function App() {
         <Stack.Screen name="Newsletter" component={Newsletter} options={{ title: 'Newsletter' }} />
         <Stack.Screen name="Chatroom" component={Chatroom} options={{ title: 'Chatroom' }} />
         <Stack.Screen name="SimpleChat" component={SimpleChat} options={{ title: 'SimpleChat' }} />
+        
 
         {/* Add more category screens here */}
       </Stack.Navigator>

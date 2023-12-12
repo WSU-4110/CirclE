@@ -1,19 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  StyleSheet,
-  Pressable,
-  Modal,
-  TouchableOpacity,
-  Image,
-  StatusBar,
-} from 'react-native';
+import { View, Text, FlatList, StyleSheet, Pressable, Modal, TouchableOpacity, Image, StatusBar } from 'react-native';
 import { getDatabase, ref, onValue, off } from 'firebase/database';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 import { initializeApp } from 'firebase/app';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -29,31 +20,51 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig); // Initialize the Firebase app
 
-const ActionModal = ({ visible, onClose, title }) => (
-  <Modal animationType="slide" transparent={true} visible={visible} onRequestClose={onClose}>
-    <View style={styles.centeredView}>
-      <View style={styles.modalView}>
-        <Text style={styles.modalText}>{title} Actions</Text>
-        <TouchableOpacity style={[styles.button, styles.buttonClose]} onPress={onClose}>
-          <Text style={styles.textStyle}>Reuse</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.buttonClose]} onPress={onClose}>
-          <Text style={styles.textStyle}>Reduce</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.buttonClose]} onPress={onClose}>
-          <Text style={styles.textStyle}>Recycle</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.buttonClose]} onPress={onClose}>
-          <Text style={styles.textStyle}>Cancel</Text>
-        </TouchableOpacity>
+const ActionModal = ({ visible, onClose, onSelectAction, electronicItems }) => {
+  const actionItems = [
+    { label: 'Reuse', value: 'reuse' },
+    { label: 'Reduce', value: 'reduce' },
+    { label: 'Recycle', value: 'recycle' },
+  ];
+
+  const [selectedAction, setSelectedAction] = useState(null);
+
+  const handleActionSelection = (action) => {
+    setSelectedAction(action);
+    onSelectAction(action);
+  };
+
+  return (
+    <Modal animationType="slide" transparent={true} visible={visible} onRequestClose={onClose}>
+      <View style={styles.centeredView}>
+        <View style={styles.modalView}>
+          <Text style={styles.modalText}>Select an Action:</Text>
+
+          {actionItems.map((action) => (
+            <TouchableOpacity
+              key={action.value}
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => handleActionSelection(action.value)}
+            >
+              <Text style={styles.textStyle}>{action.label}</Text>
+            </TouchableOpacity>
+          ))}
+
+          <TouchableOpacity style={[styles.button, styles.buttonClose]} onPress={onClose}>
+            <Text style={styles.textStyle}>Close</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
-  </Modal>
-);
+    </Modal>
+  );
+};
 
 const Category1 = () => {
   const [electronicItems, setElectronicItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [actionModalVisible, setActionModalVisible] = useState(false);
+  const [flatListModalVisible, setFlatListModalVisible] = useState(false);
+  const [selectedAction, setSelectedAction] = useState(null);
 
   useEffect(() => {
     const db = getDatabase(app);
@@ -73,13 +84,30 @@ const Category1 = () => {
     return () => off(electronicItemsRef, onSnapshot);
   }, []);
 
-  const openModal = (item) => {
+  const openActionModal = (item) => {
     setSelectedItem(item);
+    setActionModalVisible(true);
   };
 
-  const closeModal = () => {
+  const closeActionModal = () => {
+    setActionModalVisible(false);
     setSelectedItem(null);
   };
+
+  const openFlatListModal = () => {
+    setActionModalVisible(false);
+    setFlatListModalVisible(true);
+  };
+
+  const closeFlatListModal = () => {
+    setFlatListModalVisible(false);
+  };
+
+  const handleActionSelection = (action) => {
+    setSelectedAction(action);
+    openFlatListModal(); // Open the modal with the FlatList when an action is selected
+  };
+  
 
   return (
     <View style={{ flex: 1, marginTop: StatusBar.currentHeight }}>
@@ -89,19 +117,56 @@ const Category1 = () => {
         data={electronicItems}
         keyExtractor={(item) => item.key}
         renderItem={({ item }) => (
-          <Pressable style={styles.container} onPress={() => openModal(item)}>
+          <Pressable style={styles.container} onPress={() => openActionModal(item)}>
             <View style={styles.innerContainer}>
               <Text style={styles.itemHeading}>{item.key}</Text>
               <Text style={styles.itemText}>{item.text}</Text>
               {/* Add your image logic here  */}
-             
             </View>
           </Pressable>
         )}
       />
-      {selectedItem && (
-        <ActionModal visible={!!selectedItem} onClose={closeModal} title={selectedItem.key} />
+
+      {actionModalVisible && (
+        <ActionModal
+          visible={actionModalVisible}
+          onClose={closeActionModal}
+          onSelectAction={handleActionSelection}
+          electronicItems={electronicItems}
+        />
       )}
+
+{flatListModalVisible && (
+  <Modal animationType="slide" transparent={true} visible={flatListModalVisible} onRequestClose={closeFlatListModal}>
+    <View style={styles.centeredView}>
+      <View style={styles.modalView}>
+        <Text style={styles.modalText}>FlatList Modal</Text>
+
+        <FlatList
+          data={electronicItems}
+          keyExtractor={(item) => item.key}
+          renderItem={({ item }) => (
+            // Check if the current item's key matches the modal title
+            item.key === selectedItem.key && (
+              <View style={styles.innerContainer}>
+                <Text style={styles.ecoDetailsText}>
+                  {selectedAction === 'reuse' && item.reuse}
+                  {selectedAction === 'reduce' && item.reduce}
+                  {selectedAction === 'recycle' && item.recycle}
+                </Text>
+              </View>
+            )
+          )}
+        />
+
+        <TouchableOpacity style={[styles.button, styles.buttonClose]} onPress={closeFlatListModal}>
+          <Text style={styles.textStyle}>Close</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  </Modal>
+)}
+
     </View>
   );
 };

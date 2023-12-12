@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Modal, TextInput, Alert } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Modal, TextInput, Alert, Image } from 'react-native';
 import firebase from 'firebase/compat/app';
 import algoliasearch from 'algoliasearch';
 
 const searchClient = algoliasearch('ZGVYKOZVLW', 'c766c1f14843c6346b506053b96c6c56');
 const algoliaIndex = searchClient.initIndex('Blender');
 const algoliaIndex2 = searchClient.initIndex('Circle_events');
+
 
 const saveBlenderItemToAlgolia = async (itemDetails) => {
   try {
@@ -27,6 +28,7 @@ const saveBlenderItemToAlgolia = async (itemDetails) => {
     Alert.alert('Error', 'Failed to save item to Algolia (Blender).');
   }
 };
+
 
 const saveCircleEventsItemToAlgolia = async (itemDetails) => {
   try {
@@ -126,14 +128,28 @@ const OrganizationHome = ({ navigation }) => {
   };
 
   return (
+    
     <View style={styles.container}>
+      
+   
       <Text style={styles.title}>Welcome to CircleE!</Text>
       <Text style={styles.subtitle}>Promoting Reuse, Recycle, and Reduce</Text>
+      <TouchableOpacity style={[styles.icon, ]} onPress={() => navigation.navigate('Orgdefineditems')}>
+
+    <Image
+      source={require('../assets/pfpic.jpg')}
+      style={styles.logo}
+      resizeMode="contain"
+    />
+</TouchableOpacity>
+<View style={{ marginBottom: 60, backgroundColor: '#4CAF50' }}>
+  <Text style={styles.subtitle2}>Organization Profile</Text>
+</View>
+
       <View style={styles.actionContainer}>
         <ActionButton title="Sell on Circle" onPress={() => navigation.navigate('Category3')} />
-        <ActionButton title="Create Listing" onPress={() => navigation.navigate('orgevents')} />
-        <ActionButton title="Edit Listing" onPress={() => setEditModalVisible(true)} />
-        <ActionButton title="Create Newsletter" onPress={() => navigation.navigate('orgNew')} />
+        <ActionButton title="Create Listing" onPress={() => navigation.navigate('Orgevents')} />
+        <ActionButton title="Create Newsletter" onPress={() => navigation.navigate('OrgNew')} />
         <ActionButton title="Sign Out" onPress={handleSignOut} />
       </View>
       <CreateListingModal visible={createModalVisible} setVisible={setCreateModalVisible} />
@@ -154,6 +170,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#F0F4F8', // Light blue-grey background for a subtle look
   },
+  icon: {
+    width: 10,  // Set the width and height of your icon
+    height: 10,
+    borderRadius: 10,
+    marginRight: 250,
+    resizeMode: 'contain', // Ensure the image fits within the container
+  },
+  logo: {
+    width: 40,
+    height: 40,
+    marginTop: 0,
+   // marginLeft: 10,
+  },
   title: {
     fontSize: 28,
     fontWeight: 'bold',
@@ -163,6 +192,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#4CAF50', // Eco-friendly green to emphasize the recycle-reuse theme
     marginBottom: 20,
+  },
+
+  subtitle2: {
+    fontSize: 20,
+    color: 'white', // Eco-friendly green to emphasize the recycle-reuse theme
+    marginBottom: 5,
   },
   actionContainer: {
    // flexDirection: 'row',
@@ -199,6 +234,11 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginBottom: 20,
     fontWeight: '600',
+  },
+  organizationText: {
+   // marginLeft: 10, // Adjust the left margin as needed
+    fontSize: 16, // Adjust the font size as needed
+    color: 'black', // Adjust the text color as needed
   },
   modalInput: {
     borderWidth: 1,

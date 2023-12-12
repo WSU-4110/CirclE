@@ -55,10 +55,19 @@ const HomeScreen = ({ navigation }) => {
     <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
       <Image
         source={require('../assets/Logo1.png')}
-        style={[styles.logo, { marginRight: 10 }]}
+        style={[styles.logo, { marginRight: 3 }]}
         resizeMode="contain"
       />
-      <Text style={styles.boldText}>Sustainability Simplified With Circle</Text>
+      <Text style={styles.boldText}>Sustainability Simplified With Circle </Text>
+
+      <TouchableOpacity style={[styles.logo,{ marginRight: 15 },{marginBottom: 0}] } onPress={() => handleIconPress('ProfilePage')}>
+            <Image
+              source={require('../assets/pfpic.jpg')}
+              style={styles.logo}
+              resizeMode="contain"
+              
+            />
+          </TouchableOpacity>
     
        </View>
       
@@ -70,6 +79,18 @@ const HomeScreen = ({ navigation }) => {
       </InstantSearch>
   
     </SafeAreaView>
+    <View style={styles.containeradd}>
+  <TouchableOpacity style={styles.iconadd} onPress={() => handleIconPress('userdefineditems')}>
+    <Image
+      source={require('../assets/plusb.png')}
+      style={styles.logoadd}
+      resizeMode="contain"
+    />
+  </TouchableOpacity>
+  <Text style={styles.boldText}>How do you reuse, reduce, and recycle?</Text>
+ 
+</View>
+
 
         {/* Container for horizontal scroll view and category buttons */}
         <Text style={styles.boldText3}>Popular on CirclE</Text>
@@ -248,7 +269,7 @@ const styles = StyleSheet.create({
   logo: {
     width: 40,
     height: 40,
-    marginTop: 20,
+    marginTop: 0,
   },
   container: {
     flex: 1,
@@ -258,7 +279,7 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     flex: 0.4, // Adjust this value to control the proportion
-    width: '95%', // 100% of the parent width
+    width: '93%', // 100% of the parent width
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'white', // Background color for the search bar
@@ -442,8 +463,25 @@ label: {
     backgroundColor: '#90EE90',
     borderRadius: 5,
   },
-  
-  
+  containeradd: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10, // Add padding as needed
+  },
+  iconadd: {
+    marginRight: 10, // Adjust the margin as needed
+  },
+  logoadd: {
+    width: 30, // Adjust the width as needed
+    height: 30,
+    marginTop:20 // Adjust the height as needed
+  },
+  boldTextadd: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginLeft: 5, // Adjust the margin as needed
+  },
 });
+  
 
 export default HomeScreen;
