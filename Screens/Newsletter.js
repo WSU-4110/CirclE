@@ -1,4 +1,4 @@
-//Created by Ankith Goutham and Ahmed Khan
+//Created by Ankith Goutham and Ahmed Khan, allows for user to see newest stories regarding recycling
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator, Linking } from 'react-native';
 

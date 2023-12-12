@@ -1,4 +1,4 @@
-//Created by Ankith Goutham
+//Created by Ankith Goutham, It is the loading/first page announcing that the app is loading
 import React, { useEffect, useRef } from 'react';
 import { View, Text, StyleSheet,Button, Image, Animated } from 'react-native';
 

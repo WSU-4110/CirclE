@@ -1,4 +1,4 @@
-//Created by Ankith Goutham
+//Created by Ankith Goutham, allows user to see diyprojects around the web, and when clicked, takes to the original source
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, ActivityIndicator } from 'react-native';
 
