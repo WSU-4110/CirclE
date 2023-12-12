@@ -1,3 +1,4 @@
+// Importing necessary React and React Native components and libraries
 import React, { useState } from 'react';
 import {
   SafeAreaView,
@@ -11,7 +12,7 @@ import {
   View,
   Modal,
 } from 'react-native';
-
+// Array of image objects, each with a URI and a name
 const images = [
   { uri: require('../assets/camera.png'), name: 'Items:Camera' },
   { uri: require('../assets/gameSystem.png'), name: 'Items: Gaming  products' },
@@ -24,15 +25,15 @@ const images = [
   { uri: require('../assets/keyboard.png'), name: 'Items: Keyboards' },
   { uri: require('../assets/USB.png'), name: 'Items: USB Flash Drives' },
 ];
-
+// Function to get an item's data by index from the images array
 const getItem = (_data, index) => ({
   id: Math.random().toString(12).substring(0),
   title: images[index].name,
   imageIndex: index % images.length,
 });
-
+// Function to get the total count of items in the images array
 const getItemCount = _data => images.length;
-
+// Modal component to show actions for an item
 const ActionModal = ({ visible, onClose, title }) => (
   <Modal
     animationType="slide"
@@ -72,14 +73,14 @@ const ActionModal = ({ visible, onClose, title }) => (
     </View>
   </Modal>
 );
-
+// Item component for rendering each item in the list
 const Item = ({ title, imageIndex }) => {
-  const [modalVisible, setModalVisible] = useState(false);
-
+  const [modalVisible, setModalVisible] = useState(false); // State for modal visibility
+// Handler for opening the modal
   const handlePress = () => {
     setModalVisible(true);
   };
-
+// Layout for each item with an image and text
   return (
     <>
       <TouchableOpacity 
@@ -100,12 +101,12 @@ const Item = ({ title, imageIndex }) => {
     </>
   );
 };
-
+// Main component for the category screen
 const Category1 = ({ navigation }) => {
   const showFirstPageAlert = () => {
     Alert.alert("Attention", "This is the first page!");
   };
-
+/ Alert function for the first page navigation
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.headerTitle}>circl-E Eco Friendly recycle Items</Text>
@@ -129,13 +130,13 @@ const Category1 = ({ navigation }) => {
     </SafeAreaView>
   );
 };
-
+// SafeAreaView to ensure the content is rendered within the safe area boundaries of the device
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: StatusBar.currentHeight,
     backgroundColor: '#E8F5E9',
-  },
+  },                 // StyleSheet for styling various components in the app
   headerTitle: {
     fontSize: 36,
     fontWeight: 'bold',
