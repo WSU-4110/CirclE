@@ -14,13 +14,15 @@ import Welcome from './Screens/Welcome';
 import CreateAccount from './Screens/CreateAccount';
 import Login from './Screens/Login';
 import HomeScreen from './Screens/HomeScreen';
-import Category1 from './Screens/Category1'; 
-import Category2 from './Screens/Category2';
+import ElectronicItems from './Screens/ElectronicItems'; 
+import KitchenItems from './Screens/KitchenItems';
 import Category3 from './Screens/Category3'; 
-import Category4 from './Screens/Category4';
-import Category5 from './Screens/Category5';
+import CarItems from './Screens/CarItems';
+import ClothingItems from './Screens/ClothingItems';
 import LoadingScreen from './Screens/LoadingScreen';
 import ProfilePage from './Screens/ProfilePage';
+import CosmatCat from './Screens/CosmatCat';
+import FurnitureCat from './Screens/FurnitureCat'
 
 import DiyProjects from './Screens/DiyProjects';
 import Settings from './Screens/Settings';
@@ -160,13 +162,14 @@ export default function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="OrganizationHome" component={OrganizationHome} options={{ title: 'Organization Home' }} />
         <Stack.Screen name="Orgdefineditems" component={Orgdefineditems} options={{ title: 'Orgdefineditems' }} />
-        <Stack.Screen name="Category1" component={Category1} options={{ title: 'Category 1' }} />
-        <Stack.Screen name="Category2" component={Category2} options={{ title: 'Category 2' }} />
-        <Stack.Screen name="Category3" component={Category3} options={{ title: 'Category 3' }} />
+        <Stack.Screen name="ElectronicItems" component={ElectronicItems} options={{ title: 'ElectronicItems' }} />
+        <Stack.Screen name="KitchenItems" component={KitchenItems} options={{ title: 'KitchenItems' }} />
+        <Stack.Screen name="CarItems" component={CarItems} options={{ title: 'CarItems' }} />
         <Stack.Screen name="DiyProjects" component={DiyProjects} options={{ title: 'DiyProjects' }} />
-        <Stack.Screen name="Category4" component={Category4} options={{ title: 'Category 4' }} />
+        <Stack.Screen name="CosmatCat" component={CosmatCat} options={{ title: 'Cosmetics Category' }} />
         <Stack.Screen name="Orgevents" component={Orgevents} options={{ title: 'Organization Events' }} />
-        <Stack.Screen name="Category5" component={Category5} options={{ title: 'Category 5' }} />
+        <Stack.Screen name="FurnitureCat" component={FurnitureCat} options={{ title: 'Furniture Category' }} />
+        <Stack.Screen name="ClothingItems" component={ClothingItems} options={{ title: 'ClothingItems' }} />
         <Stack.Screen name="OrgNew" component={OrgNew} options={{ title: 'Organization News' }} />
         <Stack.Screen name="userdefineditems" component={userdefineditems} options={{ title: 'user defined items' }} />
         <Stack.Screen name="SavedItems" component={SavedItems} options={{ title: 'Saved Items' }} />

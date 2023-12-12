@@ -109,22 +109,16 @@ const HomeScreen = ({ navigation }) => {
           <Image source={require('../assets/download.jpg')} style={styles.image} />
           <Text>Warning Against Acid Rain"</Text>
         </TouchableOpacity>
-        <Button title="Button 2" onPress={() => handleIconPress('Category2')} />
+     
       </View>
       <View style={styles.section}>
-        <TouchableOpacity style={styles.containerButton} onPress={() => handleCategoryPress('Newslette')}>
+        <TouchableOpacity style={styles.containerButton} onPress={() => handleIconPress('Newsletter')}>
           <Image source={require('../assets/clothiing__ce.jpg')} style={styles.image} />
           <Text>WHY You should thrift</Text>
         </TouchableOpacity>
-        <Button title="Button 3" onPress={() => handleCategoryPress('Category3')} />
+       
       </View>
-      <View style={styles.section}>
-        <TouchableOpacity style={styles.containerButton} onPress={() => handleCategoryPress('Category1')}>
-          <Image source={require('../assets/clothiing__ce.jpg')} style={styles.image} />
-          <Text>Section 4 Title</Text>
-        </TouchableOpacity>
-        <Button title="Button 4" onPress={() => handleCategoryPress('Category4')} />
-      </View>
+     
     </ScrollView>
         </View>
         {/* First Row of Icons */}
@@ -133,7 +127,7 @@ const HomeScreen = ({ navigation }) => {
           
             <TouchableOpacity
               style={styles.iconContainer}
-              onPress={() => handleIconPress('Category1')}
+              onPress={() => handleIconPress('ElectronicItems')}
             >
               <View style={styles.iconUnderlay}>
                     <View style={styles.iconGreyUnderlay} />
@@ -154,7 +148,7 @@ const HomeScreen = ({ navigation }) => {
 
             <TouchableOpacity
               style={styles.iconContainer}
-              onPress={() => handleIconPress('Category4')}
+              onPress={() => handleIconPress('KitchenItems')}
             >
               <View style={styles.iconUnderlay}>
                     <View style={styles.iconGreyUnderlay} />
@@ -216,7 +210,7 @@ const HomeScreen = ({ navigation }) => {
 
             <TouchableOpacity
               style={styles.iconContainer}
-              onPress={() => handleIconPress('Category5')}
+              onPress={() => handleIconPress('CarItems')}
             >
              
                     <View style={styles.iconGreyUnderlay} />
@@ -233,7 +227,7 @@ const HomeScreen = ({ navigation }) => {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.iconContainer}
-              onPress={() => handleIconPress('Category3')}
+              onPress={() => handleIconPress('ClothingItems')}
             >
               <View style={styles.iconGreyUnderlay} />
                     <View style={styles.overlay} />

@@ -58,7 +58,7 @@ const ActionModal = ({ visible, onClose, onSelectAction, electronicItems }) => {
   );
 };
 
-const Category1 = () => {
+const ElectronicItems = () => {
   const [electronicItems, setElectronicItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
   const [actionModalVisible, setActionModalVisible] = useState(false);
@@ -261,4 +261,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Category1;
+export default ElectronicItems;
