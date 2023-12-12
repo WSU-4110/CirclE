@@ -1,11 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text,Image, TextInput, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, Image,Alert, TextInput, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 import 'firebase/compat/database';
 
-const Leaderboard = () => {
+const Leaderboard = ({ navigation }) => {
     const [users, setUsers] = useState([]);
     const [newRecyclingAmount, setNewRecyclingAmount] = useState('');
+    const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const unsubscribe = firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                setIsUserLoggedIn(true);
+                initializeUserData(user.uid);
+                fetchUsers();
+            } else {
+                setIsUserLoggedIn(false);
+                setUsers([]);
+                Alert.alert(
+                    'Not Logged In',
+                    'You must be logged in to access this page.',
+                    [
+                      { text: 'OK', onPress: () => navigation.navigate('Login') }
+                    ]
+                  );
+            }
+        });
+
+        return () => unsubscribe();
+    }, []);
 
     const initializeUserData = (userId) => {
         const userRef = firebase.database().ref(`users/${userId}/recyclingData`);
@@ -19,10 +43,7 @@ const Leaderboard = () => {
         });
     };
 
-    useEffect(() => {
-        const userId = firebase.auth().currentUser.uid;
-        initializeUserData(userId);
-
+    const fetchUsers = () => {
         const usersRef = firebase.database().ref('users');
         usersRef.on('value', (snapshot) => {
             const usersData = snapshot.val();
@@ -38,7 +59,7 @@ const Leaderboard = () => {
         });
 
         return () => usersRef.off();
-    }, []);
+    };
 
     const handleLogRecycling = () => {
         const userId = firebase.auth().currentUser.uid;
@@ -62,36 +83,42 @@ const Leaderboard = () => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Log Your Recycling Activity</Text>
-            <TextInput
-                style={styles.input}
-                placeholder="Enter Amount of..."
-                value={newRecyclingAmount}
-                keyboardType="numeric"
-                onChangeText={(text) => setNewRecyclingAmount(text)}
-            />
-            <TouchableOpacity 
-                style={styles.addButton} 
-                onPress={handleLogRecycling}
-            >
-                <Text style={styles.addButtonText}>Log Recycling</Text>
-            </TouchableOpacity>
+            {isUserLoggedIn ? (
+                <>
+                    <Text style={styles.title}>Log Your Recycling Activity</Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Enter Amount of things recycled..."
+                        value={newRecyclingAmount}
+                        keyboardType="numeric"
+                        onChangeText={(text) => setNewRecyclingAmount(text)}
+                    />
+                    <TouchableOpacity 
+                        style={styles.addButton} 
+                        onPress={handleLogRecycling}
+                    >
+                        <Text style={styles.addButtonText}>Log Recycling</Text>
+                    </TouchableOpacity>
 
-            <Text style={styles.title}>Leaderboard</Text>
-            <FlatList
-                data={users}
-                keyExtractor={item => item.uid}
-                renderItem={({ item }) => (
-                    <View style={styles.userContainer}>
-                        <Image
-                        source={require('../assets/images.png')} 
-                        style={styles.userPhoto}
-                        />
-                        <Text style={styles.username}>{item.username}</Text>
-                        <Text style={styles.rating}>Rating: {item.recyclingData.rating}</Text>
-                    </View>
-                )}
-            />
+                    <Text style={styles.title}>Leaderboard</Text>
+                    <FlatList
+                        data={users}
+                        keyExtractor={item => item.uid}
+                        renderItem={({ item }) => (
+                            <View style={styles.userContainer}>
+                                <Image
+                                    source={require('../assets/images.png')} 
+                                    style={styles.userPhoto}
+                                />
+                                <Text style={styles.username}>{item.username}</Text>
+                                <Text style={styles.rating}>Rating: {item.recyclingData.rating}</Text>
+                            </View>
+                        )}
+                    />
+                </>
+            ) : (
+                <Text>Please log in to view the leaderboard</Text>
+            )}
         </View>
     );
 };
@@ -154,7 +181,6 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: '#388E3C',
     },
-    // ...other styles you might need
 });
 
 export default Leaderboard;
