@@ -1,4 +1,4 @@
-
+// Importing necessary React and React Native components and libraries
 import React from 'react';
 import firestore from '@react-native-firebase/firestore';
 import {
@@ -12,22 +12,22 @@ import {
   Alert,
   View,
 } from 'react-native';
-
+// Array of image objects, each with a URI and a name
 const images = [
   { uri: require('../assets/HealthAndPersonalCare.png'), name: 'Health & Personal Care' },
   { uri: require('../assets/HomeDecorAndFurnishings.png'), name: 'Home Decor & Furnishings' },
   { uri: require('../assets/Pets.png'), name: 'Pets' },
   { uri: require('../assets/ClothingAndAccessories.png'), name: 'Clothing & Accessories' },
 ];
-
+// Function to get an item's data by index from the images array
 const getItem = (_data, index) => ({
   id: Math.random().toString(12).substring(0),
   title: images[index].name,
   imageIndex: index % images.length,
 });
-
+// Function to get the total count of items in the images array
 const getItemCount = _data => 4;
-
+// Item component for rendering each item in the list
 const Item = ({ title, imageIndex, navigation }) => {
   const handlePress = async () => {
     try {
@@ -57,7 +57,7 @@ const Item = ({ title, imageIndex, navigation }) => {
     </TouchableOpacity>
   );
 };
-
+// Main component for the category screen
 
 
     <SafeAreaView style={styles.container}>=
@@ -71,7 +71,7 @@ const Item = ({ title, imageIndex, navigation }) => {
         getItem={getItem}
         contentContainerStyle={styles.listContent}
       />
-      <View style={styles.paginationContainer}>
+      <View style={styles.paginationContainer}> // SafeAreaView to ensure the content is rendered within the safe area boundaries of the device
         <TouchableOpacity onPress={showFirstPageAlert} style={styles.pageButton}>
           <Text style={styles.pageButtonText}>Previous</Text>
         </TouchableOpacity>
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   },
 
   //////
-
+// StyleSheet for styling various components in the app
   listContent: {
     paddingBottom: 60,  
   },
