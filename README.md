@@ -173,8 +173,9 @@ If you have a suggestion that would make this better, please fork the repo and c
 <!-- CONTACT -->
 ## Contact
 
-Ahmad Qureshi - [https://github.com/muahmad1217] 
-Shayan Bhatti - [https://github.com/Shayan7860]
+Ahmad Qureshi - [https://github.com/muahmad1217].
+
+Shayan Bhatti - [https://github.com/Shayan7860].
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
