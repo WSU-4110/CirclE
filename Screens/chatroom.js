@@ -22,7 +22,7 @@ export default function App() {
       <StatusBar style="auto" />
       {Platform.OS === 'android' ? (
         <DeadSimpleChat
-          roomId="2fZ07hXau"
+          roomId="9-XlH_Ol4"
           publicKey="pub_4e506a67593255396b657570525356394c4f6b4b6f7a4d6b447776596f78746b4868442d734266706d6b396d54734435"
           style={styles.chatroom}
         />

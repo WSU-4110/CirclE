@@ -23,14 +23,7 @@
     CirclE aims to be a driving force for environmental sustainability by simplifying the process of purchasing eco-friendly products and   
     enhancing the accessibility of recycling options for users.
     <br />
-    <a href="https://github.com/WSU-4110/CirclE.git"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+    <a href="https://github.com/WSU-4110/CirclE/wiki"><strong>Explore the Wiki»</strong></a>
   </p>
 </div>
 
@@ -44,6 +37,7 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
+        <li><a href="#Meet-The-Team">Meet The Team</a></li>
       </ul>
     </li>
     <li>
@@ -54,11 +48,8 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -89,14 +80,33 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 
 
+<!--Members -->
+
+## Meet The Team
+
+    Ahmad Qureshi
+  
+    Shayan Bhatti
+
+    Ankith Goutham
+
+    Nini Ola
+
+    Ahmad Khan
+
+    Jia Khan
+
+  
+
 <!-- GETTING STARTED -->
 ## Getting Started
+<!--
 Circle app Planing document
 * Sprint log/ meeting minutes-nini: https://docs.google.com/document/d/1yt_1jmwHtfVYIcl2i4GvckcMC0rwi7S8fenFz85J-0U/edit?usp=sharing
 * item research link- nini: https://docs.google.com/document/d/1VZSDFtTxHdPN25jUomN3U-h9xV3b1erLX-ZW_4V9FHw/edit?usp=sharing
 * Mock-databse design- nini: https://docs.google.com/presentation/d/1-j3bbAMvOVBF4fmak3GYt5jJUVDjK9lBi8uRol9L3Vk/edit?usp=sharing
 * Database type and structure rationale-nini: https://docs.google.com/document/d/1FQLG4Qq6kWYiiqYRi2XTv7bJ2IZiLJG-JesjsNvq6j8/edit?usp=sharing
-* srs Document-team:https://docs.google.com/document/d/1qijALci7uZQfd4W33JxsN55gpUtQWkmEg2QyoS19aZo/edit?usp=sharing
+* srs Document-team:https://docs.google.com/document/d/1qijALci7uZQfd4W33JxsN55gpUtQWkmEg2QyoS19aZo/edit?usp=sharing!>
 
 
 ### Prerequisites
@@ -117,7 +127,7 @@ Circle app Planing document
    ```sh
    npm install
    ```
-3. Enter your API in `config.js`
+3. Enter your API in `App.js`
    ```js
    const API_KEY = 'ENTER YOUR API';
    ```
@@ -130,22 +140,13 @@ Circle app Planing document
 ## Usage
 
 
+_Install Firebase for React Native, please refer to the [Documentation](https://rnfirebase.io/#:~:text=To%20install%20React%20Native%20Firebase,or%20app.config.js%20.)_
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+_Install React Native, please refer to the [Documentation](https://reactnative.dev/docs/environment-setup)_
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+_Install Expo Go, please refer to the [Documentation](https://docs.expo.dev/get-started/installation/)_
 
 
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
-
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -153,16 +154,15 @@ See the [open issues](https://github.com/github_username/repo_name/issues) for a
 
 <!-- CONTRIBUTING -->
 ## Contributing
-<!--
+
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+2. Create your Feature Branch (`git checkout -b CirclE/AmazingFeature`)
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 
--->
+
 1. Fork the Project
 
 5. Open a Pull Request
@@ -170,36 +170,12 @@ Don't forget to give the project a star! Thanks again!
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- CONTACT -->
 ## Contact
-<!--
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Ahmad Qureshi - [https://github.com/muahmad1217] 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
--->
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* []()
-* []()
-* []()
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
