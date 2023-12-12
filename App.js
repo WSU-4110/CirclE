@@ -23,13 +23,9 @@ import LoadingScreen from './Screens/LoadingScreen';
 import ProfilePage from './Screens/ProfilePage';
 import CosmatCat from './Screens/CosmatCat';
 import FurnitureCat from './Screens/FurnitureCat'
-
 import DiyProjects from './Screens/DiyProjects';
 import Settings from './Screens/Settings';
-
-
 import Ratings from './Screens/Ratings';
-
 import OrganizationHome from './Screens/OrganizationHome';  // new import
 import userdefineditems from './Screens/userdefineditems';  // new import
 import SavedItems from './Screens/SavedItems';  // new import
@@ -65,6 +61,9 @@ const firebaseConfig = {
   measurementId: "G-NGWS4NW9QB"
   
 };
+
+// Initializing Firebase///////////////////////////
+
 
 export const d = firebase.initializeApp(firebaseConfig);
 
@@ -136,11 +135,10 @@ const BottomTabNavigator = () => (
     })}
   >
     <Tab.Screen name="Home" component={HomeScreen} />
-  
+
     <Tab.Screen name="Location" component={Location} />
     <Tab.Screen name="Chatroom" component={Chatroom} />
     <Tab.Screen name="Newsletter" component={Newsletter} />
-    
     <Tab.Screen name="Organizations" component={orgPage} />
     
 
@@ -177,6 +175,10 @@ export default function App() {
         <Stack.Screen name="Newsletter" component={Newsletter} options={{ title: 'Newsletter' }} />
         <Stack.Screen name="Chatroom" component={Chatroom} options={{ title: 'Chatroom' }} />
         <Stack.Screen name="SimpleChat" component={SimpleChat} options={{ title: 'SimpleChat' }} />
+        <Stack.Screen name="Location" component={Location} options={{ title: 'Location' }} />
+        <Stack.Screen name="orgPage" component={orgPage} options={{ title: 'orgPage' }} />
+        <Stack.Screen name="ChangePassword" component={ChangePassword} options={{ title: 'ChangePassword' }} />
+        <Stack.Screen name="Settings" component={Settings} options={{ title: 'Settings' }} />
         
 
         {/* Add more category screens here */}
