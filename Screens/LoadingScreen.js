@@ -36,7 +36,7 @@ const LoadingScreen = ({ navigation }) => {
     // Clear the timer when the component unmounts to avoid memory leaks
     return () => clearTimeout(timer);
   }, [navigation]);
-
+//shows the loading text
   return (
     <View style={styles.container}>
       <View style={styles.background}>
