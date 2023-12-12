@@ -1,3 +1,4 @@
+//Created by Ankith Goutham
 import React, { useEffect, useRef } from 'react';
 import { View, Text, StyleSheet,Button, Image, Animated } from 'react-native';
 

@@ -1,3 +1,4 @@
+//Created by Ankith Goutham and Ahmed Khan
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
 
