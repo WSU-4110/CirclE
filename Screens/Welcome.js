@@ -12,6 +12,7 @@ const LoginOptions = ({ navigation }) => {
             style={styles.logo}
             source={require('../assets/Logo1.png')}
           />
+              //list of options for login
         </View>
         <Text style={styles.title}>Choose an Option:</Text>
         <TouchableOpacity
