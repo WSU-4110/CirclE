@@ -184,6 +184,8 @@ Ankith Goutham - [https://github.com/gouthama320].
 
 Jia Zhan- [https://github.com/zjbaby97].
 
+Ahmad Khan - [https://github.com/ahmadmazhark].
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
