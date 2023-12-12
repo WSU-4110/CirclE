@@ -1,12 +1,12 @@
 //Created by Ankith Goutham, allows user to see diyprojects around the web, and when clicked, takes to the original source
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, ActivityIndicator } from 'react-native';
-
+//creating constant to call
 const DiyProjects = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
-
+//project lists
   useEffect(() => {
     const projectsData = [
       {
@@ -110,5 +110,5 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
 });
-
+//exporting DiyProjects
 export default DiyProjects;
