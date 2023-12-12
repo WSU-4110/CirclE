@@ -1,3 +1,4 @@
+// Importing necessary React and React Native components and libraries
 import React from 'react';
 import {
   SafeAreaView,
@@ -10,7 +11,7 @@ import {
   Alert,
   View,
 } from 'react-native';
-
+// Array of image objects, each with a URI and a name
 const images = [
   { uri: require('../assets/Crafts_and_Hobbies.png'), name: 'Crafts and Hobbies' },
   { uri: require('../assets/Electronic.png'), name: 'Electronic' },
@@ -18,41 +19,41 @@ const images = [
   { uri: require('../assets/Entertainment.png'), name: 'Entertainment' },
   
 ];
-
+/ Function to get an item's data by index from the images array
 const getItem = (_data, index) => ({
   id: Math.random().toString(12).substring(0),
   title: images[index].name,
   imageIndex: index % images.length,
 });
-
+// Function to get the total count of items in the images array
 const getItemCount = _data => images.length;
 
 const Item = ({ title, imageIndex, navigation }) => (
   <TouchableOpacity 
-    style={styles.item}
+    style={styles.item} // Modal component to show actions for an item
     onPress={() => {} }
   >
     <Text style={styles.title}>{title}</Text>
     <Image
       style={styles.tinyLogo}
-      source={images[imageIndex].uri}
-    />
+      source={images[imageIndex].uri}            
+    />// SafeAreaView to ensure the content is rendered
   </TouchableOpacity>
 );
-
+//naviation for the ca2
 const Category2 = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.headerTitle}>circl-E Eco Friendly recycle categories</Text>
       <VirtualizedList
-        data={Array(4).fill(null)}
+        data={Array(4).fill(null)}// Layout for each item with an image and text
         initialNumToRender={4}
         renderItem={({ item }) => <Item title={item.title} imageIndex={item.imageIndex} navigation={navigation} />}
         keyExtractor={item => item.id}
         getItemCount={getItemCount}
         getItem={getItem}
         contentContainerStyle={styles.listContent}
-      />
+      /> // Alert function for the first page navigation   
       <View style={styles.paginationContainer}>
         <TouchableOpacity onPress={() => navigation.navigate('Category1')} style={styles.pageButton}>
           <Text style={styles.pageButtonText}>Previous</Text>
@@ -65,7 +66,7 @@ const Category2 = ({ navigation }) => {
   );
 };
 
-
+//style for pages
 const styles = StyleSheet.create({
   container: {
     flex: 1,
