@@ -4,7 +4,7 @@ import {
   TouchableOpacity,
   VirtualizedList,
   StyleSheet,
-  Text,
+  Text, //remain the same for previous pages
   StatusBar,
   Image,
   Alert,
