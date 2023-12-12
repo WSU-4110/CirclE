@@ -25,10 +25,6 @@ const searchClient1 = algoliasearch('ZGVYKOZVLW', '15dea6a36dbc2457f06dcc4738139
 
 const HomeScreen = ({ navigation }) => {
 
-  
-    // Firestore is ready, you can now use it
-   
-    // Rest of your code
 
 
 
@@ -60,7 +56,7 @@ const HomeScreen = ({ navigation }) => {
       />
       <Text style={styles.boldText}>Sustainability Simplified With Circle </Text>
 
-      <TouchableOpacity style={[styles.logo,{ marginRight: 15 },{marginBottom: 0}] } onPress={() => handleIconPress('ProfilePage')}>
+      <TouchableOpacity style={[styles.logo,{ marginRight: 15 },{marginBottom: 0}] } onPress={() => handleIconPress('Settings')}>
             <Image
               source={require('../assets/pfpic.jpg')}
               style={styles.logo}
@@ -87,7 +83,9 @@ const HomeScreen = ({ navigation }) => {
       resizeMode="contain"
     />
   </TouchableOpacity>
-  <Text style={styles.boldText}>How do you reuse, reduce, and recycle?</Text>
+  <TouchableOpacity style={styles.AddI} onPress={() => handleIconPress('userdefineditems')}>
+    <Text style={styles.boldTextadd}>Add Items</Text>
+  </TouchableOpacity>
  
 </View>
 
@@ -488,6 +486,10 @@ label: {
   },
   iconadd: {
     marginRight: 10, // Adjust the margin as needed
+  },
+  AddI: {
+
+    marginTop: 17, 
   },
   logoadd: {
     width: 40, // Adjust the width as needed

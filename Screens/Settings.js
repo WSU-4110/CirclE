@@ -98,6 +98,14 @@ const Settings = ({ navigation }) => {
                 <Text style={styles.buttonText}>Ratings</Text>
             </TouchableOpacity>
 
+            {/* Delete Saved Items */}
+            <TouchableOpacity
+                    style={styles.deleteButton}
+                    onPress={() => handleNavigation('SavedItems')}
+                    >
+                    <Text style={styles.buttonText}>Saved Items</Text>
+                </TouchableOpacity>
+
             {/* Delete Account */}
             <TouchableOpacity
                 style={styles.deleteButton}
