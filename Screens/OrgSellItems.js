@@ -6,7 +6,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/database';
 
-const Orgevents = () => {
+const OrgSellItems = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
@@ -52,9 +52,9 @@ const Orgevents = () => {
     try {
       // Save the item data to Firebase Realtime Database
       const userId = firebase.auth().currentUser.uid;
-      const itemsRef = firebase.database().ref(`users/${userId}/Events`);
+      const itemsRef = firebase.database().ref(`users/${userId}/Sell`); // Use the same path for consistency
       const newItemRef = itemsRef.push();
-    
+  
       // Check if image is defined before setting it
       const itemData = {
         name,
@@ -62,17 +62,17 @@ const Orgevents = () => {
         category,
         ...(image && { image }), // Include image only if it is defined
       };
-    
+  
       newItemRef.set(itemData);
-    
+  
       Alert.alert('Success', 'Item added to Firebase Realtime Database.');
-    
+  
       // Reset the form fields
       setName('');
       setDescription('');
       setCategory('');
       setImage(null);
-    
+  
       // Fetch and set the entered items to update the second section
       fetchEnteredItems();
     } catch (error) {
@@ -84,8 +84,8 @@ const Orgevents = () => {
   const fetchEnteredItems = async () => {
     try {
       const userId = firebase.auth().currentUser.uid;
-      const itemsRef = firebase.database().ref(`users/${userId}/Events`);
-    
+      const itemsRef = firebase.database().ref(`users/${userId}/Sell`); // Use the same path for consistency
+  
       itemsRef.on('value', (snapshot) => {
         const itemsData = snapshot.val();
         if (itemsData) {
@@ -102,6 +102,7 @@ const Orgevents = () => {
       console.error('Error fetching entered items:', error);
     }
   };
+  
 
   return (
     <View>
@@ -136,7 +137,6 @@ const Orgevents = () => {
         <Button title="Submit Item" onPress={submitItem} />
       </View>
 
-      {/* Second Section: Printing Entered Values */}
       <View>
         <Text>Entered Items:</Text>
         <FlatList
@@ -147,7 +147,7 @@ const Orgevents = () => {
               <Text>Description: {item.description}</Text>
               <Text>Category: {item.category}</Text>
               {/* Add logic to display image if available */}
-            
+             
             </View>
           )}
           keyExtractor={(item) => item.id}
@@ -157,24 +157,4 @@ const Orgevents = () => {
   );
 };
 
-
-
-const styles = StyleSheet.create({
-  itemContainer: {
-    backgroundColor: '#cde4d7', // Light green background color
-    padding: 10,
-    marginBottom: 10,
-    borderRadius: 8,
-  },
-  itemText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 5,
-  },
-  itemImage: {
-    width: 100,
-    height: 100,
-    marginBottom: 5,
-  },
-});
-export default Orgevents;
+export default OrgSellItems;

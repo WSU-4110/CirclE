@@ -50,6 +50,7 @@ import 'firebase/compat/database';
 import Orgevents from './Screens/Orgevents';
 import OrgNew from './Screens/OrgNew';
 import Orgdefineditems from './Screens/Orgdefineditems';
+import OrgSellItems from './Screens/OrgSellItems';
 
 //const searchClient = algoliasearch('ZGVYKOZVLW', '15dea6a36dbc2457f06dcc473813946c');
 
@@ -99,26 +100,11 @@ const BottomTabNavigator = () => (
         }
 
         else if (route.name === 'orgPage') {
-          return (
-            <MaterialIcons
-              name={focused ? 'shopping-cart' : 'shopping-cart-outlined'}
-              size={size}
-              color={color}
-            />
-          );
-        }
+          iconName = focused ? 'apps-outline' : 'apps-outline';}
         else if (route.name === 'OrgPage') {
-          return (
-            <MaterialIcons
-              name={focused ? 'shopping-cart' : 'shopping-cart-outlined'}
-              size={size}
-              color={color}
-            />
-          );
-          }
-        else if (route.name === 'NewCategory') {
           iconName = focused ? 'apps-outline' : 'apps-outline';
-        }
+          }
+      
         else if (route.name === 'Newsletter') {
           iconName = focused ? 'newspaper' : 'newspaper-outline';
         }
@@ -168,6 +154,7 @@ export default function App() {
         <Stack.Screen name="DiyProjects" component={DiyProjects} options={{ title: 'DiyProjects' }} />
         <Stack.Screen name="CosmatCat" component={CosmatCat} options={{ title: 'Cosmetics Category' }} />
         <Stack.Screen name="Orgevents" component={Orgevents} options={{ title: 'Organization Events' }} />
+        <Stack.Screen name="OrgSellItems" component={OrgSellItems} options={{ title: 'Organization Items' }} />
         <Stack.Screen name="FurnitureCat" component={FurnitureCat} options={{ title: 'Furniture Category' }} />
         <Stack.Screen name="ClothingItems" component={ClothingItems} options={{ title: 'ClothingItems' }} />
         <Stack.Screen name="OrgNew" component={OrgNew} options={{ title: 'Organization News' }} />

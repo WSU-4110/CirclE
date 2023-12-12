@@ -97,10 +97,27 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 20,
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: "bold",
+  sectionContainer: {
+    flex: 1,
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 20,
+    backgroundColor: "#FFFACD", // Light yellow background color
+    padding: 10, // Add padding to provide some space around the content
+    borderRadius: 8, // Add border radius for rounded corners
   },
+  searchButtonText: {
+    color: "white",
+    fontSize: 18,
+  },
+ // Update the sectionTitle style:
+sectionTitle: {
+  fontSize: 24,
+  fontWeight: "bold",
+  marginBottom: 10,
+  color: "#2c3e50", // Choose your preferred color
+},
+
   scrollContent: {
     // Add styling for the content inside the ScrollView for Org Events section
   },

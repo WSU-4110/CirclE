@@ -147,7 +147,7 @@ const OrganizationHome = ({ navigation }) => {
 </View>
 
       <View style={styles.actionContainer}>
-        <ActionButton title="Sell on Circle" onPress={() => navigation.navigate('Category3')} />
+        <ActionButton title="Sell on Circle" onPress={() => navigation.navigate('OrgSellItems')} />
         <ActionButton title="Create Listing" onPress={() => navigation.navigate('Orgevents')} />
         <ActionButton title="Create Newsletter" onPress={() => navigation.navigate('OrgNew')} />
         <ActionButton title="Sign Out" onPress={handleSignOut} />

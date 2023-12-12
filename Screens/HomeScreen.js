@@ -91,6 +91,30 @@ const HomeScreen = ({ navigation }) => {
  
 </View>
 
+<View style={styles.containeradd}>
+  <TouchableOpacity style={[styles.logo,{ marginRight: 15 },{marginBottom: 0}]} onPress={() => handleIconPress('Ratings')}>
+    <Image
+      source={require('../assets/ranking.png')}
+      style={styles.logoadd}
+      resizeMode="contain"
+    />
+  </TouchableOpacity>
+  <Text style={styles.boldText}>Join CirclE Sustainability Competition  </Text>
+ 
+</View>
+
+<View style={styles.containeradd}>
+  <TouchableOpacity style={[styles.logo,{ marginRight: 15 },{marginBottom: 0}]} onPress={() => handleIconPress('DiyProjects')}>
+    <Image
+      source={require('../assets/diy.png')}
+      style={styles.logoadd}
+      resizeMode="contain"
+    />
+  </TouchableOpacity>
+  <Text style={styles.boldText}>Explore Diy Projects with Circle                </Text>
+ 
+</View>
+
 
         {/* Container for horizontal scroll view and category buttons */}
         <Text style={styles.boldText3}>Popular on CirclE</Text>
@@ -466,8 +490,8 @@ label: {
     marginRight: 10, // Adjust the margin as needed
   },
   logoadd: {
-    width: 30, // Adjust the width as needed
-    height: 30,
+    width: 40, // Adjust the width as needed
+    height: 40,
     marginTop:20 // Adjust the height as needed
   },
   boldTextadd: {
