@@ -37,12 +37,7 @@ import Location from './Screens/Location';
 import orgPage from './Screens/orgPage';
 import ChangePassword from './Screens/ChangePassword';
 import SimpleChat from './Screens/simplechat';
-<<<<<<< HEAD
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-=======
-import FurnitureCat from './Screens/FurnitureCat';
-import CosmatCat from './Screens/CosmatCat';
->>>>>>> 6f8d3b82b38d4be1989d112eb9db5bc37aacd573
 
 
 
@@ -111,7 +106,6 @@ const BottomTabNavigator = () => (
           );
         }
         else if (route.name === 'OrgPage') {
-<<<<<<< HEAD
           return (
             <MaterialIcons
               name={focused ? 'shopping-cart' : 'shopping-cart-outlined'}
@@ -121,12 +115,6 @@ const BottomTabNavigator = () => (
           );
           }
         else if (route.name === 'NewCategory') {
-=======
-          iconName = focused ? 'chatbox' : 'chatbox-sharp';
-        }
-
-        else if (route.name === 'DiyProjects') {
->>>>>>> 6f8d3b82b38d4be1989d112eb9db5bc37aacd573
           iconName = focused ? 'apps-outline' : 'apps-outline';
         }
         else if (route.name === 'Newsletter') {
@@ -146,7 +134,6 @@ const BottomTabNavigator = () => (
     })}
   >
     <Tab.Screen name="Home" component={HomeScreen} />
-<<<<<<< HEAD
   
     <Tab.Screen name="Location" component={Location} />
     <Tab.Screen name="Chatroom" component={Chatroom} />
@@ -154,15 +141,6 @@ const BottomTabNavigator = () => (
     
     <Tab.Screen name="Organizations" component={orgPage} />
     
-=======
-    <Tab.Screen name="Settings" component={Settings} />
-    <Tab.Screen name="Location" component={Location} />
-    <Tab.Screen name="Chatroom" component={Chatroom} />
-    <Tab.Screen name="Newsletter" component={Newsletter} />
-    <Tab.Screen name="Add Item" component={userdefineditems} />
-    <Tab.Screen name="orgPage" component={orgPage} />
-    <Tab.Screen name="DiyProjects" component={DiyProjects} />
->>>>>>> 6f8d3b82b38d4be1989d112eb9db5bc37aacd573
 
   </Tab.Navigator>
 );
@@ -196,16 +174,8 @@ export default function App() {
         <Stack.Screen name="Newsletter" component={Newsletter} options={{ title: 'Newsletter' }} />
         <Stack.Screen name="Chatroom" component={Chatroom} options={{ title: 'Chatroom' }} />
         <Stack.Screen name="SimpleChat" component={SimpleChat} options={{ title: 'SimpleChat' }} />
-<<<<<<< HEAD
         
 
-=======
-        <Stack.Screen name="Location" component={Location} options={{ title: 'Location' }} />
-        <Stack.Screen name="orgPage" component={orgPage} options={{ title: 'orgPage' }} />
-        <Stack.Screen name="FurnitureCat" component={FurnitureCat} options={{ title: 'FurnitureCat' }} />
-        <Stack.Screen name="CosmatCat" component={CosmatCat} options={{ title: 'CosmatCat' }} />
-        <Stack.Screen name="ChangePassword" component={ChangePassword} />
->>>>>>> 6f8d3b82b38d4be1989d112eb9db5bc37aacd573
         {/* Add more category screens here */}
       </Stack.Navigator>
     </NavigationContainer>
