@@ -84,13 +84,15 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 ## Meet The Team
 
+
+
+    Nini Ola
+   
     Ahmad Qureshi
   
     Shayan Bhatti
 
     Ankith Goutham
-
-    Nini Ola
 
     Ahmad Khan
 
@@ -172,6 +174,7 @@ If you have a suggestion that would make this better, please fork the repo and c
 
 <!-- CONTACT -->
 ## Contact
+ Nini Ola - [https://github.com/niniorithemofe]
 
 Ahmad Qureshi - [https://github.com/muahmad1217].
 
