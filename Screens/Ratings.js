@@ -65,7 +65,7 @@ const Leaderboard = () => {
             <Text style={styles.title}>Log Your Recycling Activity</Text>
             <TextInput
                 style={styles.input}
-                placeholder="Enter Amount of things recycled..."
+                placeholder="Enter Amount of..."
                 value={newRecyclingAmount}
                 keyboardType="numeric"
                 onChangeText={(text) => setNewRecyclingAmount(text)}

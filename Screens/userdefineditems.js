@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
   },
   recyclingText: {
     fontSize: 14,
-    color: '#666', // Light gray
+    color: '#666', 
   },
   listItem: {
     flexDirection: 'row',
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
   itemText: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#333',  // Dark gray
+    color: '#333',  
   },
   deleteButtonOutside: {
     position: 'absolute',
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     top: 10,
     padding: 10,
     borderRadius: 20,
-    backgroundColor: '#F44336',  // Red
+    backgroundColor: '#F44336', 
     elevation: 3,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
   },
   deleteButtonText: {
-    color: '#FFF',  // White
+    color: '#FFF', 
   },
   addButton: {
     paddingVertical: 10,
@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
   },
   addButtonText: {
     fontSize: 16,
-    color: '#FFF',  // White
+    color: '#FFF',  
   },
   deleteButton: {
     padding: 10,
