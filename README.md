@@ -148,6 +148,12 @@ _Install React Native, please refer to the [Documentation](https://reactnative.d
 
 _Install Expo Go, please refer to the [Documentation](https://docs.expo.dev/get-started/installation/)_
 
+_Install Algolia, please refer to the [Documentation](https://www.algolia.com/doc/guides/building-search-ui/going-further/native/react/)_
+
+_Install Cloudinary, please refer to the [Documentation](https://cloudinary.com/documentation/react_native_integration))_
+
+
+
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -182,6 +188,9 @@ Shayan Bhatti - [https://github.com/Shayan7860].
 
 Ankith Goutham - [https://github.com/gouthama320].
 
+Jia Zhan- [https://github.com/zjbaby97].
+
+Ahmad Khan - [https://github.com/ahmadmazhark].
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

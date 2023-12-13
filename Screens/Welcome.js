@@ -1,4 +1,4 @@
-//Created by Ankith Goutham
+//Created by Ankith Goutham, shows the login/sign up/continue as guest options
 //Welcome.js
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
@@ -12,6 +12,7 @@ const LoginOptions = ({ navigation }) => {
             style={styles.logo}
             source={require('../assets/Logo1.png')}
           />
+              //list of options for login
         </View>
         <Text style={styles.title}>Choose an Option:</Text>
         <TouchableOpacity

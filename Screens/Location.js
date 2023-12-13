@@ -1,4 +1,4 @@
-//Created by Ankith Goutham
+//Created by Ankith Goutham, shows location of recycling centers within 20 miles of user
 //imports
 import React, { useState, useEffect } from 'react';
 import MapView, { Marker } from 'react-native-maps';

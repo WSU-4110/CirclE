@@ -32,7 +32,7 @@ import SavedItems from './Screens/SavedItems';  // new import
 import Newsletter from './Screens/Newsletter';
 import Chatroom from './Screens/chatroom';
 import Location from './Screens/Location';
-import OrgPage from './Screens/OrgPage';
+import OrgPage from './Screens/orgPage';
 import ChangePassword from './Screens/ChangePassword';
 import SimpleChat from './Screens/simplechat';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';

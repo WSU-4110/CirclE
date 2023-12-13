@@ -3,6 +3,7 @@
 // ** Page definition: this is the one of 6 categories for clothing items: with call to database/ action modal / profit idicator 
 
 
+// Shayan Bhatti - did the isProfitable indicator
 
 import React, { useState, useEffect } from 'react';
 import {

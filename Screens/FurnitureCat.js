@@ -7,6 +7,7 @@
    profit indicator: shayan for all items
 
 ********************/
+// Shayan Bhatti - did the isProfitable indicator
 
 import React, { useState, useEffect } from 'react';
 import {
