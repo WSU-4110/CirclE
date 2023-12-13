@@ -1,3 +1,13 @@
+/**************
+   this is a page that uses code design: this achieves modularity as it can be reused multiple time for 
+   differnt lists and search functionality 
+
+********************/
+
+
+
+
+
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';

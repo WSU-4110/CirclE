@@ -1,4 +1,10 @@
 //Electronic items
+
+/**************
+   this is one of 6 categories: electronic items 
+   author: nini
+
+********************/
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, StyleSheet, Pressable, Modal, TouchableOpacity, Image, StatusBar } from 'react-native';
 import { getDatabase, ref, onValue, off } from 'firebase/database';

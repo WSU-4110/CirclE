@@ -1,3 +1,10 @@
+/**************
+   this IS THE PAGE WHERE ORGANIZATIONS CAN LIST AND VIEW THEIR ITEMS 
+   AUTHOR NINI
+
+********************/
+
+
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, Image, StyleSheet, Alert, FlatList } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';

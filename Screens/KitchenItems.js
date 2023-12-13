@@ -1,3 +1,8 @@
+/**************
+   this is one of 6 Categories: KITCHEN ITEMS 
+author: nini
+********************/
+
 import React, { useState, useEffect } from 'react';
 import {
   View,

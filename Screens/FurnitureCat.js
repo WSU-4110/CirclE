@@ -1,3 +1,13 @@
+
+/**************
+   this is one of 6 categories page: Furniture with call to database, eco rating and profit inidicator 
+
+   author: nini 
+   ecorating : MAQ for all items
+   profit indicator: shayan for all items
+
+********************/
+
 import React, { useState, useEffect } from 'react';
 import {
   View,

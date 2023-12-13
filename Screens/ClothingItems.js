@@ -1,3 +1,9 @@
+
+
+// ** Page definition: this is the one of 6 categories for clothing items: with call to database/ action modal / profit idicator 
+
+
+
 import React, { useState, useEffect } from 'react';
 import {
   View,
@@ -54,7 +60,7 @@ const Category5 = () => {
 
   useEffect(() => {
     const db = getDatabase(app);
-    const carItemsRef = ref(db, 'CarItems');
+    const carItemsRef = ref(db, 'ClothingItems');
 
     const onSnapshot = onValue(carItemsRef, (snapshot) => {
       const items = snapshot.val();

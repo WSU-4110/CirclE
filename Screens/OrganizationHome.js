@@ -1,3 +1,10 @@
+/**************
+   this is THE ORGANIZATION HOMEPAGE WHERE ORGANOZATIONS CAN LIST ITEMS TO SELL, EVENTS 
+   AND NEWLETTER 
+
+********************/
+
+
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Modal, TextInput, Alert, Image } from 'react-native';
 import firebase from 'firebase/compat/app';

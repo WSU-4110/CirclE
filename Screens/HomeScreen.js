@@ -1,3 +1,11 @@
+/**************
+   this is a the home page. with features like search bar, call to databases, navigating to multiple screens 
+   user friendly ui 
+   author : nini
+
+********************/
+
+
 
 import { View, StatusBar, Text, TextInput, Button, StyleSheet, FlatList, ScrollView, Image,TouchableOpacity,ImageBackground,SafeAreaView} from 'react-native';
 import firebase from 'firebase/app';

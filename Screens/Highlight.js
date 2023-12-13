@@ -1,3 +1,11 @@
+/**************
+   this is page used by the search function: it higlight items being searched 
+
+   this code also uses modularity as it's being used multiple time but created only once
+
+********************/
+
+
 import React from 'react';
 import { Text } from 'react-native';
 import PropTypes from 'prop-types';

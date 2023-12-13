@@ -1,4 +1,8 @@
+/**************
+   this is a page that uses code design: this page allows firebase to be configured once and prevents 
+   more configuration and error
 
+********************/
 import firebase from 'firebase/compat/app'
 import 'firebase/firestore';
 import 'firebase/compat/auth'
